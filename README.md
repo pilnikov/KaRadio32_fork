@@ -1,6 +1,7 @@
 # KaRadio32_fork
 modifed files from karadio32 https://github.com/karawin/Ka-Radio32
-for use with TTGO TM Music
+for use with TTGO TM Music.
+
 You can download .bin files (without compiling). 
 After flashing You must configure your LCD like as ILI9341 (194).
 
