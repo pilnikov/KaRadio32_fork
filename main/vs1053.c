@@ -61,17 +61,18 @@ void VS1053_spi_init(uint8_t spi_no){
 	if(!sSPI) vSemaphoreCreateBinary(sSPI);
 	spi_give_semaphore(); 
 	
-	if(spi_no > 1) return; //Only SPI and HSPI are valid spi modules. 	
+	if(spi_no > 2) return; //Only VSPI and HSPI are valid spi modules. 	
 	
 	spi_bus_config_t buscfg={
         .miso_io_num=PIN_NUM_MISO,
         .mosi_io_num=PIN_NUM_MOSI,
         .sclk_io_num=PIN_NUM_CLK,
         .quadwp_io_num=-1,
-        .quadhd_io_num=-1
+        .quadhd_io_num=-1,
+//		.flags = SPICOMMON_BUSFLAG_NATIVE_PINS|SPICOMMON_BUSFLAG_MASTER
 //		.max_transfer_sz = 1024		
 	};		
-	ret=spi_bus_initialize(HSPI_HOST, &buscfg, 1);	 // dma	
+	ret=spi_bus_initialize(KSPI, &buscfg, 1);	 // dma	
 	assert(ret==ESP_OK);
 }
 
@@ -89,23 +90,23 @@ void VS1053_HW_init(){
 		.flags = 0,	
         .mode=0,                         //SPI mode 
         .spics_io_num= PIN_NUM_XCS,               //XCS pin
-        .queue_size=10,                          //We want to be able to queue x transactions at a time
+        .queue_size=1,                          //We want to be able to queue x transactions at a time
         //.pre_cb=lcd_spi_pre_transfer_callback,  //Specify pre-transfer callback to handle D/C line
         .pre_cb=NULL,  //Specify pre-transfer callback to handle D/C line
 		.post_cb = NULL
 	};	
 	
- 	//VS1053_spi_init(HSPI_HOST);
+ 	//VS1053_spi_init(KSPI);
 	
 	//slow speed
-	ESP_ERROR_CHECK(spi_bus_add_device(HSPI_HOST, &devcfg, &vsspi));
+	ESP_ERROR_CHECK(spi_bus_add_device(KSPI, &devcfg, &vsspi));
 	
 	//high speed	
 	devcfg.clock_speed_hz = 6000000;
 	devcfg.spics_io_num= PIN_NUM_XDCS;               //XDCS pin
 	devcfg.command_bits = 0;
 	devcfg.address_bits = 0;
-	ESP_ERROR_CHECK(spi_bus_add_device(HSPI_HOST, &devcfg, &hvsspi));
+	ESP_ERROR_CHECK(spi_bus_add_device(KSPI, &devcfg, &hvsspi));
 	
 	//Initialize non-SPI GPIOs
 	gpio_config_t gpio_conf;
@@ -239,7 +240,7 @@ uint16_t MaskAndShiftRight(uint16_t Source, uint16_t Mask, uint16_t Shift){
 
 void VS1053_regtest()
 {
-	int MP3Status = VS1053_ReadRegister(SPI_STATUS);
+	int MP3Status = VS1053_ReadRegister(SPI_STATUSVS);
 	int MP3Mode = VS1053_ReadRegister(SPI_MODE);
 	int MP3Clock = VS1053_ReadRegister(SPI_CLOCKF);
 	ESP_LOGI(TAG,"SCI_Status  = 0x%X",MP3Status);
@@ -299,9 +300,9 @@ void VS1053_Start(){
 	VS1053_WriteRegister16(SPI_WRAM, 0x0003); //GPIO_DDR=3
 	VS1053_WriteRegister16(SPI_WRAMADDR, 0xc019); //address of GPIO_ODATA is 0xC019
 	VS1053_WriteRegister16(SPI_WRAM, 0x0000); //GPIO_ODATA=0
-	vTaskDelay(100);
+	vTaskDelay(200);
 	
-	int MP3Status = VS1053_ReadRegister(SPI_STATUS);
+	int MP3Status = VS1053_ReadRegister(SPI_STATUSVS);
 	vsVersion = (MP3Status >> 4) & 0x000F; //Mask out only the four version bits
 //0 for VS1001, 1 for VS1011, 2 for VS1002, 3 for VS1003, 4 for VS1053 and VS8053,
 //5 for VS1033, 7 for VS1103, and 6 for VS1063	
@@ -616,10 +617,11 @@ void VS1053_flush_cancel(uint8_t mode) {  // 0 only fillbyte  1 before play    2
 }
 
 
-IRAM_ATTR void vsTask(void *pvParams) { 
+//IRAM_ATTR 
+void vsTask(void *pvParams) { 
 #define VSTASKBUF	1024
 	portBASE_TYPE uxHighWaterMark;
-	uint8_t b[VSTASKBUF];
+	uint8_t  b[VSTASKBUF];
 //	struct device_settings *device;
 	uint16_t size ,s;
 

@@ -82,7 +82,7 @@ Copyright (C) 2017  KaraWin
 #include "vs1053.h"
 #include "ClickEncoder.h"
 #include "addon.h"
-#include "rda5807Task.h"
+//#include "rda5807Task.h"
 
 /* The event group allows multiple bits for each event*/
 //   are we connected  to the AP with an IP? */
@@ -108,6 +108,7 @@ const int CONNECTED_AP  = 0x00000010;
 
 void start_network();
 /* */
+static bool wifiInitDone = false;
 static EventGroupHandle_t wifi_event_group ;
 xQueueHandle event_queue;
 static wifi_mode_t mode;
@@ -133,6 +134,7 @@ void interrupt1Ms()
 }
 char* getIp() { return (localIp);}
 
+/*
 IRAM_ATTR void   microsCallback(void *pArg) {
 	int timer_idx = (int) pArg;
 	queue_event_t evt;	
@@ -143,7 +145,7 @@ IRAM_ATTR void   microsCallback(void *pArg) {
         evt.i2 = timer_idx;
 	xQueueSendFromISR(event_queue, &evt, NULL);	
 	TIMERG1.hw_timer[timer_idx].config.alarm_en = 1;
-}
+}*/
 //-----------------------------------
 IRAM_ATTR void   msCallback(void *pArg) {
 	int timer_idx = (int) pArg;
@@ -243,17 +245,17 @@ timer_config_t config;
 	ESP_ERROR_CHECK(timer_start(TIMERGROUP1MS, msTimer));
 	
 	/*Configure timer 1µS*/
-	config.auto_reload = TIMER_AUTORELOAD_EN;
+/*	config.auto_reload = TIMER_AUTORELOAD_EN;
 	config.divider = TIMER_DIVIDER1mS;
 	ESP_ERROR_CHECK(timer_init(TIMERGROUP1mS, microsTimer, &config));
 	ESP_ERROR_CHECK(timer_pause(TIMERGROUP1mS, microsTimer));
 	ESP_ERROR_CHECK(timer_isr_register(TIMERGROUP1mS, microsTimer, microsCallback, (void*) microsTimer, 0, NULL));
-	/* start 1µS timer*/
-	ESP_ERROR_CHECK(timer_set_counter_value(TIMERGROUP1mS, microsTimer, 0x00000000ULL));
+*/	/* start 1µS timer*/
+/*	ESP_ERROR_CHECK(timer_set_counter_value(TIMERGROUP1mS, microsTimer, 0x00000000ULL));
 	ESP_ERROR_CHECK(timer_set_alarm_value(TIMERGROUP1mS, microsTimer,TIMERVALUE1mS(10))); // 10 ms timer
 	ESP_ERROR_CHECK(timer_enable_intr(TIMERGROUP1mS, microsTimer));
 	ESP_ERROR_CHECK(timer_set_alarm(TIMERGROUP1mS, microsTimer,TIMER_ALARM_EN));
-	ESP_ERROR_CHECK(timer_start(TIMERGROUP1mS, microsTimer));
+	ESP_ERROR_CHECK(timer_start(TIMERGROUP1mS, microsTimer));*/
 }
 
 
@@ -351,6 +353,7 @@ static esp_err_t event_handler(void *ctx, system_event_t *event)
 		
 	case SYSTEM_EVENT_STA_CONNECTED:
 		xEventGroupSetBits(wifi_event, CONNECTED_AP);
+		wifiInitDone = true;
 		ESP_LOGE(TAG, "\nWifi connected");
 		
 		break;
@@ -367,20 +370,25 @@ static esp_err_t event_handler(void *ctx, system_event_t *event)
 		xEventGroupClearBits(wifi_event, CONNECTED_AP);
         xEventGroupClearBits(wifi_event, CONNECTED_BIT);
 		ESP_LOGE(TAG, "\nWifi Disconnected. Connection tried again");
-        if (getAutoWifi()) 
+        if (getAutoWifi()&&(wifiInitDone)) 
 		{
 			ESP_LOGE(TAG, "\nWifi Disconnected. reboot");
 			esp_restart();
 //			ESP_LOGE(TAG, "\nWifi Disconnected. Connection tried again");
 //			esp_wifi_connect();
 		} else
-			ESP_LOGE(TAG, "\nWifi Disconnected.");
+			if (!wifiInitDone)
+			{
+				ESP_LOGE(TAG, "\nWifi Disconnected.");
+				esp_wifi_connect();
+			}
         break;
 
 	case SYSTEM_EVENT_AP_START:
 		FlashOn = 5;FlashOff = 395;
 		xEventGroupSetBits(wifi_event, CONNECTED_AP);
 		xEventGroupSetBits(wifi_event, CONNECTED_BIT);
+		wifiInitDone = true;
 		break;
 		
 	case SYSTEM_EVENT_AP_STADISCONNECTED:
@@ -647,14 +655,14 @@ void timerTask(void* p) {
 					  if (serviceEncoder != NULL) serviceEncoder(); // for the encoder
 					  if (serviceAddon != NULL) serviceAddon(); // for the encoder
 					break;
-					case TIMER_1mS:  //10µs
-					break;
+//					case TIMER_1mS:  //1µs
+//					break;
 					default:
 					break;
 			}
 			taskYIELD();
 		}
-		taskYIELD();
+//		taskYIELD();
 		if (ledStatus)
 		{
 			
@@ -810,7 +818,7 @@ void app_main()
 	setDdmm(device->ddmm);
 	
 	//SPI init for the vs1053 and lcd if spi.
-	VS1053_spi_init(HSPI_HOST);
+	VS1053_spi_init(KSPI);
 
     init_hardware(); 
 	ESP_LOGI(TAG, "Hardware init done...");
@@ -818,7 +826,9 @@ void app_main()
 	
 	ESP_LOGE(TAG,"LCD Type %d",device->lcd_type);
 	lcd_init(device->lcd_type);
-	// Init i2c if lcd doesn't not (spi)
+	
+/*	
+	// Init i2c if lcd doesn't not (spi) for rde5807=
 	if (device->lcd_type >= LCD_SPI)
 	{
 		i2c_config_t conf;
@@ -834,6 +844,8 @@ void app_main()
 		//ESP_ERROR_CHECK
 		(i2c_driver_install(I2C_MASTER_NUM, conf.mode, I2C_MASTER_RX_BUF_DISABLE, I2C_MASTER_TX_BUF_DISABLE, 0));			
 	}
+*/
+
 	
 	// output mode
 	//I2S, I2S_MERUS, DAC_BUILT_IN, PDM, VS1053
@@ -916,24 +928,24 @@ void app_main()
     ESP_LOGI(TAG, "RAM left %d", esp_get_free_heap_size());
 
 	//start tasks of KaRadio32
-	xTaskCreate(uartInterfaceTask, "uartInterfaceTask", 2200, NULL, 2, &pxCreatedTask); 
+	xTaskCreatePinnedToCore(uartInterfaceTask, "uartInterfaceTask", 2400, NULL, 2, &pxCreatedTask,1); 
 	ESP_LOGI(TAG, "%s task: %x","uartInterfaceTask",(unsigned int)pxCreatedTask);
 	
-	xTaskCreate(clientTask, "clientTask", 2300, NULL, 6, &pxCreatedTask); 
+	xTaskCreatePinnedToCore(clientTask, "clientTask", 3000, NULL, 4, &pxCreatedTask,0); 
 	ESP_LOGI(TAG, "%s task: %x","clientTask",(unsigned int)pxCreatedTask);	
 	
-    xTaskCreate(serversTask, "serversTask", 2400, NULL, 3, &pxCreatedTask); 
+    xTaskCreatePinnedToCore(serversTask, "serversTask", 3000, NULL, 3, &pxCreatedTask,0); 
 	ESP_LOGI(TAG, "%s task: %x","serversTask",(unsigned int)pxCreatedTask);	
 	
-	xTaskCreate(task_addon, "task_addon", 2500, NULL, 5, &pxCreatedTask);  //high priority for the spi else too slow due to ucglib
+	xTaskCreatePinnedToCore (task_addon, "task_addon", 2600, NULL, 10, &pxCreatedTask,1);  //high priority for the spi else too slow due to ucglib
 	ESP_LOGI(TAG, "%s task: %x","task_addon",(unsigned int)pxCreatedTask);
 	
-	if (RDA5807M_detection())
+/*	if (RDA5807M_detection())
 	{
-		xTaskCreate(rda5807Task, "rda5807Task", 2500, NULL, 3, &pxCreatedTask);  //
+		xTaskCreatePinnedToCore(rda5807Task, "rda5807Task", 2500, NULL, 3, &pxCreatedTask,1);  //
 		ESP_LOGI(TAG, "%s task: %x","rda5807Task",(unsigned int)pxCreatedTask);
 	}
-	
+*/	
 	printf("Init ");
 	for (int i=0;i<15;i++)
 	{
@@ -946,13 +958,13 @@ void app_main()
 	if(device->options & T_LED) ledStatus = false;
 	
 	//autostart	
-	kprintf("autostart: playing:%d, currentstation:%d\n",device->autostart,device->currentstation);
 	setIvol( device->vol);
 	kprintf("READY. Type help for a list of commands\n");
 	
 	
-	if (device->autostart ==1)
+	if ((device->autostart ==1)&&(device->currentstation != 0xFFFF))
 	{	
+		kprintf("autostart: playing:%d, currentstation:%d\n",device->autostart,device->currentstation);
 		vTaskDelay(50); // wait a bit
 		playStationInt(device->currentstation);
 	}

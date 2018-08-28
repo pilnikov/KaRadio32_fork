@@ -337,11 +337,12 @@ void playStationInt(int sid) {
 			clientSilentDisconnect();
 //			clientDisconnect("playStationInt");
 			ESP_LOGV(TAG,"playstationInt: %d, new station: %s",sid,si->name);
-			for (i = 0;i<100;i++)
+/*			for (i = 0;i<100;i++)
 			{
 				if(!clientIsConnected())break;
 				vTaskDelay(5);
 			}
+*/
 			clientSetName(si->name,sid);
 			clientSetURL(si->domain);
 			clientSetPath(si->file);
@@ -709,9 +710,9 @@ static void handlePOST(char* name, char* data, int data_size, int conn) {
 		char* not2;
 		not2 = header->members.single.notice2;
 		if (not2 ==NULL) not2=header->members.single.audioinfo;
-		if ((header->members.single.notice2 != NULL)&&(strlen(header->members.single.notice2)==0)) not2=header->members.single.audioinfo;
+		//if ((header->members.single.notice2 != NULL)&&(strlen(header->members.single.notice2)==0)) not2=header->members.single.audioinfo;
 		int json_length ;
-		json_length =166+ //144 155
+		json_length =166+ //
 		((header->members.single.description ==NULL)?0:strlen(header->members.single.description)) +
 		((header->members.single.name ==NULL)?0:strlen(header->members.single.name)) +
 		((header->members.single.bitrate ==NULL)?0:strlen(header->members.single.bitrate)) +
@@ -1011,13 +1012,22 @@ static bool httpServerHandleConnection(int conn, char* buf, uint16_t buflen) {
 // stop command				
 				param = strstr(c,"stop") ;
 				if (param != NULL) {clientDisconnect("Web stop");}
+// next command				
+				param = strstr(c,"next") ;
+				if (param != NULL) {wsStationNext();}
+// prev command				
+				param = strstr(c,"prev") ;
+				if (param != NULL) {wsStationPrev();}				
 // instantplay command				
 				param = getParameterFromComment("instant=", c, strlen(c)) ;
 				if (param != NULL) {
 					clientDisconnect("Web Instant");
 					pathParse(param);
 //					printf("Instant param:%s\n",param);
-					clientParsePlaylist(param);clientConnectOnce();
+					clientParsePlaylist(param);
+					clientSetName("Instant Play",255);
+					clientConnectOnce();
+					vTaskDelay(1);
 					infree(param);
 				}
 // version command				
@@ -1135,13 +1145,14 @@ void serverclientTask(void *pvParams) {
 						{	
 //printf ("Server: try receive more:%d bytes. , must be %d\n", recbytes,bend - buf +cl);
 							while(((recb = read(client_sock , buf+recbytes, cl))==0)){vTaskDelay(1);}
-							buf[recbytes+recb] = 0;
+//							buf[recbytes+recb] = 0;
 //printf ("Server: received more now: %d bytes, rec:\n%s\nEnd\n", recbytes+recb,buf);
 							if (recb < 0) {
 								ESP_LOGE(TAG,"read fails 0  errno:%d",errno);
 								respKo(client_sock);
 								break;								
 							}
+							buf[recbytes+recb] = 0;							
 							recbytes += recb;
 						}
 					}

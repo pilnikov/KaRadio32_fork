@@ -3,6 +3,7 @@
  * Copyright 2017 karawin (http://www.karawin.fr)
  *
 *******************************************************************************/
+
 #define LOG_LOCAL_LEVEL ESP_LOG_VERBOSE
 #include <stddef.h>
 #include <string.h>
@@ -63,17 +64,17 @@ void setfont8(sizefont size)
 		switch(yy)
 		{
 			case 200:
-			u8g2_SetFont(&u8g2,u8g2_font_6x13_t_cyrillic);//u8g2_font_t0_11_t_all);//u8g2_font_6x12_tf);
+			u8g2_SetFont(&u8g2,u8g2_font_6x12_tf);
 			break;
 			case 128:
-			u8g2_SetFont(&u8g2,u8g2_font_6x13_t_cyrillic);//u8g2_font_t0_11_t_all);//u8g2_font_6x12_tf);
+			u8g2_SetFont(&u8g2,u8g2_font_6x12_tf);
 			break;
 			case 32:
-			u8g2_SetFont(&u8g2,u8g2_font_6x13_t_cyrillic);
+			u8g2_SetFont(&u8g2,u8g2_font_u8glib_4_tr);
 			break;
 			case 64:
 			default: // 
-			u8g2_SetFont(&u8g2, u8g2_font_5x8_t_cyrillic);//u8g2_font_5x8_tr);
+			u8g2_SetFont(&u8g2, u8g2_font_5x8_tr);
 			;
 		}
 		break;
@@ -81,17 +82,17 @@ void setfont8(sizefont size)
 		switch(yy)
 		{
 			case 200:
-			u8g2_SetFont(&u8g2,u8g2_font_7x13_t_cyrillic);//u8g2_font_7x14_tf);
+			u8g2_SetFont(&u8g2,u8g2_font_7x14_tf);
 			break;
 			case 128:
-			u8g2_SetFont(&u8g2, u8g2_font_7x13_t_cyrillic);//u8g2_font_7x14_tf);
+			u8g2_SetFont(&u8g2, u8g2_font_7x14_tf);
 			break;
 			case 32:
 			u8g2_SetFont(&u8g2,u8g2_font_5x7_tf);
 			break;
 			case 64:
 			default: // 
-			u8g2_SetFont(&u8g2, u8g2_font_6x13_t_cyrillic);//u8g2_font_t0_11_t_all);//u8g2_font_6x12_tf);текст
+			u8g2_SetFont(&u8g2, u8g2_font_6x12_tf);
 			;
 		}
 		break;
@@ -99,17 +100,17 @@ void setfont8(sizefont size)
 		switch(yy)
 		{
 			case 200:
-			u8g2_SetFont(&u8g2, u8g2_font_crox2c_mf);//u8g2_font_9x18_tf);
+			u8g2_SetFont(&u8g2, u8g2_font_9x18_tf);
 			break;
 			case 128:
-			u8g2_SetFont(&u8g2, u8g2_font_crox2c_mf);//u8g2_font_9x18_tf);
+			u8g2_SetFont(&u8g2, u8g2_font_9x18_tf);
 			break;
 			case 32:
-			u8g2_SetFont(&u8g2, u8g2_font_5x8_t_cyrillic);//u8g2_font_5x8_tf);
+			u8g2_SetFont(&u8g2, u8g2_font_5x8_tf);
 			break;
 			case 64:
 			default: // 
-			u8g2_SetFont(&u8g2, u8g2_font_7x13_t_cyrillic);//u8g2_font_7x14_tf);
+			u8g2_SetFont(&u8g2, u8g2_font_7x14_tf);
 			;			
 
 		}
@@ -124,7 +125,7 @@ void setfont8(sizefont size)
 			u8g2_SetFont(&u8g2, u8g2_font_helvR24_tf);
 			break;
 			case 32:
-			u8g2_SetFont(&u8g2,  u8g2_font_7x13_t_cyrillic);//u8g2_font_7x14_tf);
+			u8g2_SetFont(&u8g2,  u8g2_font_7x14_tf);
 			break;
 			case 64:
 			default: // 
@@ -136,6 +137,8 @@ void setfont8(sizefont size)
 		printf("Default for size %d\n",size);
 	}
 }
+
+
 
 
 ////////////////////////////////////////
@@ -208,7 +211,6 @@ unsigned len;
 // Bottom of screens
 static void screenBottomU8g2()
 {
-	return;
 //VOLUME
     u8g2_DrawFrame(&u8g2,0,yy-3,x-1,3);
     u8g2_DrawHLine(&u8g2,0,yy-2,((uint16_t)(x*volume)/255));                         
@@ -235,6 +237,7 @@ void drawFrameU8g2(uint8_t mTscreen,struct tm *dt)
 	else 
 		sprintf(strsec,"%02d-%02d-%04d  %02d:%02d:%02d",dt->tm_mon+1,dt->tm_mday,dt->tm_year+1900, dt->tm_hour, dt->tm_min,dt->tm_sec);
 
+	
     setfont8(text);
     u8g2_SetDrawColor(&u8g2, 1);
     y = getFontLineSpacing();
@@ -275,7 +278,8 @@ void drawFrameU8g2(uint8_t mTscreen,struct tm *dt)
 		}
 
     }
-    screenBottomU8g2();    
+    screenBottomU8g2();
+	   
 }
 
 
@@ -323,8 +327,7 @@ void drawStationU8g2(uint8_t mTscreen,char* snum,char* ddot)
 
 void drawVolumeU8g2(uint8_t mTscreen,char* aVolume)
 {
-  //char vlstr[] = {"Volume"}; 
-  char vlstr[] = {"Громкость"};
+  char vlstr[] = {"Volume"}; 
   volume = atoi(aVolume);
   u8g2_ClearBuffer(&u8g2);
   drawTTitleU8g2(vlstr) ;  
@@ -338,6 +341,7 @@ void drawTimeU8g2(uint8_t mTscreen,struct tm *dt,unsigned timein)
 {
   char strdate[23];
   char strtime[20];
+//  printf("DRAW TIME U8G2  mtscreen : %d\n",mTscreen);
 	u8g2_ClearBuffer(&u8g2);
 	if (getDdmm())
 		sprintf(strdate,"%02d-%02d-%04d", dt->tm_mday, dt->tm_mon+1,  dt->tm_year+1900);
@@ -606,3 +610,4 @@ void lcd_initU8g2(uint8_t *lcd_type)
 	
 	
 }
+

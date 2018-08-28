@@ -18,8 +18,6 @@
 #include "esp_log.h"
 #include "logo.h"
 #include "interface.h"
-#include <rus_fonts.h>
-
 #define TAG  "addonucg"
 
 
@@ -90,6 +88,7 @@ void setfont(sizefont size)
 		{
 			case 320:
 			ucg_SetFont(&ucg,ucg_font_6x13_mf);
+			//ucg_SetFont(&ucg, a24n);
 			break;
 			case 128:
 			ucg_SetFont(&ucg,ucg_font_4x6_mf);
@@ -104,28 +103,11 @@ void setfont(sizefont size)
 		}
 		break;
 		case text:
-			switch (x) {
-			case 320:
-				ucg_SetFont(&ucg, rus9x18);
-				break;
-			case 128:
-				ucg_SetFont(&ucg, rus5x7);
-				break;
-			case 96:
-				ucg_SetFont(&ucg, rus4x6);
-				break;
-			case 132:
-			default: // 160
-				ucg_SetFont(&ucg, rus6x13);
-				;
-			}
-			break;
-
-		/*		case text:
 		switch(x)
 		{
 			case 320:
 			ucg_SetFont(&ucg,ucg_font_inr16_mf );
+//			ucg_SetFont(&ucg, a24n);
 			break;
 			case 128:
 			ucg_SetFont(&ucg,ucg_font_5x7_mf);
@@ -139,11 +121,12 @@ void setfont(sizefont size)
 			;
 		}
 		break;
-*/		case middle:
+		case middle:
 		switch(x)
 		{
 			case 320:
 			ucg_SetFont(&ucg,ucg_font_inr33_mf);
+//			ucg_SetFont(&ucg, a24n);
 			break;
 			case 128:
 			ucg_SetFont(&ucg,ucg_font_7x14_mf);
@@ -163,6 +146,7 @@ void setfont(sizefont size)
 		{
 			case 320:
 			ucg_SetFont(&ucg,ucg_font_inr53_mf); 
+//			ucg_SetFont(&ucg, a24n); 
 			break;
 			case 128:
 			ucg_SetFont(&ucg,ucg_font_helvR12_hf); 
@@ -298,8 +282,8 @@ void setColor(int i)
 // draw one line
 void draw(int i)
 {
-	uint16_t len,xpos,yyy;
-	 
+	uint16_t len,xpos,yyy; 
+	
     if ( mline[i]) mline[i] =0;
     if (i >=3) z = y/2 ; else z = 0;
     switch (i) {
