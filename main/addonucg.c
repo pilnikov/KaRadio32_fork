@@ -87,8 +87,8 @@ void setfont(sizefont size)
 		switch(x)
 		{
 			case 320:
-			ucg_SetFont(&ucg,ucg_font_6x13_mf);
-			//ucg_SetFont(&ucg, a24n);
+			//ucg_SetFont(&ucg,ucg_font_6x13_mf);
+			ucg_SetFont(&ucg, a24n);
 			break;
 			case 128:
 			ucg_SetFont(&ucg,ucg_font_4x6_mf);
@@ -106,8 +106,8 @@ void setfont(sizefont size)
 		switch(x)
 		{
 			case 320:
-			ucg_SetFont(&ucg,ucg_font_inr16_mf );
-//			ucg_SetFont(&ucg, a24n);
+			//ucg_SetFont(&ucg,ucg_font_inr16_mf );
+			ucg_SetFont(&ucg, a24n);
 			break;
 			case 128:
 			ucg_SetFont(&ucg,ucg_font_5x7_mf);
@@ -125,8 +125,8 @@ void setfont(sizefont size)
 		switch(x)
 		{
 			case 320:
-			ucg_SetFont(&ucg,ucg_font_inr33_mf);
-//			ucg_SetFont(&ucg, a24n);
+			//ucg_SetFont(&ucg,ucg_font_inr33_mf);
+			ucg_SetFont(&ucg, a24n);
 			break;
 			case 128:
 			ucg_SetFont(&ucg,ucg_font_7x14_mf);
@@ -145,8 +145,8 @@ void setfont(sizefont size)
 		switch(x)
 		{
 			case 320:
-			ucg_SetFont(&ucg,ucg_font_inr53_mf); 
-//			ucg_SetFont(&ucg, a24n); 
+			//ucg_SetFont(&ucg,ucg_font_inr53_mf); 
+			ucg_SetFont(&ucg, a24n); 
 			break;
 			case 128:
 			ucg_SetFont(&ucg,ucg_font_helvR12_hf); 

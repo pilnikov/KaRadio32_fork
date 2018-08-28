@@ -8,6 +8,9 @@
 // Compatible ESP32 ADB
 // https://www.tindie.com/products/microwavemont/esp32-audio-developing-board-esp32-adb/
 
+// Must be HSPI or VSPI
+#define KSPI VSPI_HOST
+
 // HSPI pins
 //-----------
 #define PIN_NUM_MISO GPIO_NUM_22 	// Master Input, Slave Output
