@@ -2139,9 +2139,6 @@ extern const ucg_fntpgm_uint8_t ucg_font_osr41_tf[] UCG_FONT_SECTION("ucg_font_o
 extern const ucg_fntpgm_uint8_t ucg_font_osr41_tn[] UCG_FONT_SECTION("ucg_font_osr41_tn");
 extern const ucg_fntpgm_uint8_t ucg_font_osr41_tr[] UCG_FONT_SECTION("ucg_font_osr41_tr");
 
-
-extern const ucg_fntpgm_uint8_t a24n[] UCG_FONT_SECTION("a24n");
-
 #endif
 
 
