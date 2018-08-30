@@ -87,8 +87,8 @@ void setfont(sizefont size)
 		switch(x)
 		{
 			case 320:
-			ucg_SetFont(&ucg,ucg_font_6x13_mf);
-			//ucg_SetFont(&ucg, a24n);
+			//ucg_SetFont(&ucg,ucg_font_6x13_mf);
+			ucg_SetFont(&ucg, times);
 			break;
 			case 128:
 			ucg_SetFont(&ucg,ucg_font_4x6_mf);
@@ -106,8 +106,8 @@ void setfont(sizefont size)
 		switch(x)
 		{
 			case 320:
-			ucg_SetFont(&ucg,ucg_font_inr16_mf );
-			//ucg_SetFont(&ucg, a24n);
+//			ucg_SetFont(&ucg,ucg_font_inr16_mf );
+			ucg_SetFont(&ucg, times);
 			break;
 			case 128:
 			ucg_SetFont(&ucg,ucg_font_5x7_mf);
@@ -125,8 +125,8 @@ void setfont(sizefont size)
 		switch(x)
 		{
 			case 320:
-			ucg_SetFont(&ucg,ucg_font_inr33_mf);
-			//ucg_SetFont(&ucg, a24n);
+//			ucg_SetFont(&ucg,ucg_font_inr33_mf);
+			ucg_SetFont(&ucg, times);
 			break;
 			case 128:
 			ucg_SetFont(&ucg,ucg_font_7x14_mf);
@@ -145,8 +145,8 @@ void setfont(sizefont size)
 		switch(x)
 		{
 			case 320:
-			ucg_SetFont(&ucg,ucg_font_inr53_mf); 
-			//ucg_SetFont(&ucg, a24n); 
+//			ucg_SetFont(&ucg,ucg_font_inr53_mf); 
+			ucg_SetFont(&ucg, times);
 			break;
 			case 128:
 			ucg_SetFont(&ucg,ucg_font_helvR12_hf); 
@@ -197,9 +197,9 @@ void cleartitleUcg(uint8_t froml)
 }
 
 ////////////////////////////////////////
-void removeUtf8(char *characters)
+void removeUtf8(char *source)
 {
-  int Rindex = 0;
+/*  int Rindex = 0;
   while (characters[Rindex])
   {
     if ((characters[Rindex] >= 0xc2)&&(characters[Rindex] <= 0xc3)) // only 0 to FF ascii char
@@ -211,6 +211,37 @@ void removeUtf8(char *characters)
     }
     Rindex++;
   }
+*/
+  char target[BUFLEN];
+  
+  uint16_t i = 0, j = 0;
+  uint16_t k = strlen(source);
+
+  unsigned char n = 0x0;
+ 
+  while (i < k) 
+  {
+    n = source[i]; i++; j++;
+
+    if (n == 0xD0 || n == 0xD1)   // UTF-8 handling
+	{
+      switch (n) 
+	  {
+        case 0xD0: 
+            n = source[i]; i++;
+            if (n == 0x81) n = 0xA8; // Ё
+            else if (n >= 0x90 && n <= 0xBF) n = n + 0x30;
+            break;
+        case 0xD1: 
+            n = source[i]; i++;
+            if (n == 0x91) n = 0xB8; // ё
+            else if (n >= 0x80 && n <= 0x8F) n = n + 0x70;
+            break;
+      }
+    }
+    target[j] = (char)n;
+  }
+  strcpy(source, target);
 }
 
 // Mark the lines to draw
