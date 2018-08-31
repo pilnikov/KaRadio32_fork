@@ -13,6 +13,8 @@ After flashing You must configure your LCD like as ILI9341 (194).
 адаптированные под использование с платой TTGO TM Music
 https://ru.aliexpress.com/item/Ttgo-2-4-PCM5102A-SD-ESP32-WiFi-Bluetooth/32848882218.html?spm=a2g0s.9042311.0.0.BYS264
 
+Теперь поддерживается русский язык!
+
 Перед компиляцией необходимо заменить "кривой" драйвер I2S в  папках с IDF: esp-idf\components\driver и esp-idf\components\driver/include.
 необходимо заменить 2 файла i2s.c и i2s.h на те, что лежат в папочке old_i2s
 
