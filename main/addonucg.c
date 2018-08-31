@@ -77,7 +77,7 @@ static char TTimeStr[15];
 
 
 ////////////////////////////////////////
-typedef enum sizefont  {small, text,middle,large} sizefont;
+typedef enum sizefont  {small,text,middle,large} sizefont;
 void setfont(sizefont size)
 {
 //	printf("setfont size: %d, x: %d\n",size,x);
@@ -88,7 +88,7 @@ void setfont(sizefont size)
 		{
 			case 320:
 			//ucg_SetFont(&ucg,ucg_font_6x13_mf);
-			ucg_SetFont(&ucg, times);
+			ucg_SetFont(&ucg, ucg_font_timesbi18_tf);
 			break;
 			case 128:
 			ucg_SetFont(&ucg,ucg_font_4x6_mf);
@@ -107,7 +107,7 @@ void setfont(sizefont size)
 		{
 			case 320:
 //			ucg_SetFont(&ucg,ucg_font_inr16_mf );
-			ucg_SetFont(&ucg, times);
+			ucg_SetFont(&ucg, ucg_font_timesbi18_tf);
 			break;
 			case 128:
 			ucg_SetFont(&ucg,ucg_font_5x7_mf);
@@ -126,7 +126,7 @@ void setfont(sizefont size)
 		{
 			case 320:
 //			ucg_SetFont(&ucg,ucg_font_inr33_mf);
-			ucg_SetFont(&ucg, times);
+			ucg_SetFont(&ucg, ucg_font_timesbi24_tf);
 			break;
 			case 128:
 			ucg_SetFont(&ucg,ucg_font_7x14_mf);
@@ -146,7 +146,7 @@ void setfont(sizefont size)
 		{
 			case 320:
 //			ucg_SetFont(&ucg,ucg_font_inr53_mf); 
-			ucg_SetFont(&ucg, times);
+			ucg_SetFont(&ucg, ucg_font_timesbi24_tf);
 			break;
 			case 128:
 			ucg_SetFont(&ucg,ucg_font_helvR12_hf); 
@@ -473,7 +473,8 @@ void drawStationUcg(uint8_t mTscreen,char* snum,char* ddot)
 	
   char ststr[] = {"Station"};
   int16_t len;
-    switch (mTscreen){
+  removeUtf8(ddot);    
+	switch (mTscreen){
       case 1:  
 		TTitleStr[0] = 0;        
         drawTTitleUcg(ststr);

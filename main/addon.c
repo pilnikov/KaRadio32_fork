@@ -283,7 +283,7 @@ void drawStation()
   do {
 	si = getStation(futurNum);
 	sprintf(sNum,"%d",futurNum);
-	ddot = si->name;    
+	ddot = si->name;
 	ptl = ddot;
 	while ( *ptl == 0x20){ddot++;ptl++;}
 	if (strlen(ddot)==0) // don't start an undefined station

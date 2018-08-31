@@ -1,1 +1,2 @@
 bdf2ucg -f 2 -b 65 -e 1044 ../bdf/9x18.bdf u8g_aafont_9x18 u8g_aafont_9x18.c
+bdfconv -f 0 -b 0 -a -m "32-191,~184,~168,235>184,203>168,1040-1103,1040-1103>192-255" timesbi12.bdf -n ucg_font_timesbi12_tf -o times12.c -d timesbi12.bdf
