@@ -221,7 +221,7 @@ void removeUtf8(char *source)
  
   while (i < k) 
   {
-    n = source[i]; i++; j++;
+    n = source[i]; i++;
 
     if (n == 0xD0 || n == 0xD1)   // UTF-8 handling
 	{
@@ -240,8 +240,8 @@ void removeUtf8(char *source)
       }
     }
     target[j] = (char)n;
+	j++;
   }
-target[j] = 0;
 strcpy(source, target);
 }
 
