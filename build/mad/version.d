@@ -1,12 +1,11 @@
-version.o: \
- Z:/msys32/home/pilnikov/examples/MyKaradio/components/mad/version.c \
- Z:/msys32/home/pilnikov/examples/MyKaradio/components/mad/config.h \
- Z:/msys32/home/pilnikov/examples/MyKaradio/components/mad/global.h \
- Z:/msys32/home/pilnikov/examples/MyKaradio/components/mad/version.h
+version.o: Z:/msys32/home/Alex/mykaradio/components/mad/version.c \
+ Z:/msys32/home/Alex/mykaradio/components/mad/config.h \
+ Z:/msys32/home/Alex/mykaradio/components/mad/global.h \
+ Z:/msys32/home/Alex/mykaradio/components/mad/version.h
 
-Z:/msys32/home/pilnikov/examples/MyKaradio/components/mad/config.h:
+Z:/msys32/home/Alex/mykaradio/components/mad/config.h:
 
-Z:/msys32/home/pilnikov/examples/MyKaradio/components/mad/global.h:
+Z:/msys32/home/Alex/mykaradio/components/mad/global.h:
 
-Z:/msys32/home/pilnikov/examples/MyKaradio/components/mad/version.h:
-/home/pilnikov/examples/MyKaradio/components/mad/./version.c:
+Z:/msys32/home/Alex/mykaradio/components/mad/version.h:
+/home/Alex/mykaradio/components/mad/./version.c:

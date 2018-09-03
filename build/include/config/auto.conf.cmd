@@ -1,34 +1,34 @@
 deps_config := \
-	/home/pilnikov/esp/esp-idf/components/app_trace/Kconfig \
-	/home/pilnikov/esp/esp-idf/components/aws_iot/Kconfig \
-	/home/pilnikov/esp/esp-idf/components/bt/Kconfig \
-	/home/pilnikov/esp/esp-idf/components/driver/Kconfig \
-	/home/pilnikov/esp/esp-idf/components/esp32/Kconfig \
-	/home/pilnikov/esp/esp-idf/components/esp_adc_cal/Kconfig \
-	/home/pilnikov/esp/esp-idf/components/esp_http_client/Kconfig \
-	/home/pilnikov/esp/esp-idf/components/ethernet/Kconfig \
-	/home/pilnikov/esp/esp-idf/components/fatfs/Kconfig \
-	/home/pilnikov/esp/esp-idf/components/freertos/Kconfig \
-	/home/pilnikov/esp/esp-idf/components/heap/Kconfig \
-	/home/pilnikov/esp/esp-idf/components/http_server/Kconfig \
-	/home/pilnikov/esp/esp-idf/components/libsodium/Kconfig \
-	/home/pilnikov/esp/esp-idf/components/log/Kconfig \
-	/home/pilnikov/esp/esp-idf/components/lwip/Kconfig \
-	/home/pilnikov/esp/esp-idf/components/mbedtls/Kconfig \
-	/home/pilnikov/esp/esp-idf/components/mdns/Kconfig \
-	/home/pilnikov/esp/esp-idf/components/openssl/Kconfig \
-	/home/pilnikov/esp/esp-idf/components/pthread/Kconfig \
-	/home/pilnikov/esp/esp-idf/components/spi_flash/Kconfig \
-	/home/pilnikov/esp/esp-idf/components/spiffs/Kconfig \
-	/home/pilnikov/esp/esp-idf/components/tcpip_adapter/Kconfig \
-	/home/pilnikov/esp/esp-idf/components/vfs/Kconfig \
-	/home/pilnikov/esp/esp-idf/components/wear_levelling/Kconfig \
-	/home/pilnikov/esp/esp-idf/Kconfig.compiler \
-	/home/pilnikov/esp/esp-idf/components/bootloader/Kconfig.projbuild \
-	/home/pilnikov/esp/esp-idf/components/esptool_py/Kconfig.projbuild \
-	/home/pilnikov/examples/MyKaradio/main/Kconfig.projbuild \
-	/home/pilnikov/esp/esp-idf/components/partition_table/Kconfig.projbuild \
-	/home/pilnikov/esp/esp-idf/Kconfig
+	/z/esp/esp-idf/components/app_trace/Kconfig \
+	/z/esp/esp-idf/components/aws_iot/Kconfig \
+	/z/esp/esp-idf/components/bt/Kconfig \
+	/z/esp/esp-idf/components/driver/Kconfig \
+	/z/esp/esp-idf/components/esp32/Kconfig \
+	/z/esp/esp-idf/components/esp_adc_cal/Kconfig \
+	/z/esp/esp-idf/components/esp_http_client/Kconfig \
+	/z/esp/esp-idf/components/ethernet/Kconfig \
+	/z/esp/esp-idf/components/fatfs/Kconfig \
+	/z/esp/esp-idf/components/freertos/Kconfig \
+	/z/esp/esp-idf/components/heap/Kconfig \
+	/z/esp/esp-idf/components/http_server/Kconfig \
+	/z/esp/esp-idf/components/libsodium/Kconfig \
+	/z/esp/esp-idf/components/log/Kconfig \
+	/z/esp/esp-idf/components/lwip/Kconfig \
+	/z/esp/esp-idf/components/mbedtls/Kconfig \
+	/z/esp/esp-idf/components/mdns/Kconfig \
+	/z/esp/esp-idf/components/openssl/Kconfig \
+	/z/esp/esp-idf/components/pthread/Kconfig \
+	/z/esp/esp-idf/components/spi_flash/Kconfig \
+	/z/esp/esp-idf/components/spiffs/Kconfig \
+	/z/esp/esp-idf/components/tcpip_adapter/Kconfig \
+	/z/esp/esp-idf/components/vfs/Kconfig \
+	/z/esp/esp-idf/components/wear_levelling/Kconfig \
+	/z/esp/esp-idf/Kconfig.compiler \
+	/z/esp/esp-idf/components/bootloader/Kconfig.projbuild \
+	/z/esp/esp-idf/components/esptool_py/Kconfig.projbuild \
+	/home/Alex/mykaradio/main/Kconfig.projbuild \
+	/z/esp/esp-idf/components/partition_table/Kconfig.projbuild \
+	/z/esp/esp-idf/Kconfig
 
 include/config/auto.conf: \
 	$(deps_config)
