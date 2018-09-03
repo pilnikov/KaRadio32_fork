@@ -241,7 +241,8 @@ void removeUtf8(char *source)
     }
     target[j] = (char)n;
   }
-  strcpy(source, target);
+target[j] = 0;
+strcpy(source, target);
 }
 
 // Mark the lines to draw
