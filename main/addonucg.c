@@ -213,7 +213,7 @@ void removeUtf8(char *source)
   }
 */
   char target[BUFLEN];
-  
+  for (int i=0;i<BUFLEN;i++) target[i] = 0;
   uint16_t i = 0, j = 0;
   uint16_t k = strlen(source);
 
@@ -240,7 +240,7 @@ void removeUtf8(char *source)
       }
     }
     target[j] = (char)n;
-	j++;
+    j++;
   }
 strcpy(source, target);
 }

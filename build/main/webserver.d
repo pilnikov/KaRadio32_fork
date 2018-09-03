@@ -120,8 +120,6 @@ webserver.o: Z:/msys32/home/Alex/mykaradio/main/webserver.c \
  Z:/esp/esp-idf/components/driver/include/driver/i2s.h \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/i2s_struct.h \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/i2s_reg.h \
- Z:/esp/esp-idf/components/driver/include/driver/adc.h \
- Z:/esp/esp-idf/components/soc/esp32/include/soc/adc_channel.h \
  Z:/msys32/home/Alex/mykaradio/components/common/include/common_component.h \
  Z:/msys32/home/Alex/mykaradio/main/include/app_main.h \
  Z:/msys32/home/Alex/mykaradio/main/include/ota.h \
@@ -417,10 +415,6 @@ Z:/esp/esp-idf/components/driver/include/driver/i2s.h:
 Z:/esp/esp-idf/components/soc/esp32/include/soc/i2s_struct.h:
 
 Z:/esp/esp-idf/components/soc/esp32/include/soc/i2s_reg.h:
-
-Z:/esp/esp-idf/components/driver/include/driver/adc.h:
-
-Z:/esp/esp-idf/components/soc/esp32/include/soc/adc_channel.h:
 
 Z:/msys32/home/Alex/mykaradio/components/common/include/common_component.h:
 

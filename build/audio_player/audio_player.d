@@ -88,8 +88,6 @@ audio_player.o: \
  Z:/esp/esp-idf/components/esp32/include/esp_dport_access.h \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/uart_reg.h \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/periph_defs.h \
- Z:/esp/esp-idf/components/driver/include/driver/adc.h \
- Z:/esp/esp-idf/components/soc/esp32/include/soc/adc_channel.h \
  Z:/esp/esp-idf/components/freertos/include/freertos/semphr.h \
  Z:/esp/esp-idf/components/freertos/include/freertos/queue.h \
  Z:/msys32/home/Alex/mykaradio/components/fifo/include/spiram_fifo.h \
@@ -288,10 +286,6 @@ Z:/esp/esp-idf/components/esp32/include/esp_dport_access.h:
 Z:/esp/esp-idf/components/soc/esp32/include/soc/uart_reg.h:
 
 Z:/esp/esp-idf/components/soc/esp32/include/soc/periph_defs.h:
-
-Z:/esp/esp-idf/components/driver/include/driver/adc.h:
-
-Z:/esp/esp-idf/components/soc/esp32/include/soc/adc_channel.h:
 
 Z:/esp/esp-idf/components/freertos/include/freertos/semphr.h:
 

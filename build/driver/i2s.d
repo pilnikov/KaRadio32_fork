@@ -14,7 +14,6 @@ i2s.o: Z:/esp/esp-idf/components/driver/i2s.c \
  Z:/esp/esp-idf/components/newlib/include/sys/lock.h \
  Z:/esp/esp-idf/components/newlib/include/sys/cdefs.h \
  Z:/esp/esp-idf/components/newlib/include/sys/string.h \
- Z:/esp/esp-idf/components/newlib/include/math.h \
  Z:/esp/esp-idf/components/esp32/include/esp_types.h \
  Z:/esp/esp-idf/components/newlib/include/stdint.h \
  Z:/esp/esp-idf/components/newlib/include/sys/_intsup.h \
@@ -85,8 +84,6 @@ i2s.o: Z:/esp/esp-idf/components/driver/i2s.c \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/uart_reg.h \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/rtc_cntl_reg.h \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/sens_reg.h \
- Z:/esp/esp-idf/components/soc/esp32/include/soc/rtc.h \
- Z:/esp/esp-idf/components/soc/esp32/include/soc/efuse_reg.h \
  Z:/esp/esp-idf/components/esp32/include/rom/lldesc.h \
  Z:/esp/esp-idf/components/esp32/include/rom/queue.h \
  Z:/esp/esp-idf/components/driver/include/driver/i2s.h \
@@ -94,8 +91,6 @@ i2s.o: Z:/esp/esp-idf/components/driver/i2s.c \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/i2s_reg.h \
  Z:/esp/esp-idf/components/driver/include/driver/periph_ctrl.h \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/periph_defs.h \
- Z:/esp/esp-idf/components/driver/include/driver/adc.h \
- Z:/esp/esp-idf/components/soc/esp32/include/soc/adc_channel.h \
  Z:/esp/esp-idf/components/freertos/include/freertos/semphr.h \
  Z:/esp/esp-idf/components/freertos/include/freertos/queue.h \
  Z:/esp/esp-idf/components/driver/include/driver/rtc_io.h \
@@ -103,7 +98,6 @@ i2s.o: Z:/esp/esp-idf/components/driver/i2s.c \
  Z:/esp/esp-idf/components/soc/include/soc/rtc_periph.h \
  Z:/esp/esp-idf/components/driver/include/driver/dac.h \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/dac_channel.h \
- Z:/esp/esp-idf/components/driver/adc1_i2s_private.h \
  Z:/esp/esp-idf/components/log/include/esp_log.h \
  Z:/esp/esp-idf/components/log/include/esp_log_internal.h
 
@@ -136,8 +130,6 @@ Z:/esp/esp-idf/components/newlib/include/sys/lock.h:
 Z:/esp/esp-idf/components/newlib/include/sys/cdefs.h:
 
 Z:/esp/esp-idf/components/newlib/include/sys/string.h:
-
-Z:/esp/esp-idf/components/newlib/include/math.h:
 
 Z:/esp/esp-idf/components/esp32/include/esp_types.h:
 
@@ -279,10 +271,6 @@ Z:/esp/esp-idf/components/soc/esp32/include/soc/rtc_cntl_reg.h:
 
 Z:/esp/esp-idf/components/soc/esp32/include/soc/sens_reg.h:
 
-Z:/esp/esp-idf/components/soc/esp32/include/soc/rtc.h:
-
-Z:/esp/esp-idf/components/soc/esp32/include/soc/efuse_reg.h:
-
 Z:/esp/esp-idf/components/esp32/include/rom/lldesc.h:
 
 Z:/esp/esp-idf/components/esp32/include/rom/queue.h:
@@ -297,10 +285,6 @@ Z:/esp/esp-idf/components/driver/include/driver/periph_ctrl.h:
 
 Z:/esp/esp-idf/components/soc/esp32/include/soc/periph_defs.h:
 
-Z:/esp/esp-idf/components/driver/include/driver/adc.h:
-
-Z:/esp/esp-idf/components/soc/esp32/include/soc/adc_channel.h:
-
 Z:/esp/esp-idf/components/freertos/include/freertos/semphr.h:
 
 Z:/esp/esp-idf/components/freertos/include/freertos/queue.h:
@@ -314,8 +298,6 @@ Z:/esp/esp-idf/components/soc/include/soc/rtc_periph.h:
 Z:/esp/esp-idf/components/driver/include/driver/dac.h:
 
 Z:/esp/esp-idf/components/soc/esp32/include/soc/dac_channel.h:
-
-Z:/esp/esp-idf/components/driver/adc1_i2s_private.h:
 
 Z:/esp/esp-idf/components/log/include/esp_log.h:
 
