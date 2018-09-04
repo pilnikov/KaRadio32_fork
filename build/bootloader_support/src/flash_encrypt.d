@@ -30,7 +30,7 @@ src/flash_encrypt.o: \
  Z:/esp/esp-idf/components/newlib/include/alloca.h \
  Z:/esp/esp-idf/components/newlib/include/assert.h \
  Z:/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h \
- Z:/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_random.h \
+ Z:/esp/esp-idf/components/bootloader_support/include/bootloader_random.h \
  Z:/esp/esp-idf/components/bootloader_support/include/esp_image_format.h \
  Z:/esp/esp-idf/components/bootloader_support/include/esp_flash_partitions.h \
  Z:/esp/esp-idf/components/esp32/include/esp_flash_data_types.h \
@@ -47,6 +47,8 @@ src/flash_encrypt.o: \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  Z:/esp/esp-idf/components/log/include/esp_log_internal.h \
  Z:/esp/esp-idf/components/esp32/include/rom/secure_boot.h \
+ Z:/esp/esp-idf/components/soc/include/soc/rtc_wdt.h \
+ Z:/esp/esp-idf/components/soc/esp32/include/soc/rtc_cntl_reg.h \
  Z:/esp/esp-idf/components/esp32/include/rom/cache.h \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/dport_access.h \
  Z:/esp/esp-idf/components/esp32/include/esp_dport_access.h \
@@ -124,7 +126,7 @@ Z:/esp/esp-idf/components/newlib/include/assert.h:
 
 Z:/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h:
 
-Z:/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_random.h:
+Z:/esp/esp-idf/components/bootloader_support/include/bootloader_random.h:
 
 Z:/esp/esp-idf/components/bootloader_support/include/esp_image_format.h:
 
@@ -157,6 +159,10 @@ Z:/esp/esp-idf/components/soc/esp32/include/soc/soc.h:
 Z:/esp/esp-idf/components/log/include/esp_log_internal.h:
 
 Z:/esp/esp-idf/components/esp32/include/rom/secure_boot.h:
+
+Z:/esp/esp-idf/components/soc/include/soc/rtc_wdt.h:
+
+Z:/esp/esp-idf/components/soc/esp32/include/soc/rtc_cntl_reg.h:
 
 Z:/esp/esp-idf/components/esp32/include/rom/cache.h:
 

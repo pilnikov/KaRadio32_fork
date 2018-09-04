@@ -69,6 +69,7 @@ void VS1053_spi_init(uint8_t spi_no){
         .sclk_io_num=PIN_NUM_CLK,
         .quadwp_io_num=-1,
         .quadhd_io_num=-1,
+		.flags = SPICOMMON_BUSFLAG_MASTER
 //		.flags = SPICOMMON_BUSFLAG_NATIVE_PINS|SPICOMMON_BUSFLAG_MASTER
 //		.max_transfer_sz = 1024		
 	};		

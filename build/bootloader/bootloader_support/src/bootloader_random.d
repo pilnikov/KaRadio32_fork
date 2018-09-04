@@ -1,6 +1,6 @@
 src/bootloader_random.o: \
  Z:/esp/esp-idf/components/bootloader_support/src/bootloader_random.c \
- Z:/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_random.h \
+ Z:/esp/esp-idf/components/bootloader_support/include/bootloader_random.h \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/cpu.h \
  Z:/esp/esp-idf/components/esp32/include/xtensa/corebits.h \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/wdev_reg.h \
@@ -30,7 +30,7 @@ src/bootloader_random.o: \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  Z:/esp/esp-idf/components/log/include/esp_log_internal.h
 
-Z:/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_random.h:
+Z:/esp/esp-idf/components/bootloader_support/include/bootloader_random.h:
 
 Z:/esp/esp-idf/components/soc/esp32/include/soc/cpu.h:
 

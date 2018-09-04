@@ -144,6 +144,8 @@ app_main.o: Z:/msys32/home/Alex/mykaradio/main/app_main.c \
  Z:/esp/esp-idf/components/esp32/include/esp_dport_access.h \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/uart_reg.h \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/periph_defs.h \
+ Z:/esp/esp-idf/components/driver/include/driver/adc.h \
+ Z:/esp/esp-idf/components/soc/esp32/include/soc/adc_channel.h \
  Z:/esp/esp-idf/components/driver/include/driver/uart.h \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/uart_reg.h \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/uart_struct.h \
@@ -200,6 +202,7 @@ app_main.o: Z:/msys32/home/Alex/mykaradio/main/app_main.c \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/spi_struct.h \
  Z:/esp/esp-idf/components/driver/include/driver/i2c.h \
  Z:/msys32/home/Alex/mykaradio/main/include/addon.h \
+ Z:/msys32/home/Alex/mykaradio/main/include/addonu8g2.h \
  Z:/msys32/home/Alex/mykaradio/main/include/eeprom.h \
  Z:/msys32/home/Alex/mykaradio/main/include/gpio.h \
  Z:/msys32/home/Alex/mykaradio/main/include/servers.h \
@@ -500,6 +503,10 @@ Z:/esp/esp-idf/components/soc/esp32/include/soc/uart_reg.h:
 
 Z:/esp/esp-idf/components/soc/esp32/include/soc/periph_defs.h:
 
+Z:/esp/esp-idf/components/driver/include/driver/adc.h:
+
+Z:/esp/esp-idf/components/soc/esp32/include/soc/adc_channel.h:
+
 Z:/esp/esp-idf/components/driver/include/driver/uart.h:
 
 Z:/esp/esp-idf/components/soc/esp32/include/soc/uart_reg.h:
@@ -611,6 +618,8 @@ Z:/esp/esp-idf/components/soc/esp32/include/soc/spi_struct.h:
 Z:/esp/esp-idf/components/driver/include/driver/i2c.h:
 
 Z:/msys32/home/Alex/mykaradio/main/include/addon.h:
+
+Z:/msys32/home/Alex/mykaradio/main/include/addonu8g2.h:
 
 Z:/msys32/home/Alex/mykaradio/main/include/eeprom.h:
 

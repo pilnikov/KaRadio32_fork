@@ -54,7 +54,7 @@ src/bootloader_init.o: \
  Z:/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h \
  Z:/esp/esp-idf/components/bootloader_support/include/esp_flash_partitions.h \
  Z:/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_flash.h \
- Z:/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_random.h \
+ Z:/esp/esp-idf/components/bootloader_support/include/bootloader_random.h \
  Z:/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_config.h \
  Z:/esp/esp-idf/components/bootloader_support/include/bootloader_clock.h \
  Z:/esp/esp-idf/components/bootloader_support/include_bootloader/flash_qio_mode.h
@@ -167,7 +167,7 @@ Z:/esp/esp-idf/components/bootloader_support/include/esp_flash_partitions.h:
 
 Z:/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_flash.h:
 
-Z:/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_random.h:
+Z:/esp/esp-idf/components/bootloader_support/include/bootloader_random.h:
 
 Z:/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_config.h:
 

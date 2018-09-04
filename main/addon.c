@@ -283,7 +283,7 @@ void drawStation()
   do {
 	si = getStation(futurNum);
 	sprintf(sNum,"%d",futurNum);
-	ddot = si->name;
+	ddot = si->name;    
 	ptl = ddot;
 	while ( *ptl == 0x20){ddot++;ptl++;}
 	if (strlen(ddot)==0) // don't start an undefined station
@@ -668,7 +668,10 @@ void task_addon(void *pvParams)
 		while (xQueueReceive(event_lcd, &evt, 0))
 		{ 
 			wakeLcd();
-			ESP_LOGI(TAG,"event_lcd: %x",(int)evt.lcmd);
+			if (evt.lcmd != lmeta)
+				ESP_LOGI(TAG,"event_lcd: %x",(int)evt.lcmd);
+			else
+				ESP_LOGI(TAG,"event_lcd: %x  %s",(int)evt.lcmd,evt.lline);
 			switch(evt.lcmd)
 			{
 				case lmeta:

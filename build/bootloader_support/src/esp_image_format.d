@@ -50,7 +50,7 @@ src/esp_image_format.o: \
  Z:/esp/esp-idf/components/log/include/esp_log_internal.h \
  Z:/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h \
  Z:/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_flash.h \
- Z:/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_random.h \
+ Z:/esp/esp-idf/components/bootloader_support/include/bootloader_random.h \
  Z:/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_sha.h
 
 Z:/esp/esp-idf/components/newlib/include/string.h:
@@ -153,7 +153,7 @@ Z:/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h:
 
 Z:/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_flash.h:
 
-Z:/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_random.h:
+Z:/esp/esp-idf/components/bootloader_support/include/bootloader_random.h:
 
 Z:/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_sha.h:
 /z/esp/esp-idf/components/bootloader_support/src/esp_image_format.c:

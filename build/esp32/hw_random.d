@@ -16,6 +16,10 @@ hw_random.o: Z:/esp/esp-idf/components/esp32/hw_random.c \
  Z:/esp/esp-idf/components/newlib/include/sys/lock.h \
  Z:/esp/esp-idf/components/newlib/include/sys/cdefs.h \
  Z:/esp/esp-idf/components/newlib/include/sys/string.h \
+ Z:/esp/esp-idf/components/newlib/include/sys/param.h \
+ Z:/esp/esp-idf/components/newlib/include/sys/syslimits.h \
+ Z:/esp/esp-idf/components/newlib/include/machine/endian.h \
+ Z:/esp/esp-idf/components/newlib/include/machine/param.h \
  Z:/esp/esp-idf/components/esp32/include/esp_attr.h \
  Z:/esp/esp-idf/components/esp32/include/esp_clk.h \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/wdev_reg.h \
@@ -75,6 +79,14 @@ Z:/esp/esp-idf/components/newlib/include/sys/lock.h:
 Z:/esp/esp-idf/components/newlib/include/sys/cdefs.h:
 
 Z:/esp/esp-idf/components/newlib/include/sys/string.h:
+
+Z:/esp/esp-idf/components/newlib/include/sys/param.h:
+
+Z:/esp/esp-idf/components/newlib/include/sys/syslimits.h:
+
+Z:/esp/esp-idf/components/newlib/include/machine/endian.h:
+
+Z:/esp/esp-idf/components/newlib/include/machine/param.h:
 
 Z:/esp/esp-idf/components/esp32/include/esp_attr.h:
 

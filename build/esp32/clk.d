@@ -43,12 +43,13 @@ clk.o: Z:/esp/esp-idf/components/esp32/clk.c \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  Z:/esp/esp-idf/components/esp32/include/rom/rtc.h \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/rtc.h \
+ Z:/esp/esp-idf/components/soc/include/soc/rtc_wdt.h \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/rtc_cntl_reg.h \
- Z:/esp/esp-idf/components/soc/esp32/include/soc/i2s_reg.h \
- Z:/esp/esp-idf/components/driver/include/driver/periph_ctrl.h \
  Z:/esp/esp-idf/components/esp32/include/esp_err.h \
  Z:/esp/esp-idf/components/newlib/include/stdio.h \
  Z:/esp/esp-idf/components/newlib/include/sys/stdio.h \
+ Z:/esp/esp-idf/components/soc/esp32/include/soc/i2s_reg.h \
+ Z:/esp/esp-idf/components/driver/include/driver/periph_ctrl.h \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/dport_reg.h \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/dport_access.h \
  Z:/esp/esp-idf/components/esp32/include/esp_dport_access.h \
@@ -155,17 +156,19 @@ Z:/esp/esp-idf/components/esp32/include/rom/rtc.h:
 
 Z:/esp/esp-idf/components/soc/esp32/include/soc/rtc.h:
 
+Z:/esp/esp-idf/components/soc/include/soc/rtc_wdt.h:
+
 Z:/esp/esp-idf/components/soc/esp32/include/soc/rtc_cntl_reg.h:
-
-Z:/esp/esp-idf/components/soc/esp32/include/soc/i2s_reg.h:
-
-Z:/esp/esp-idf/components/driver/include/driver/periph_ctrl.h:
 
 Z:/esp/esp-idf/components/esp32/include/esp_err.h:
 
 Z:/esp/esp-idf/components/newlib/include/stdio.h:
 
 Z:/esp/esp-idf/components/newlib/include/sys/stdio.h:
+
+Z:/esp/esp-idf/components/soc/esp32/include/soc/i2s_reg.h:
+
+Z:/esp/esp-idf/components/driver/include/driver/periph_ctrl.h:
 
 Z:/esp/esp-idf/components/soc/esp32/include/soc/dport_reg.h:
 

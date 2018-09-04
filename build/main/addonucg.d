@@ -99,6 +99,8 @@ addonucg.o: Z:/msys32/home/Alex/mykaradio/main/addonucg.c \
  Z:/esp/esp-idf/components/esp32/include/esp_dport_access.h \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/uart_reg.h \
  Z:/esp/esp-idf/components/soc/esp32/include/soc/periph_defs.h \
+ Z:/esp/esp-idf/components/driver/include/driver/adc.h \
+ Z:/esp/esp-idf/components/soc/esp32/include/soc/adc_channel.h \
  Z:/esp/esp-idf/components/freertos/include/freertos/semphr.h \
  Z:/esp/esp-idf/components/freertos/include/freertos/queue.h \
  Z:/msys32/home/Alex/mykaradio/components/common/include/common_component.h \
@@ -113,7 +115,8 @@ addonucg.o: Z:/msys32/home/Alex/mykaradio/main/addonucg.c \
  Z:/msys32/home/Alex/mykaradio/main/logo.h \
  Z:/msys32/home/Alex/mykaradio/main/include/interface.h \
  Z:/msys32/home/Alex/mykaradio/main/include/telnet.h \
- Z:/msys32/home/Alex/mykaradio/main/include/addon.h
+ Z:/msys32/home/Alex/mykaradio/main/include/addon.h \
+ Z:/msys32/home/Alex/mykaradio/main/include/eeprom.h
 
 Z:/esp/esp-idf/components/newlib/include/string.h:
 
@@ -315,6 +318,10 @@ Z:/esp/esp-idf/components/soc/esp32/include/soc/uart_reg.h:
 
 Z:/esp/esp-idf/components/soc/esp32/include/soc/periph_defs.h:
 
+Z:/esp/esp-idf/components/driver/include/driver/adc.h:
+
+Z:/esp/esp-idf/components/soc/esp32/include/soc/adc_channel.h:
+
 Z:/esp/esp-idf/components/freertos/include/freertos/semphr.h:
 
 Z:/esp/esp-idf/components/freertos/include/freertos/queue.h:
@@ -344,4 +351,6 @@ Z:/msys32/home/Alex/mykaradio/main/include/interface.h:
 Z:/msys32/home/Alex/mykaradio/main/include/telnet.h:
 
 Z:/msys32/home/Alex/mykaradio/main/include/addon.h:
+
+Z:/msys32/home/Alex/mykaradio/main/include/eeprom.h:
 /home/Alex/mykaradio/main/./addonucg.c:

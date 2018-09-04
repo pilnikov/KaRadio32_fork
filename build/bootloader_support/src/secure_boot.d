@@ -59,7 +59,7 @@ src/secure_boot.o: \
  Z:/esp/esp-idf/components/newlib/include/sys/sched.h \
  Z:/esp/esp-idf/components/newlib/include/sys/stdio.h \
  Z:/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h \
- Z:/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_random.h \
+ Z:/esp/esp-idf/components/bootloader_support/include/bootloader_random.h \
  Z:/esp/esp-idf/components/bootloader_support/include/esp_image_format.h \
  Z:/esp/esp-idf/components/bootloader_support/include/esp_flash_partitions.h \
  Z:/esp/esp-idf/components/esp32/include/esp_flash_data_types.h \
@@ -185,7 +185,7 @@ Z:/esp/esp-idf/components/newlib/include/sys/stdio.h:
 
 Z:/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h:
 
-Z:/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_random.h:
+Z:/esp/esp-idf/components/bootloader_support/include/bootloader_random.h:
 
 Z:/esp/esp-idf/components/bootloader_support/include/esp_image_format.h:
 

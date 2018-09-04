@@ -145,6 +145,7 @@ bool clientParsePlaylist(char* s)
   int remove = 0;
   int i = 0; int j = 0;
   
+  ESP_LOGV(TAG,"clientParsePlaylist  %s",s);
 // for extm3u skip line with #EXTINF  
   str = strstr(s,"#EXTINF");
   if (str != NULL) //skip to next line
@@ -172,6 +173,7 @@ bool clientParsePlaylist(char* s)
 		if (str != NULL) remove = 7;
 	}
   }
+/*  
   if (str ==NULL) 
   {	  
 	str = strstr(s,"https://");
@@ -182,7 +184,7 @@ bool clientParsePlaylist(char* s)
 		if (str != NULL) remove = 8;
 	}
   } 
-  
+ */
   if (str != NULL)   
   {
 	str += remove; //skip http://	
@@ -209,7 +211,7 @@ bool clientParsePlaylist(char* s)
 	if (strncmp(url,"localhost",9)!=0) clientSetURL(url);
 	clientSetPath(path);
 	clientSetPort(atoi(port));
-//kprintf("##CLI.URL#: %s, path: %s, port: %s\n",url,path,port);
+	ESP_LOGV(TAG,"clientParsePlaylist: url: %s, path: %s, port: %s",url,path,port);
 	return true;
   }
   else 
@@ -245,11 +247,11 @@ static char* stringify(char* str,int len)
 					new[j++] = '\\';
 					new[j++] =(str)[i] ;
 				}				
-				else	// pseudo ansi utf8 convertion
-					if ((str[i] > 192) && (str[i+1] < 0x80)){ // 128 = 0x80
+/*				else	// pseudo ansi to  utf8 convertion ex: 0xE9 to 0xC3 0xA9 if the next one is not >= 0x80
+				if ((str[i] > 192) && (str[i+1] < 0x80)){ // 128 = 0x80
 					new[j++] = 195; // 192 = 0xC0   195 = 0xC3
 					new[j++] =(str)[i]-64 ; // 64 = 0x40
-				} 
+				} */
 				else new[j++] =(str)[i] ;
 				
 				if ( j+20> nlen) 
@@ -276,6 +278,7 @@ bool clientPrintMeta()
 		kprintf("##CLI.META#: %s\n",header.members.mArr[METADATA]);
 	else
 		kprintf("##CLI.META#:%c", 0x0D);
+	
 	return true;
 }
 
@@ -378,199 +381,47 @@ static void clientSaveMetadata(char* s,int len)
 				tt = stringify(tt,len); 
 			}
 		}
-
-		
-	if  ((header.members.mArr[METADATA] == NULL)||((header.members.mArr[METADATA] != NULL)&&(t!= NULL)&&(strcmp(tt,header.members.mArr[METADATA]) != 0)))
-	{
-		// ******* Приведение букв в кодировку UTF-8 **********
-		// (c) alex08cb@mail.ru Aleksey Shevchenko aka oka275
-		// ver.1.03  Подправлена работа с украинскими буквами ЄєЇї, ибо их правила выбиваются из общего.  / 19.02.2018
-		// ver.1.02  Подправлена работа с буквами Ё и ё, ибо их правила выбиваются из общего.  / 19.02.2018
-		// ver.1.01  Подправлена работа с BOM-маркером
-		// ver.1.00  Первая версия. 
-		// ****************************************************/
-		int bom = 0;  //Проверка на присутствие BOM-маркера UTF-8 (0xEF, 0xBB, 0xBF) и "промотку" индекс-указателя
-		if(strlen(t)>3) //Если у нас вообще в буфере более 3х символов. Вдруг это слово "ЧИЖ" в CP-1251 кодировке? Ошибки нам ни к чему.
-			if(t[0]==0xEF)
-				if(t[1]==0xBB)
-					if(t[2]==0xBF) bom=3;  //Если три байта следуют подряд, то это точно BOM-маркер и потому мы начнем с позиции index=bom
-		
-		ESP_LOGD(TAG,"UTF-8conv: start work, RAM left:%d\n",esp_get_free_heap_size()); //Сообщение в дебаг для отладки
-				
-		char* b = incmalloc(256); //Запросили выделение памяти под временный буфер, в котором будем собирать строку. 
-		if (b != NULL) //Если память выделилась
+		if  ((header.members.mArr[METADATA] == NULL)||((header.members.mArr[METADATA] != NULL)&&(t!= NULL)&&(strcmp(tt,header.members.mArr[METADATA]) != 0)))
 		{
-			//char p[]={0xCF,0xF0,0xEE,0xF7,0xA8,0xB8,0xEB,'\0'};	Тестовая строчка на проверку букв, как "Ё" или "ё" в кодировке CP-1251
-			//char p[]={0xD0,0xE0,0xE4,0xF3,0xE9,0xF1,0xFF,'\0'}; t=p;  //Тестовая строчка на проверку букв, как "Р" или "С" в кодировке CP-1251
-			//char p[]={0xD1,0xF2,0xE0,0xF0,0xE8,0xED,0xED,0xFB,0xE5,0x20,0xF7,0xE0,0xF1,0xFB,'\0'}; 
-			//char p[]={0xA8, 0xB8, 32, 0xAB, 32, 0xBB, 32, 0xAF, 0xBF, 0xAA,0xBA,  '\0'};
-			//char p[]={0xD1, 0xEE, 0xEB, 0xE4, 0xE0, 0xF2, 0xFB, 0x20, 0xE3, 0xF0, 0xF3, 0xEF, 0xEF, 0xFB, 0x20, 0xAB, 0xD6, 0xE5, 0xED, 0xF2, 0xF0, 0xBB, 0x20, 0x28, 0xE2, 0xF1, 0xF2, 0xF3, 0xEF, 0xEB, 0xE5, 0xED, 0xE8, 0xE5, 0x29,'\0 };
-			//char p[]={0x22,0x22,'\0'};
-			//t=p;
-			char char_acsii[2] = { '0', '\0' };  //Буферок под простую ASCII-букву
-			char char_utf[3] = { '0','0','\0' }; //Буферок под UTF8-букву
-			int index,tLen;
-			int chr;
-			//Инициировали переменные:	
-			bool cp1251fnd = false;
-			chr=0; 		
-			index=bom; 
-			strcpy(b, "");		// -//-
-			tLen = strlen(t); 	//Получили длину входящего массива
-			  
-			while (index < tLen)  //Организуем цикл. Пока входящая строка не закончится, будем перебирать её побайтно. 
-			{
-				chr = t[index]; //Загружаем в переменную код буквы
-				if(chr < 127)	//Если она меньше 127, то это обычная латинская буква, цифра или знак препинания. 
-				{ 
-					char_acsii[0]=chr;//Просто перекладываем ее в буферок
-					strcat(b, char_acsii); //и ДОБАВЛЯЕМ символ в выходной буфер как очень короткое слово в выходной буфер. Признак конца строки конечно тоже переносится (см.команду strcat) 
-				}
-				else //Если код символа больше 127 (будем надеяться, что на станции сидят вменяемые люди и не будут пользоваться нестандартными символами)
-				{  
-					if((chr == 0xD0)||(chr == 0xD1)) //Если встречаем в строке код D0 или D1, то это может быть или буква Р или С в CP-1251, или первый символ пары UTF8
-					{  
-						if((index+1)>=tLen)cp1251fnd=true; //если это последний символ в строке, то это однозначно CP-1251 (или битый пакет, но мы оптимисты)
-						else  //Если это символ не последний в строке, то по закону кодировки UTF8 следующий символ должен быть в диапазоне 0x80-0xBF...
-						{	
-							if( (t[index+1] >= 0x80) && (t[index+1] <= 0xBF) ) //И если это так, то это UTF-8 кодировка, родная для "Ka-Radio" (при условии, если подключены русифицированные шрифты).
-							{
-								char_utf[0]=t[index++]; //Кладем первый байт пары (D0 или D1)
-								char_utf[1]=t[index];	//Кладет второй байт пары (собственно, сам символ)
-								strcat(b, char_utf);	//ДОБАВЛЯЕМ символ в выходной буфер как очень короткое слово. 
-							}
-							else cp1251fnd=true;		//Если же символ не попадал в диапазон (а его код может быть только больше этого диапазона), то это CP-1251
-						}
-					}		
-					else	cp1251fnd=true; //Если символ сразу не попал в диапазон D0-D1, то это кодировка CP-1251
-													
-					if(cp1251fnd)  //Если флаг установлен, то перекодируем символ
-					{
-						switch (chr)
-								{
-									case 0xA8:
-									//Если обнаружили букву "Ё", то у нее своя зависимость. Подгоняем ту цифру, которая позволит на выходе получить нужную последовательность UTF-8 = 0xD0,0x81
-									char_utf[0]=0xD0;	
-									char_utf[1]=0x81; 
-									break;
-									
-									case 0xB8:
-									//Если обнаружили букву "ё", то у нее своя зависимость. Подгоняем ту цифру, которая позволит на выходе получить нужную последовательность UTF-8
-									char_utf[0]=0xD1;	
-									char_utf[1]=0x91; 
-									break;
-									
-									case 0xAB: 
-									//Если обнаружили символ "«", то у нее своя зависимость. Подгоняем ту цифру, которая позволит на выходе получить нужную последовательность UTF-8
-									//ВНИМАНИЕ! Проверить вживую не получилось. Если делать тестовый стринг-пример с этим символом, то в вебморде он рисуется отлично, а на дисплее его нет. Вероятно этого символа нет в шрифте. А если беру теги с этим символом из тестового icecast-потока, то появляется буква "В"
-									char_utf[0]=0xC2;	
-									char_utf[1]=0xAB; 
-									break;
-								
-									case 0xBB: 
-									//Если обнаружили символ "»", то у нее своя зависимость. Подгоняем ту цифру, которая позволит на выходе получить нужную последовательность UTF-8
-								    //ВНИМАНИЕ! Проверить вживую не получилось. Если делать тестовый стринг-пример с этим символом, то в вебморде он рисуется отлично, а на дисплее его нет. Вероятно этого символа нет в шрифте. А если беру теги с этим символом из тестового icecast-потока, то появляется буква "В"
-									char_utf[0]=0xC2;	
-									char_utf[1]=0xBB; 
-									break;
-									
-									case 0xAF: 
-									//Если обнаружили символ "Ї", то у нее своя зависимость. Подгоняем ту цифру, которая позволит на выходе получить нужную последовательность UTF-8
-									char_utf[0]=0xD0;	
-									char_utf[1]=0x87; 
-									break;
-
-									case 0xBF: 
-									//Если обнаружили символ "ї", то у нее своя зависимость. Подгоняем ту цифру, которая позволит на выходе получить нужную последовательность UTF-8
-									char_utf[0]=0xD1;	
-									char_utf[1]=0x97; 
-									break;
-									
-									case 0xAA: 
-									//Если обнаружили символ "Є", то у нее своя зависимость. Подгоняем ту цифру, которая позволит на выходе получить нужную последовательность UTF-8
-									char_utf[0]=0xD0;	
-									char_utf[1]=0x84; 
-									break;
-
-									case 0xBA: 
-									//Если обнаружили символ "є", то у нее своя зависимость. Подгоняем ту цифру, которая позволит на выходе получить нужную последовательность UTF-8
-									char_utf[0]=0xD1;	
-									char_utf[1]=0x94; 
-									break;
-									
-									default: 
-									chr=chr-48; //Большинство кодов символов CP-1251 больше кодов UTF-8 ровно на число 48, за небольшим исключением. Вычитаем!
-									if(chr > 0xBF) //Если получился код больше числа 0xBF, то эта буква находится в следующем банке 0xD1 и разница увеличивается еще на число 64 (всего 112)
-									{
-									char_utf[0]=0xD1;	 //Кладем первый байт пары (D1)
-									char_utf[1]=chr-64;  //Вычитаем дополнительно цифру 64 и получаем код символа в UTF-8. Кладем второй байт пары. 
-									}
-									else
-									{
-									char_utf[0]=0xD0;	//Если символ не превышал 0xBF, то значит он из первого банка 0xD0
-									char_utf[1]=chr;    //Кладем второй байт без изменений (48 мы уже вычли выше)
-									}
-								}
-						
-				
-						strcat(b, char_utf); //ДОБАВЛЯЕМ символ в выходной буфер как очень короткое слово. 
-					}							
-				}
-				index++; //Увеличиваем индекс-указатель на следующий код символа во входном буфере. 
-				cp1251fnd = false; //Сбрасываем флаг
+		
+			if (header.members.mArr[METADATA] != NULL)
+				incfree(header.members.mArr[METADATA],"metad");
+			header.members.mArr[METADATA] = (char*)incmalloc((len+3)*sizeof(char));
+			if(header.members.mArr[METADATA] == NULL) 
+			{	printf(strcMALLOC1,"metad");
+				incfree(tt,"");
+				return;
 			}
-			len = strlen(b); //Получаем размер выходного буфера
-			if(len > 256) {ESP_LOGD(TAG,"UTF-8conv: string over 256 bytes!" ); incfree(b,"UTF-8 b-overload");return; } 
-			//Окончание перекодировки.
-			ESP_LOGD(TAG,"UTF-8conv: work complete, tag=%s RAM left:%d\n",b,esp_get_free_heap_size()); //Сообщение в дебаг для отладки
-		}
-		else //Если память не выделилалсь
-		{ 
-			printf(strcMALLOC1,"utf8_normalize"); //Сообщаем
-			return; //Застреливаемся.
-	    }
-						
-			
-		if (header.members.mArr[METADATA] != NULL) incfree(header.members.mArr[METADATA],"metad"); 
-		header.members.mArr[METADATA] = (char*)incmalloc((len+3)*sizeof(char)); 
-		if(header.members.mArr[METADATA] == NULL) //Если память не выделилась, то сообщаем и выходим. 
-		{	printf(strcMALLOC1,"metad");
-			incfree(tt,"");
-			return;
-		}
 
-		strcpy(header.members.mArr[METADATA], b);
-		//	dump((uint8_t*)(header.members.mArr[METADATA]),strlen(header.members.mArr[METADATA]));
-		header.members.mArr[METADATA] = stringify(header.members.mArr[METADATA],len);
-		//	dump((uint8_t*)(header.members.mArr[METADATA]),strlen(header.members.mArr[METADATA]));
+			strcpy(header.members.mArr[METADATA], t);
+//			dump((uint8_t*)(header.members.mArr[METADATA]),strlen(header.members.mArr[METADATA]));
+			header.members.mArr[METADATA] = stringify(header.members.mArr[METADATA],len);
+//			dump((uint8_t*)(header.members.mArr[METADATA]),strlen(header.members.mArr[METADATA]));
 
-		clientPrintMeta(); 
-		ESP_LOGD(TAG,"start blank, RAM left:%d\n",esp_get_free_heap_size()); //Сообщение в дебаг для отладки
-		while ((header.members.mArr[METADATA][strlen(header.members.mArr[METADATA])-1] == ' ')||
-			(header.members.mArr[METADATA][strlen(header.members.mArr[METADATA])-1] == '\r')||
-		(header.members.mArr[METADATA][strlen(header.members.mArr[METADATA])-1] == '\n')
-		)
-		{
-			header.members.mArr[METADATA][strlen(header.members.mArr[METADATA])-1] = 0; // avoid blank at end
-		}
-		incfree(b,"b-buffer!");	
-		ESP_LOGD(TAG,"blank complete, RAM left:%d\n",esp_get_free_heap_size()); //Сообщение в дебаг для отладки
-		// send station name if no metadata
-		if (strlen(header.members.mArr[METADATA])!=0)			
-			t_end = header.members.mArr[METADATA];
-		else	
-			t_end = (header.members.single.name ==NULL)?"":header.members.single.name;
-	
-		char* title = incmalloc(strlen(t_end)+15);
-		if (title != NULL)
-		{
-			sprintf(title,"{\"meta\":\"%s\"}",t_end); 
-			websocketbroadcast(title, strlen(title));
-			incfree(title,"title");
-		} else printf(strcMALLOC1,"Title"); 
-	}
-		incfree(tt,"");
+			clientPrintMeta(); 
+			while ((header.members.mArr[METADATA][strlen(header.members.mArr[METADATA])-1] == ' ')||
+				(header.members.mArr[METADATA][strlen(header.members.mArr[METADATA])-1] == '\r')||
+			(header.members.mArr[METADATA][strlen(header.members.mArr[METADATA])-1] == '\n')
+			)
+			{
+				header.members.mArr[METADATA][strlen(header.members.mArr[METADATA])-1] = 0; // avoid blank at end
+			}	
+
+// send station name if no metadata
+			if (strlen(header.members.mArr[METADATA])!=0)			
+				t_end = header.members.mArr[METADATA];
+			else	
+				t_end = (header.members.single.name ==NULL)?"":header.members.single.name;
 		
+			char* title = incmalloc(strlen(t_end)+15);
+			if (title != NULL)
+			{
+				sprintf(title,"{\"meta\":\"%s\"}",t_end); 
+				websocketbroadcast(title, strlen(title));
+				incfree(title,"title");
+			} else printf(strcMALLOC1,"Title"); 
+		}
+		incfree(tt,"");
 }	
 
 // websocket: next station
@@ -595,7 +446,6 @@ void wsStationPrev()
 	struct shoutcast_info* si = NULL;
 	do {
 		if (si != NULL) incfree(si,"wsstationP");
-
 		if (getCurrentStation() >0)
 		{				
 			setCurrentStation(getCurrentStation()-1);
@@ -721,7 +571,6 @@ static bool clientSaveOneHeader(char* t, uint16_t len, uint8_t header_num)
 	int i;
 	for(i = 0; i<len+1; i++) tt[i] = 0;
 	strncpy(tt, t, len);
-//	header.members.mArr[header_num] = stringify(header.members.mArr[header_num],len);
 	header.members.mArr[header_num] = stringify(tt,len); //tt is freed here
 	vTaskDelay(10);
 	clientPrintOneHeader(header_num);
@@ -884,7 +733,7 @@ void clientDisconnect(const char* from)
 	}	
 	if ((from[0]!='C') || (from[1]!='_'))
 		if (!ledStatus) gpio_set_level(getLedGpio(),0);
-	vTaskDelay(6);
+	vTaskDelay(5);
 }
 
 IRAM_ATTR void clientReceiveCallback(int sockfd, char *pdata, int len)
@@ -914,7 +763,6 @@ IRAM_ATTR void clientReceiveCallback(int sockfd, char *pdata, int len)
 		}
 		if (t1 != NULL) { // 
 			kprintf(CLIPLAY,0x0d,0x0a);
-//			kprintf("\n");
 			clientSaveOneHeader(notfound, 13,METANAME);
 			wsHeaders();
 //			vTaskDelay(200);
@@ -1011,6 +859,7 @@ IRAM_ATTR void clientReceiveCallback(int sockfd, char *pdata, int len)
 				} else
 				{
 					t1 = NULL;
+					vTaskDelay(1); //avoid watchdog is infernal loop
 					len += recvfrom(sockfd, pdata+len, RECEIVE-len, 0,NULL,NULL);
 				}
 			} while (t1 == NULL);
@@ -1375,6 +1224,7 @@ void clientTask(void *pvParams) {
 							wsHeaders();
 							vTaskDelay(1);
 							clientDisconnect("not found"); 
+							
 							
 					}	
 					else{  //playing & once=1 and no more received stream

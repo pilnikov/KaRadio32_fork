@@ -37,7 +37,7 @@ Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
                               Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o) (rtc_vddsdio_get_config)
 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
-                              Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o) (rtc_wdt_disable)
+                              Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o) (rtc_wdt_protect_off)
 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(cpu_util.o)
                               Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o) (esp_cpu_in_ocd_debug_mode)
 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_bswapsi2.o)
@@ -115,6 +115,8 @@ Discarded input sections
                 0x00000000       0x40 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
  .literal.bootloader_flash_erase_sector
                 0x00000000        0x8 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
+ .literal.bootloader_flash_erase_range
+                0x00000000        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
  .text          0x00000000        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
  .data          0x00000000        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
  .bss           0x00000000        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
@@ -122,13 +124,15 @@ Discarded input sections
                 0x00000000       0xb2 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
  .text.bootloader_flash_erase_sector
                 0x00000000       0x16 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
- .xt.lit        0x00000000       0x40 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
- .xt.prop       0x00000000      0x360 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
+ .text.bootloader_flash_erase_range
+                0x00000000       0x6a Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
+ .xt.lit        0x00000000       0x48 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
+ .xt.prop       0x00000000      0x3f0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
  .text          0x00000000        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
  .data          0x00000000        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
  .bss           0x00000000        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
  .xt.lit        0x00000000       0x18 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
- .xt.prop       0x00000000       0xcc Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
+ .xt.prop       0x00000000       0xe4 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
  .literal.esp_image_verify
                 0x00000000        0x4 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
  .literal.esp_image_verify_bootloader
@@ -275,8 +279,6 @@ Discarded input sections
                 0x00000000        0x8 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
  .literal.rtc_clk_apll_enable
                 0x00000000       0x50 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
- .literal.rtc_clk_slow_freq_get_hz
-                0x00000000       0x10 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
  .literal.rtc_clk_bbpll_configure
                 0x00000000       0x3c Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
  .literal.rtc_clk_cpu_freq_from_mhz_internal
@@ -318,8 +320,6 @@ Discarded input sections
                 0x00000000       0x1a Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
  .text.rtc_clk_apll_enable
                 0x00000000      0x15a Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
- .text.rtc_clk_slow_freq_get_hz
-                0x00000000       0x29 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
  .text.rtc_clk_bbpll_configure
                 0x00000000      0x18d Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
  .text.rtc_clk_cpu_freq_from_mhz_internal
@@ -399,31 +399,23 @@ Discarded input sections
                 0x00000000      0x344 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
  .xt.lit        0x00000000       0x18 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
  .xt.prop       0x00000000       0xfc Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
- .literal.rtc_wdt_enable
-                0x00000000       0x10 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
  .literal.rtc_wdt_feed
                 0x00000000       0x14 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
- .literal.rtc_wdt_set_time
-                0x00000000       0x20 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
- .literal.rtc_wdt_set_length_of_reset_signal
-                0x00000000        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+ .literal.rtc_wdt_get_timeout
+                0x00000000       0x14 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
  .literal.rtc_wdt_is_on
                 0x00000000        0x4 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
  .text          0x00000000        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
  .data          0x00000000        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
  .bss           0x00000000        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
- .text.rtc_wdt_enable
-                0x00000000       0x2b Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
  .text.rtc_wdt_feed
                 0x00000000       0x32 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
- .text.rtc_wdt_set_time
-                0x00000000       0x5d Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
- .text.rtc_wdt_set_length_of_reset_signal
-                0x00000000       0x69 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+ .text.rtc_wdt_get_timeout
+                0x00000000       0x59 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
  .text.rtc_wdt_is_on
                 0x00000000       0x25 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
- .xt.lit        0x00000000       0x50 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
- .xt.prop       0x00000000      0x360 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+ .xt.lit        0x00000000       0x58 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+ .xt.prop       0x00000000      0x3f0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
  .text          0x00000000        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(cpu_util.o)
  .data          0x00000000        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(cpu_util.o)
  .bss           0x00000000        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(cpu_util.o)
@@ -462,10 +454,10 @@ LOAD z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgco
 END GROUP
 
 .iram_loader.text
-                0x40078000     0x2270
+                0x40078000     0x22c4
                 0x40078000                . = ALIGN (0x10)
                 0x40078000                _stext = .
-                0x40078000                _text_start = ABSOLUTE (.)
+                0x40078000                _loader_text_start = ABSOLUTE (.)
  *(.stub .gnu.warning .gnu.linkonce.literal.* .gnu.linkonce.t.*.literal .gnu.linkonce.t.*)
  *(.iram1 .iram1.*)
  .iram1.literal
@@ -477,353 +469,368 @@ END GROUP
  .literal.esp_log_early_timestamp
                 0x4007805c        0x8 Z:/msys32/home/Alex/mykaradio/build/bootloader/log\liblog.a(log.o)
  .literal       0x40078064        0x8 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_bswapsi2.o)
+ .literal.bootloader_common_ota_select_crc
+                0x4007806c        0x4 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_common.o)
+ .literal.bootloader_common_ota_select_valid
+                0x40078070        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_common.o)
+                                  0x4 (size before relaxing)
  .literal.spi_to_esp_err
-                0x4007806c        0x8 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
+                0x40078070        0x8 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
  .literal.bootloader_flash_read_allow_decrypt
-                0x40078074       0x28 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
+                0x40078078       0x28 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
                                  0x30 (size before relaxing)
  .literal.bootloader_flash_read_no_decrypt
-                0x4007809c        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
+                0x400780a0        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
                                  0x14 (size before relaxing)
  .literal.bootloader_mmap
-                0x4007809c       0x18 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
+                0x400780a0       0x18 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
                                  0x50 (size before relaxing)
  .literal.bootloader_munmap
-                0x400780b4        0x4 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
+                0x400780b8        0x4 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
                                  0x14 (size before relaxing)
  .literal.bootloader_flash_read
-                0x400780b8        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
+                0x400780bc        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
                                  0x30 (size before relaxing)
  .literal.bootloader_fill_random
-                0x400780c4        0x8 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
+                0x400780c8       0x14 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
+                                 0x18 (size before relaxing)
  .literal.bootloader_random_enable
-                0x400780cc       0x78 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
+                0x400780dc       0x78 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
  .literal.bootloader_random_disable
-                0x40078144       0x1c Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
+                0x40078154       0x1c Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
                                  0x4c (size before relaxing)
  .literal.log_invalid_app_partition
-                0x40078160       0x14 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
+                0x40078170       0x14 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
                                  0x2c (size before relaxing)
  .literal.try_load_partition
-                0x40078174        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
+                0x40078184        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
                                   0x4 (size before relaxing)
  .literal.set_cache_and_start_app
-                0x40078174        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
+                0x40078184        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
                                  0x30 (size before relaxing)
  .literal.unpack_load_app
-                0x40078180       0x1c Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
+                0x40078190       0x1c Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
                                  0x34 (size before relaxing)
  .literal.load_image
-                0x4007819c        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
+                0x400781ac        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
                                   0x8 (size before relaxing)
  .literal.bootloader_utility_load_partition_table
-                0x4007819c        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
+                0x400781ac        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
                                  0x30 (size before relaxing)
  .literal.bootloader_utility_get_selected_boot_partition
-                0x400781a8       0x14 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
+                0x400781b8       0x14 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
                                  0x58 (size before relaxing)
  .literal.bootloader_reset
-                0x400781bc        0x8 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
+                0x400781cc        0x8 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
                                  0x14 (size before relaxing)
  .literal.bootloader_utility_load_boot_image
-                0x400781c4        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
+                0x400781d4        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
                                  0x58 (size before relaxing)
  .literal.bootloader_sha256_start
-                0x400781d0        0x8 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
+                0x400781e0        0x8 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
  .literal.bootloader_sha256_data
-                0x400781d8       0x20 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
+                0x400781e8       0x20 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
                                  0x30 (size before relaxing)
  .literal.bootloader_sha256_finish
-                0x400781f8       0x18 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
+                0x40078208       0x18 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
                                  0x4c (size before relaxing)
  .literal.should_map
-                0x40078210        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+                0x40078220        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
                                  0x10 (size before relaxing)
  .literal.verify_image_header
-                0x40078210        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+                0x40078220        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
                                  0x14 (size before relaxing)
  .literal.verify_segment_header
-                0x4007821c        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+                0x4007822c        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
                                  0x28 (size before relaxing)
  .literal.verify_checksum
-                0x40078228        0x4 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+                0x40078238        0x4 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
                                  0x1c (size before relaxing)
  .literal.process_segment_data
-                0x4007822c        0x8 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+                0x4007823c        0x8 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
                                  0x24 (size before relaxing)
  .literal.debug_log_hash
-                0x40078234        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+                0x40078244        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
                                   0x4 (size before relaxing)
  .literal.verify_simple_hash
-                0x40078234       0x10 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+                0x40078244       0x10 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
                                  0x3c (size before relaxing)
  .literal.should_load
-                0x40078244       0x10 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+                0x40078254       0x10 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
                                  0x18 (size before relaxing)
  .literal.process_segment
-                0x40078254        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+                0x40078264        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
                                  0x44 (size before relaxing)
  .literal.image_load
-                0x40078260       0x14 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+                0x40078270       0x14 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
                                  0x88 (size before relaxing)
  .literal.bootloader_load_image
-                0x40078274        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+                0x40078284        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
                                   0x4 (size before relaxing)
  .literal.esp_partition_table_verify
-                0x40078274       0x30 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_partitions.o)
+                0x40078284       0x30 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_partitions.o)
                                  0x5c (size before relaxing)
  .literal.esp_rom_spiflash_read_status
-                0x400782a4        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
+                0x400782b4        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
                                  0x14 (size before relaxing)
  .literal.esp_rom_spiflash_wait_idle
-                0x400782b0        0x8 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
+                0x400782c0        0x8 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
                                   0xc (size before relaxing)
  .literal.esp_rom_spiflash_read_data
-                0x400782b8       0x10 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
+                0x400782c8       0x10 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
                                  0x18 (size before relaxing)
  .literal.esp_rom_spiflash_read_statushigh
-                0x400782c8        0x4 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
+                0x400782d8        0x4 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
                                   0xc (size before relaxing)
  .literal.esp_rom_spiflash_write_status
-                0x400782cc        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
+                0x400782dc        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
                                  0x14 (size before relaxing)
  .literal.esp_rom_spiflash_unlock
-                0x400782cc        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
+                0x400782dc        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
                                  0x28 (size before relaxing)
  .literal.esp_rom_spiflash_read
-                0x400782d8       0x38 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
+                0x400782e8       0x38 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
                                  0x5c (size before relaxing)
- .iram1         0x40078310      0x22b Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
- *fill*         0x4007853b        0x1 
- .iram1         0x4007853c      0x11a Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(cpu_util.o)
-                0x4007853c                esp_cpu_stall
-                0x400785d0                esp_cpu_unstall
-                0x40078624                esp_cpu_reset
-                0x40078648                esp_cpu_in_ocd_debug_mode
- *fill*         0x40078656        0x0 
+ .iram1         0x40078320      0x22b Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
+ *fill*         0x4007854b        0x1 
+ .iram1         0x4007854c      0x11a Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(cpu_util.o)
+                0x4007854c                esp_cpu_stall
+                0x400785e0                esp_cpu_unstall
+                0x40078634                esp_cpu_reset
+                0x40078658                esp_cpu_in_ocd_debug_mode
+ *fill*         0x40078666        0x0 
  *liblog.a:(.literal .text .literal.* .text.*)
- *fill*         0x40078656        0x2 
+ *fill*         0x40078666        0x2 
  .text.esp_log_early_timestamp
-                0x40078658       0x1f Z:/msys32/home/Alex/mykaradio/build/bootloader/log\liblog.a(log.o)
-                0x40078658                esp_log_early_timestamp
-                0x40078658                esp_log_timestamp
- *fill*         0x40078677        0x0 
+                0x40078668       0x1f Z:/msys32/home/Alex/mykaradio/build/bootloader/log\liblog.a(log.o)
+                0x40078668                esp_log_early_timestamp
+                0x40078668                esp_log_timestamp
+ *fill*         0x40078687        0x0 
  *libgcc.a:(.literal .text .literal.* .text.*)
- *fill*         0x40078677        0x1 
- .text          0x40078678       0x26 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_bswapsi2.o)
-                0x40078678                __bswapsi2
- *fill*         0x4007869e        0x0 
- *fill*         0x4007869e        0x2 
- .text          0x400786a0      0x281 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_udivdi3.o)
-                0x400786a0                __udivdi3
+ *fill*         0x40078687        0x1 
+ .text          0x40078688       0x26 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_bswapsi2.o)
+                0x40078688                __bswapsi2
+ *fill*         0x400786ae        0x0 
+ *fill*         0x400786ae        0x2 
+ .text          0x400786b0      0x281 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_udivdi3.o)
+                0x400786b0                __udivdi3
+ *libbootloader_support.a:bootloader_common.o(.literal .text .literal.* .text.*)
+ *fill*         0x40078931        0x3 
+ .text.bootloader_common_ota_select_crc
+                0x40078934       0x14 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_common.o)
+                0x40078934                bootloader_common_ota_select_crc
+ .text.bootloader_common_ota_select_valid
+                0x40078948       0x20 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_common.o)
+                                 0x24 (size before relaxing)
+                0x40078948                bootloader_common_ota_select_valid
+ *fill*         0x40078968        0x0 
  *libbootloader_support.a:bootloader_flash.o(.literal .text .literal.* .text.*)
- *fill*         0x40078921        0x3 
  .text.spi_to_esp_err
-                0x40078924       0x22 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
- *fill*         0x40078946        0x2 
+                0x40078968       0x22 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
+ *fill*         0x4007898a        0x2 
  .text.bootloader_flash_read_allow_decrypt
-                0x40078948       0x97 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
+                0x4007898c       0x97 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
                                  0x9b (size before relaxing)
- *fill*         0x400789df        0x1 
+ *fill*         0x40078a23        0x1 
  .text.bootloader_flash_read_no_decrypt
-                0x400789e0       0x32 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
+                0x40078a24       0x32 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
                                  0x36 (size before relaxing)
- *fill*         0x40078a12        0x2 
+ *fill*         0x40078a56        0x2 
  .text.bootloader_mmap
-                0x40078a14       0xb1 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
+                0x40078a58       0xb1 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
                                  0xb9 (size before relaxing)
-                0x40078a14                bootloader_mmap
- *fill*         0x40078ac5        0x3 
+                0x40078a58                bootloader_mmap
+ *fill*         0x40078b09        0x3 
  .text.bootloader_munmap
-                0x40078ac8       0x36 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
-                0x40078ac8                bootloader_munmap
- *fill*         0x40078afe        0x2 
+                0x40078b0c       0x36 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
+                0x40078b0c                bootloader_munmap
+ *fill*         0x40078b42        0x2 
  .text.bootloader_flash_read
-                0x40078b00       0x86 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
-                0x40078b00                bootloader_flash_read
- *fill*         0x40078b86        0x0 
- *fill*         0x40078b86        0x0 
- *fill*         0x40078b86        0x0 
- *fill*         0x40078b86        0x0 
- *fill*         0x40078b86        0x0 
- *fill*         0x40078b86        0x0 
+                0x40078b44       0x86 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
+                0x40078b44                bootloader_flash_read
+ *fill*         0x40078bca        0x0 
+ *fill*         0x40078bca        0x0 
+ *fill*         0x40078bca        0x0 
+ *fill*         0x40078bca        0x0 
+ *fill*         0x40078bca        0x0 
  *libbootloader_support.a:bootloader_random.o(.literal .text .literal.* .text.*)
- *fill*         0x40078b86        0x2 
+ *fill*         0x40078bca        0x2 
  .text.bootloader_fill_random
-                0x40078b88       0x59 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
-                0x40078b88                bootloader_fill_random
- *fill*         0x40078be1        0x3 
+                0x40078bcc       0x6a Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
+                                 0x6e (size before relaxing)
+                0x40078bcc                bootloader_fill_random
+ *fill*         0x40078c36        0x2 
  .text.bootloader_random_enable
-                0x40078be4      0x1d5 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
-                0x40078be4                bootloader_random_enable
- *fill*         0x40078db9        0x3 
+                0x40078c38      0x1d5 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
+                0x40078c38                bootloader_random_enable
+ *fill*         0x40078e0d        0x3 
  .text.bootloader_random_disable
-                0x40078dbc      0x11c Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
-                0x40078dbc                bootloader_random_disable
- *fill*         0x40078ed8        0x0 
- *fill*         0x40078ed8        0x0 
- *fill*         0x40078ed8        0x0 
+                0x40078e10      0x11c Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
+                0x40078e10                bootloader_random_disable
+ *fill*         0x40078f2c        0x0 
+ *fill*         0x40078f2c        0x0 
+ *fill*         0x40078f2c        0x0 
  *libbootloader_support.a:bootloader_utility.o(.literal .text .literal.* .text.*)
  .text.log_invalid_app_partition
-                0x40078ed8       0x57 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
+                0x40078f2c       0x57 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
                                  0x5b (size before relaxing)
- *fill*         0x40078f2f        0x1 
+ *fill*         0x40078f83        0x1 
  .text.try_load_partition
-                0x40078f30       0x20 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
+                0x40078f84       0x20 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
  .text.set_cache_and_start_app
-                0x40078f50       0xce Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
- *fill*         0x4007901e        0x2 
+                0x40078fa4       0xce Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
+ *fill*         0x40079072        0x2 
  .text.unpack_load_app
-                0x40079020       0xb0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
+                0x40079074       0xb0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
                                  0xb4 (size before relaxing)
  .text.load_image
-                0x400790d0        0xb Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
+                0x40079124        0xb Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
                                  0x11 (size before relaxing)
- *fill*         0x400790db        0x1 
+ *fill*         0x4007912f        0x1 
  .text.bootloader_utility_load_partition_table
-                0x400790dc       0xcd Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
+                0x40079130       0xcd Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
                                  0xd5 (size before relaxing)
-                0x400790dc                bootloader_utility_load_partition_table
- *fill*         0x400791a9        0x3 
+                0x40079130                bootloader_utility_load_partition_table
+ *fill*         0x400791fd        0x3 
  .text.bootloader_utility_get_selected_boot_partition
-                0x400791ac      0x11c Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
+                0x40079200      0x11c Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
                                 0x128 (size before relaxing)
-                0x400791ac                bootloader_utility_get_selected_boot_partition
+                0x40079200                bootloader_utility_get_selected_boot_partition
  .text.bootloader_reset
-                0x400792c8       0x2b Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
-                0x400792c8                bootloader_reset
- *fill*         0x400792f3        0x1 
+                0x4007931c       0x2b Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
+                0x4007931c                bootloader_reset
+ *fill*         0x40079347        0x1 
  .text.bootloader_utility_load_boot_image
-                0x400792f4       0xcb Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
+                0x40079348       0xcb Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
                                  0xeb (size before relaxing)
-                0x400792f4                bootloader_utility_load_boot_image
- *fill*         0x400793bf        0x1 
+                0x40079348                bootloader_utility_load_boot_image
+ *fill*         0x40079413        0x1 
  .text.index_to_partition
-                0x400793c0       0x48 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
- *fill*         0x40079408        0x0 
- *fill*         0x40079408        0x0 
- *fill*         0x40079408        0x0 
- *fill*         0x40079408        0x0 
- *fill*         0x40079408        0x0 
+                0x40079414       0x48 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
+ *fill*         0x4007945c        0x0 
+ *fill*         0x4007945c        0x0 
+ *fill*         0x4007945c        0x0 
+ *fill*         0x4007945c        0x0 
+ *fill*         0x4007945c        0x0 
  *libbootloader_support.a:bootloader_sha.o(.literal .text .literal.* .text.*)
  .text.bootloader_sha256_start
-                0x40079408       0x12 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
-                0x40079408                bootloader_sha256_start
- *fill*         0x4007941a        0x2 
+                0x4007945c       0x12 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
+                0x4007945c                bootloader_sha256_start
+ *fill*         0x4007946e        0x2 
  .text.bootloader_sha256_data
-                0x4007941c       0xa1 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
+                0x40079470       0xa1 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
                                  0xa9 (size before relaxing)
-                0x4007941c                bootloader_sha256_data
- *fill*         0x400794bd        0x3 
+                0x40079470                bootloader_sha256_data
+ *fill*         0x40079511        0x3 
  .text.bootloader_sha256_finish
-                0x400794c0       0xdc Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
+                0x40079514       0xdc Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
                                  0xf0 (size before relaxing)
-                0x400794c0                bootloader_sha256_finish
- *fill*         0x4007959c        0x0 
- *fill*         0x4007959c        0x0 
- *fill*         0x4007959c        0x0 
+                0x40079514                bootloader_sha256_finish
+ *fill*         0x400795f0        0x0 
+ *fill*         0x400795f0        0x0 
+ *fill*         0x400795f0        0x0 
  .text.bootloader_sha256_hex_to_str
-                0x4007959c       0x72 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
-                0x4007959c                bootloader_sha256_hex_to_str
+                0x400795f0       0x72 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
+                0x400795f0                bootloader_sha256_hex_to_str
  *libbootloader_support.a:efuse.o(.literal .text .literal.* .text.*)
  *libbootloader_support.a:esp_image_format.o(.literal .text .literal.* .text.*)
- *fill*         0x4007960e        0x2 
+ *fill*         0x40079662        0x2 
  .text.should_map
-                0x40079610       0x30 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+                0x40079664       0x30 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
  .text.verify_image_header
-                0x40079640       0x32 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
- *fill*         0x40079672        0x2 
+                0x40079694       0x32 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+ *fill*         0x400796c6        0x2 
  .text.verify_segment_header
-                0x40079674       0x71 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+                0x400796c8       0x71 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
                                  0x79 (size before relaxing)
- *fill*         0x400796e5        0x3 
+ *fill*         0x40079739        0x3 
  .text.verify_checksum
-                0x400796e8       0x87 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+                0x4007973c       0x87 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
                                  0x8f (size before relaxing)
- *fill*         0x4007976f        0x1 
+ *fill*         0x400797c3        0x1 
  .text.process_segment_data
-                0x40079770       0xa4 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+                0x400797c4       0xa4 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
                                  0xb0 (size before relaxing)
  .text.debug_log_hash
-                0x40079814       0x16 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
- *fill*         0x4007982a        0x2 
+                0x40079868       0x16 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+ *fill*         0x4007987e        0x2 
  .text.verify_simple_hash
-                0x4007982c       0x69 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+                0x40079880       0x69 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
                                  0x80 (size before relaxing)
- *fill*         0x40079895        0x3 
+ *fill*         0x400798e9        0x3 
  .text.should_load
-                0x40079898       0x44 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+                0x400798ec       0x44 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
                                  0x48 (size before relaxing)
  .text.process_segment
-                0x400798dc       0xee Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+                0x40079930       0xee Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
                                  0xf6 (size before relaxing)
- *fill*         0x400799ca        0x2 
+ *fill*         0x40079a1e        0x2 
  .text.image_load
-                0x400799cc      0x28a Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+                0x40079a20      0x28a Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
                                 0x2aa (size before relaxing)
- *fill*         0x40079c56        0x2 
+ *fill*         0x40079caa        0x2 
  .text.bootloader_load_image
-                0x40079c58       0x10 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+                0x40079cac       0x10 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
                                  0x14 (size before relaxing)
-                0x40079c58                bootloader_load_image
- *fill*         0x40079c68        0x0 
- *fill*         0x40079c68        0x0 
- *fill*         0x40079c68        0x0 
- *fill*         0x40079c68        0x0 
- *fill*         0x40079c68        0x0 
- *fill*         0x40079c68        0x0 
- *fill*         0x40079c68        0x0 
+                0x40079cac                bootloader_load_image
+ *fill*         0x40079cbc        0x0 
+ *fill*         0x40079cbc        0x0 
+ *fill*         0x40079cbc        0x0 
+ *fill*         0x40079cbc        0x0 
+ *fill*         0x40079cbc        0x0 
+ *fill*         0x40079cbc        0x0 
+ *fill*         0x40079cbc        0x0 
  *libbootloader_support.a:flash_encrypt.o(.literal .text .literal.* .text.*)
  *libbootloader_support.a:flash_partitions.o(.literal .text .literal.* .text.*)
  .text.esp_partition_table_verify
-                0x40079c68      0x143 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_partitions.o)
+                0x40079cbc      0x143 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_partitions.o)
                                 0x14f (size before relaxing)
-                0x40079c68                esp_partition_table_verify
+                0x40079cbc                esp_partition_table_verify
  *libbootloader_support.a:secure_boot.o(.literal .text .literal.* .text.*)
  *libbootloader_support.a:secure_boot_signatures.o(.literal .text .literal.* .text.*)
  *libmicro-ecc.a:*.o(.literal .text .literal.* .text.*)
  *libspi_flash.a:*.o(.literal .text .literal.* .text.*)
- *fill*         0x40079dab        0x1 
+ *fill*         0x40079dff        0x1 
  .text.esp_rom_spiflash_read_status
-                0x40079dac       0x61 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
-                0x40079dac                esp_rom_spiflash_read_status
- *fill*         0x40079e0d        0x3 
+                0x40079e00       0x61 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
+                0x40079e00                esp_rom_spiflash_read_status
+ *fill*         0x40079e61        0x3 
  .text.esp_rom_spiflash_wait_idle
-                0x40079e10       0x32 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
-                0x40079e10                esp_rom_spiflash_wait_idle
- *fill*         0x40079e42        0x2 
+                0x40079e64       0x32 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
+                0x40079e64                esp_rom_spiflash_wait_idle
+ *fill*         0x40079e96        0x2 
  .text.esp_rom_spiflash_read_data
-                0x40079e44       0xe2 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
- *fill*         0x40079f26        0x2 
+                0x40079e98       0xe2 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
+ *fill*         0x40079f7a        0x2 
  .text.esp_rom_spiflash_read_statushigh
-                0x40079f28       0x21 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
-                0x40079f28                esp_rom_spiflash_read_statushigh
- *fill*         0x40079f49        0x3 
+                0x40079f7c       0x21 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
+                0x40079f7c                esp_rom_spiflash_read_statushigh
+ *fill*         0x40079f9d        0x3 
  .text.esp_rom_spiflash_write_status
-                0x40079f4c       0x34 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
+                0x40079fa0       0x34 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
                                  0x38 (size before relaxing)
-                0x40079f4c                esp_rom_spiflash_write_status
+                0x40079fa0                esp_rom_spiflash_write_status
  .text.esp_rom_spiflash_unlock
-                0x40079f80       0x6a Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
+                0x40079fd4       0x6a Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
                                  0x7e (size before relaxing)
-                0x40079f80                esp_rom_spiflash_unlock
- *fill*         0x40079fea        0x2 
+                0x40079fd4                esp_rom_spiflash_unlock
+ *fill*         0x4007a03e        0x2 
  .text.esp_rom_spiflash_read
-                0x40079fec      0x284 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
-                0x40079fec                esp_rom_spiflash_read
- *fill*         0x4007a270        0x0 
- *fill*         0x4007a270        0x0 
- *fill*         0x4007a270        0x0 
- *fill*         0x4007a270        0x0 
- *fill*         0x4007a270        0x0 
- *fill*         0x4007a270        0x0 
+                0x4007a040      0x284 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
+                0x4007a040                esp_rom_spiflash_read
+ *fill*         0x4007a2c4        0x0 
+ *fill*         0x4007a2c4        0x0 
+ *fill*         0x4007a2c4        0x0 
+ *fill*         0x4007a2c4        0x0 
+ *fill*         0x4007a2c4        0x0 
+ *fill*         0x4007a2c4        0x0 
  *(.fini.literal)
  *(.fini)
  *(.gnu.version)
-                0x4007a270                _text_end = ABSOLUTE (.)
-                0x4007a270                _etext = .
+                0x4007a2c4                _loader_text_end = ABSOLUTE (.)
+                0x4007a2c4                _etext = .
 
-.iram.text      0x40080400     0x141e
+.iram.text      0x40080400     0x1561
                 0x40080400                . = ALIGN (0x10)
  *(.entry.text)
  *(.init.literal)
@@ -858,307 +865,331 @@ END GROUP
  .literal.update_flash_config
                 0x4008047c       0x20 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
  .literal.bootloader_main
-                0x4008049c       0x14 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
-                                 0x54 (size before relaxing)
+                0x4008049c       0x20 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
+                                 0x7c (size before relaxing)
  .literal.__assert_func
-                0x400804b0        0x4 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
+                0x400804bc        0x4 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
                                  0x10 (size before relaxing)
  .literal.bootloader_init
-                0x400804b4       0x48 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
+                0x400804c0       0x48 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
                                  0x74 (size before relaxing)
  .literal.execute_flash_command
-                0x400804fc       0x38 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_qio_mode.o)
+                0x40080508       0x38 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_qio_mode.o)
                                  0x3c (size before relaxing)
  .literal.bootloader_read_flash_id
-                0x40080534        0x4 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_qio_mode.o)
+                0x40080540        0x4 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_qio_mode.o)
                                   0x8 (size before relaxing)
  .literal.bootloader_clock_configure
-                0x40080538       0x18 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_clock.o)
+                0x40080544       0x18 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_clock.o)
                                  0x28 (size before relaxing)
- .literal.bootloader_common_ota_select_crc
-                0x40080550        0x4 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_common.o)
- .literal.bootloader_common_ota_select_valid
-                0x40080554        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_common.o)
-                                  0x4 (size before relaxing)
  .literal.rtc_clk_32k_enable_common
-                0x40080554       0x14 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                0x4008055c       0x14 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
  .literal.rtc_clk_32k_enable
-                0x40080568        0x4 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                0x40080570        0x4 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
                                   0xc (size before relaxing)
  .literal.rtc_clk_8m_enable
-                0x4008056c        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                0x40080574        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
                                  0x10 (size before relaxing)
  .literal.rtc_clk_8m_enabled
-                0x40080578        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
-                                  0x4 (size before relaxing)
- .literal.rtc_clk_8md256_enabled
-                0x40080578        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
-                                  0x4 (size before relaxing)
- .literal.rtc_clk_slow_freq_set
-                0x40080578        0x4 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
-                                  0xc (size before relaxing)
- .literal.rtc_clk_slow_freq_get
-                0x4008057c        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
-                                  0x4 (size before relaxing)
- .literal.rtc_clk_fast_freq_set
-                0x4008057c        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
-                                  0xc (size before relaxing)
- .literal.rtc_clk_fast_freq_get
-                0x4008057c        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
-                                  0x4 (size before relaxing)
- .literal.rtc_clk_xtal_freq_get
-                0x4008057c        0x4 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
- .literal.rtc_clk_cpu_freq_mhz_to_config
                 0x40080580        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
                                   0x4 (size before relaxing)
- .literal.rtc_clk_cpu_freq_get_config
-                0x40080580       0x14 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
-                                 0x24 (size before relaxing)
- .literal.rtc_clk_xtal_freq_update
+ .literal.rtc_clk_8md256_enabled
+                0x40080580        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                                  0x4 (size before relaxing)
+ .literal.rtc_clk_slow_freq_set
+                0x40080580        0x4 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                                  0xc (size before relaxing)
+ .literal.rtc_clk_slow_freq_get
+                0x40080584        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                                  0x4 (size before relaxing)
+ .literal.rtc_clk_slow_freq_get_hz
+                0x40080584        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                                 0x10 (size before relaxing)
+ .literal.rtc_clk_fast_freq_set
+                0x40080590        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                                  0xc (size before relaxing)
+ .literal.rtc_clk_fast_freq_get
+                0x40080590        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                                  0x4 (size before relaxing)
+ .literal.rtc_clk_xtal_freq_get
+                0x40080590        0x4 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+ .literal.rtc_clk_cpu_freq_mhz_to_config
                 0x40080594        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
                                   0x4 (size before relaxing)
+ .literal.rtc_clk_cpu_freq_get_config
+                0x40080594       0x14 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                                 0x24 (size before relaxing)
+ .literal.rtc_clk_xtal_freq_update
+                0x400805a8        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                                  0x4 (size before relaxing)
  .literal.rtc_clk_apb_freq_update
-                0x40080594        0x4 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                0x400805a8        0x4 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
  .literal.rtc_clk_cpu_freq_to_xtal
-                0x40080598       0x1c Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                0x400805ac       0x1c Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
                                  0x34 (size before relaxing)
  .literal.rtc_clk_apb_freq_get
-                0x400805b4        0x4 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                0x400805c8        0x4 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
                                  0x10 (size before relaxing)
  .literal.rtc_clk_cal_internal
-                0x400805b8       0x3c Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
+                0x400805cc       0x30 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
                                  0x64 (size before relaxing)
  .literal.rtc_clk_cal_ratio
-                0x400805f4        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
+                0x400805fc        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
                                   0x8 (size before relaxing)
  .literal.rtc_clk_xtal_freq_estimate
-                0x400805f4        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
+                0x400805fc        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
                                  0x20 (size before relaxing)
  .literal.rtc_clk_init
-                0x40080600       0x30 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
+                0x40080608       0x30 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
                                  0x80 (size before relaxing)
  .literal.rtc_vddsdio_get_config
-                0x40080630       0x28 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
+                0x40080638       0x28 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
                                  0x30 (size before relaxing)
  .literal.rtc_vddsdio_set_config
-                0x40080658        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
+                0x40080660        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
                                   0x8 (size before relaxing)
  .literal.rtc_wdt_get_protect_status
-                0x40080658        0x8 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+                0x40080660        0x8 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
  .literal.rtc_wdt_protect_off
-                0x40080660        0x4 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+                0x40080668        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
                                   0x8 (size before relaxing)
  .literal.rtc_wdt_protect_on
-                0x40080664        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+                0x40080668        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
                                   0x4 (size before relaxing)
+ .literal.rtc_wdt_enable
+                0x40080668        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+                                 0x10 (size before relaxing)
+ .literal.rtc_wdt_set_time
+                0x40080674       0x14 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+                                 0x20 (size before relaxing)
  .literal.rtc_wdt_set_stage
-                0x40080664       0x14 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+                0x40080688       0x10 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+                                 0x14 (size before relaxing)
  .literal.rtc_wdt_disable
-                0x40080678        0x4 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+                0x40080698        0x0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
                                  0x2c (size before relaxing)
+ .literal.rtc_wdt_set_length_of_reset_signal
+                0x40080698        0x4 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+                                  0xc (size before relaxing)
  .text.selected_boot_partition
-                0x4008067c        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/main\libmain.a(bootloader_start.o)
+                0x4008069c        0xc Z:/msys32/home/Alex/mykaradio/build/bootloader/main\libmain.a(bootloader_start.o)
                                  0x10 (size before relaxing)
  .text.select_partition_number
-                0x40080688       0x30 Z:/msys32/home/Alex/mykaradio/build/bootloader/main\libmain.a(bootloader_start.o)
+                0x400806a8       0x30 Z:/msys32/home/Alex/mykaradio/build/bootloader/main\libmain.a(bootloader_start.o)
                                  0x34 (size before relaxing)
  .text.call_start_cpu0
-                0x400806b8       0x35 Z:/msys32/home/Alex/mykaradio/build/bootloader/main\libmain.a(bootloader_start.o)
+                0x400806d8       0x35 Z:/msys32/home/Alex/mykaradio/build/bootloader/main\libmain.a(bootloader_start.o)
                                  0x3c (size before relaxing)
-                0x400806b8                call_start_cpu0
- *fill*         0x400806ed        0x3 
+                0x400806d8                call_start_cpu0
+ *fill*         0x4008070d        0x3 
  .text.print_flash_info
-                0x400806f0        0xd Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
- *fill*         0x400806fd        0x3 
+                0x40080710        0xd Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
+ *fill*         0x4008071d        0x3 
  .text.wdt_reset_cpu0_info_enable
-                0x40080700       0x27 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
- *fill*         0x40080727        0x1 
+                0x40080720       0x27 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
+ *fill*         0x40080747        0x1 
  .text.wdt_reset_info_dump
-                0x40080728       0x9a Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
- *fill*         0x400807c2        0x2 
+                0x40080748       0x9a Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
+ *fill*         0x400807e2        0x2 
  .text.vddsdio_configure
-                0x400807c4       0x33 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
+                0x400807e4       0x33 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
                                  0x37 (size before relaxing)
- *fill*         0x400807f7        0x1 
+ *fill*         0x40080817        0x1 
  .text.uart_console_configure
-                0x400807f8       0x36 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
+                0x40080818       0x36 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
                                  0x3a (size before relaxing)
- *fill*         0x4008082e        0x2 
+ *fill*         0x4008084e        0x2 
  .text.wdt_reset_check
-                0x40080830       0xa1 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
+                0x40080850       0xa1 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
                                  0xa8 (size before relaxing)
- *fill*         0x400808d1        0x3 
+ *fill*         0x400808f1        0x3 
  .text.update_flash_config
-                0x400808d4       0x68 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
+                0x400808f4       0x68 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
  .text.bootloader_main
-                0x4008093c       0x74 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
-                                 0x9c (size before relaxing)
+                0x4008095c       0xaa Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
+                                 0xea (size before relaxing)
+ *fill*         0x40080a06        0x2 
  .text.__assert_func
-                0x400809b0       0x1f Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
+                0x40080a08       0x1f Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
                                  0x23 (size before relaxing)
-                0x400809b0                __assert_func
- *fill*         0x400809cf        0x1 
+                0x40080a08                __assert_func
+ *fill*         0x40080a27        0x1 
  .text.bootloader_init
-                0x400809d0      0x12a Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
+                0x40080a28      0x12a Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
                                 0x136 (size before relaxing)
-                0x400809d0                bootloader_init
- *fill*         0x40080afa        0x2 
+                0x40080a28                bootloader_init
+ *fill*         0x40080b52        0x2 
  .text.execute_flash_command
-                0x40080afc      0x190 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_qio_mode.o)
+                0x40080b54      0x190 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_qio_mode.o)
  .text.bootloader_read_flash_id
-                0x40080c8c       0x27 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_qio_mode.o)
+                0x40080ce4       0x27 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_qio_mode.o)
                                  0x2b (size before relaxing)
-                0x40080c8c                bootloader_read_flash_id
- *fill*         0x40080cb3        0x1 
+                0x40080ce4                bootloader_read_flash_id
+ *fill*         0x40080d0b        0x1 
  .text.bootloader_clock_configure
-                0x40080cb4       0x6e Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_clock.o)
+                0x40080d0c       0x6e Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_clock.o)
                                  0x76 (size before relaxing)
-                0x40080cb4                bootloader_clock_configure
- *fill*         0x40080d22        0x2 
- .text.bootloader_common_ota_select_crc
-                0x40080d24       0x14 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_common.o)
-                0x40080d24                bootloader_common_ota_select_crc
- .text.bootloader_common_ota_select_valid
-                0x40080d38       0x20 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_common.o)
-                                 0x24 (size before relaxing)
-                0x40080d38                bootloader_common_ota_select_valid
+                0x40080d0c                bootloader_clock_configure
+ *fill*         0x40080d7a        0x2 
  .text.rtc_clk_32k_enable_common
-                0x40080d58       0x81 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
- *fill*         0x40080dd9        0x3 
+                0x40080d7c       0x81 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+ *fill*         0x40080dfd        0x3 
  .text.rtc_clk_32k_enable
-                0x40080ddc       0x2d Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
-                0x40080ddc                rtc_clk_32k_enable
- *fill*         0x40080e09        0x3 
+                0x40080e00       0x2d Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                0x40080e00                rtc_clk_32k_enable
+ *fill*         0x40080e2d        0x3 
  .text.rtc_clk_8m_enable
-                0x40080e0c       0x9b Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
-                0x40080e0c                rtc_clk_8m_enable
- *fill*         0x40080ea7        0x1 
+                0x40080e30       0x9b Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                0x40080e30                rtc_clk_8m_enable
+ *fill*         0x40080ecb        0x1 
  .text.rtc_clk_8m_enabled
-                0x40080ea8       0x19 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
-                0x40080ea8                rtc_clk_8m_enabled
- *fill*         0x40080ec1        0x3 
+                0x40080ecc       0x19 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                0x40080ecc                rtc_clk_8m_enabled
+ *fill*         0x40080ee5        0x3 
  .text.rtc_clk_8md256_enabled
-                0x40080ec4       0x1a Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
-                0x40080ec4                rtc_clk_8md256_enabled
- *fill*         0x40080ede        0x2 
+                0x40080ee8       0x1a Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                0x40080ee8                rtc_clk_8md256_enabled
+ *fill*         0x40080f02        0x2 
  .text.rtc_clk_slow_freq_set
-                0x40080ee0       0x48 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
-                0x40080ee0                rtc_clk_slow_freq_set
+                0x40080f04       0x48 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                0x40080f04                rtc_clk_slow_freq_set
  .text.rtc_clk_slow_freq_get
-                0x40080f28       0x10 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
-                0x40080f28                rtc_clk_slow_freq_get
+                0x40080f4c       0x10 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                0x40080f4c                rtc_clk_slow_freq_get
+ .text.rtc_clk_slow_freq_get_hz
+                0x40080f5c       0x29 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                0x40080f5c                rtc_clk_slow_freq_get_hz
+ *fill*         0x40080f85        0x3 
  .text.rtc_clk_fast_freq_set
-                0x40080f38       0x2a Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
-                0x40080f38                rtc_clk_fast_freq_set
- *fill*         0x40080f62        0x2 
+                0x40080f88       0x2a Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                0x40080f88                rtc_clk_fast_freq_set
+ *fill*         0x40080fb2        0x2 
  .text.rtc_clk_fast_freq_get
-                0x40080f64       0x10 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
-                0x40080f64                rtc_clk_fast_freq_get
+                0x40080fb4       0x10 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                0x40080fb4                rtc_clk_fast_freq_get
  .text.rtc_clk_xtal_freq_get
-                0x40080f74       0x2e Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
-                0x40080f74                rtc_clk_xtal_freq_get
-                0x40080f74                rtc_get_xtal
- *fill*         0x40080fa2        0x2 
+                0x40080fc4       0x2e Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                0x40080fc4                rtc_clk_xtal_freq_get
+                0x40080fc4                rtc_get_xtal
+ *fill*         0x40080ff2        0x2 
  .text.rtc_clk_cpu_freq_mhz_to_config
-                0x40080fa4       0x61 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
-                0x40080fa4                rtc_clk_cpu_freq_mhz_to_config
- *fill*         0x40081005        0x3 
+                0x40080ff4       0x61 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                0x40080ff4                rtc_clk_cpu_freq_mhz_to_config
+ *fill*         0x40081055        0x3 
  .text.rtc_clk_cpu_freq_get_config
-                0x40081008       0xa1 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                0x40081058       0xa1 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
                                  0xa5 (size before relaxing)
-                0x40081008                rtc_clk_cpu_freq_get_config
- *fill*         0x400810a9        0x3 
+                0x40081058                rtc_clk_cpu_freq_get_config
+ *fill*         0x400810f9        0x3 
  .text.rtc_clk_xtal_freq_update
-                0x400810ac       0x16 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
-                0x400810ac                rtc_clk_xtal_freq_update
- *fill*         0x400810c2        0x2 
+                0x400810fc       0x16 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                0x400810fc                rtc_clk_xtal_freq_update
+ *fill*         0x40081112        0x2 
  .text.rtc_clk_apb_freq_update
-                0x400810c4       0x19 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
-                0x400810c4                rtc_clk_apb_freq_update
- *fill*         0x400810dd        0x3 
+                0x40081114       0x19 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                0x40081114                rtc_clk_apb_freq_update
+ *fill*         0x4008112d        0x3 
  .text.rtc_clk_cpu_freq_to_xtal
-                0x400810e0       0x9f Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                0x40081130       0x9f Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
                                  0xa3 (size before relaxing)
-                0x400810e0                rtc_clk_cpu_freq_to_xtal
- *fill*         0x4008117f        0x1 
+                0x40081130                rtc_clk_cpu_freq_to_xtal
+ *fill*         0x400811cf        0x1 
  .text.rtc_clk_apb_freq_get
-                0x40081180       0x27 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
-                0x40081180                rtc_clk_apb_freq_get
- *fill*         0x400811a7        0x1 
+                0x400811d0       0x27 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                0x400811d0                rtc_clk_apb_freq_get
+ *fill*         0x400811f7        0x1 
  .text.rtc_clk_cal_internal
-                0x400811a8      0x1b0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
+                0x400811f8      0x1b0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
                                 0x1c0 (size before relaxing)
  .text.rtc_clk_cal_ratio
-                0x40081358       0x20 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
+                0x400813a8       0x20 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
                                  0x24 (size before relaxing)
-                0x40081358                rtc_clk_cal_ratio
+                0x400813a8                rtc_clk_cal_ratio
  .text.rtc_clk_xtal_freq_estimate
-                0x40081378       0x58 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
+                0x400813c8       0x58 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
                                  0x64 (size before relaxing)
  .text.rtc_clk_init
-                0x400813d0      0x1a6 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
+                0x40081420      0x1a6 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
                                 0x1c6 (size before relaxing)
-                0x400813d0                rtc_clk_init
- *fill*         0x40081576        0x2 
+                0x40081420                rtc_clk_init
+ *fill*         0x400815c6        0x2 
  .text.rtc_vddsdio_get_config
-                0x40081578      0x104 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
-                0x40081578                rtc_vddsdio_get_config
+                0x400815c8      0x104 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
+                0x400815c8                rtc_vddsdio_get_config
  .text.rtc_vddsdio_set_config
-                0x4008167c       0x46 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
-                0x4008167c                rtc_vddsdio_set_config
- *fill*         0x400816c2        0x2 
+                0x400816cc       0x46 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
+                0x400816cc                rtc_vddsdio_set_config
+ *fill*         0x40081712        0x2 
  .text.rtc_wdt_get_protect_status
-                0x400816c4       0x19 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
-                0x400816c4                rtc_wdt_get_protect_status
- *fill*         0x400816dd        0x3 
+                0x40081714       0x19 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+                0x40081714                rtc_wdt_get_protect_status
+ *fill*         0x4008172d        0x3 
  .text.rtc_wdt_protect_off
-                0x400816e0       0x10 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
-                0x400816e0                rtc_wdt_protect_off
+                0x40081730       0x10 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+                0x40081730                rtc_wdt_protect_off
  .text.rtc_wdt_protect_on
-                0x400816f0        0xf Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
-                0x400816f0                rtc_wdt_protect_on
- *fill*         0x400816ff        0x1 
+                0x40081740        0xf Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+                0x40081740                rtc_wdt_protect_on
+ *fill*         0x4008174f        0x1 
+ .text.rtc_wdt_enable
+                0x40081750       0x2b Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+                0x40081750                rtc_wdt_enable
+ *fill*         0x4008177b        0x1 
+ .text.rtc_wdt_set_time
+                0x4008177c       0x59 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+                                 0x5d (size before relaxing)
+                0x4008177c                rtc_wdt_set_time
+ *fill*         0x400817d5        0x3 
  .text.rtc_wdt_set_stage
-                0x40081700       0xb1 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
-                0x40081700                rtc_wdt_set_stage
- *fill*         0x400817b1        0x3 
+                0x400817d8       0xb1 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+                0x400817d8                rtc_wdt_set_stage
+ *fill*         0x40081889        0x3 
  .text.rtc_wdt_disable
-                0x400817b4       0x6a Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+                0x4008188c       0x6a Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
                                  0x7e (size before relaxing)
-                0x400817b4                rtc_wdt_disable
- *fill*         0x4008181e        0x0 
- *fill*         0x4008181e        0x0 
- *fill*         0x4008181e        0x0 
- *fill*         0x4008181e        0x0 
- *fill*         0x4008181e        0x0 
- *fill*         0x4008181e        0x0 
- *fill*         0x4008181e        0x0 
- *fill*         0x4008181e        0x0 
- *fill*         0x4008181e        0x0 
- *fill*         0x4008181e        0x0 
- *fill*         0x4008181e        0x0 
- *fill*         0x4008181e        0x0 
- *fill*         0x4008181e        0x0 
- *fill*         0x4008181e        0x0 
- *fill*         0x4008181e        0x0 
- *fill*         0x4008181e        0x0 
- *fill*         0x4008181e        0x0 
- *fill*         0x4008181e        0x0 
- *fill*         0x4008181e        0x0 
- *fill*         0x4008181e        0x0 
- *fill*         0x4008181e        0x0 
- *fill*         0x4008181e        0x0 
- *fill*         0x4008181e        0x0 
- *fill*         0x4008181e        0x0 
- *fill*         0x4008181e        0x0 
- *fill*         0x4008181e        0x0 
- *fill*         0x4008181e        0x0 
+                0x4008188c                rtc_wdt_disable
+ *fill*         0x400818f6        0x2 
+ .text.rtc_wdt_set_length_of_reset_signal
+                0x400818f8       0x69 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+                0x400818f8                rtc_wdt_set_length_of_reset_signal
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
+ *fill*         0x40081961        0x0 
  *(.iram .iram.*)
  *(.fini.literal)
  *(.fini)
  *(.gnu.version)
-                0x4008181e                _text_end = ABSOLUTE (.)
-                0x4008181e                _etext = .
+                0x40081961                _text_end = ABSOLUTE (.)
+                0x40081961                _etext = .
 
 .dram0.bss      0x3fff0000       0x10
                 0x3fff0000                . = ALIGN (0x8)
@@ -1202,7 +1233,7 @@ END GROUP
  *(.jcr)
                 0x3fff0014                _data_end = ABSOLUTE (.)
 
-.dram0.rodata   0x3fff0014      0xd14
+.dram0.rodata   0x3fff0014      0xd84
                 0x3fff0014                _rodata_start = ABSOLUTE (.)
  *(.rodata)
  .rodata        0x3fff0014       0x14 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
@@ -1218,77 +1249,83 @@ END GROUP
                 0x3fff0308       0xfe Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
                                 0x106 (size before relaxing)
  *fill*         0x3fff0406        0x2 
- .rodata.__func__$4440
+ .rodata.__func__$4446
                 0x3fff0408       0x10 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
  .rodata.str1.4
                 0x3fff0418      0x227 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
  *fill*         0x3fff063f        0x1 
  .rodata.str1.4
-                0x3fff0640      0x2d7 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+                0x3fff0640       0x55 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
+ *fill*         0x3fff0695        0x3 
+ .rodata.__func__$2287
+                0x3fff0698       0x17 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
+ *fill*         0x3fff06af        0x1 
+ .rodata.str1.4
+                0x3fff06b0      0x2d7 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
                                 0x307 (size before relaxing)
- *fill*         0x3fff0917        0x1 
+ *fill*         0x3fff0987        0x1 
  .rodata.str1.4
-                0x3fff0918      0x12c Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_partitions.o)
+                0x3fff0988      0x12c Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_partitions.o)
  .rodata.str1.4
-                0x3fff0a44       0xc0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
+                0x3fff0ab4       0xc0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
  .rodata.padding$3883
-                0x3fff0b04       0x40 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
+                0x3fff0b74       0x40 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
  .rodata.__func__$3879
-                0x3fff0b44       0x19 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
- *fill*         0x3fff0b5d        0x3 
+                0x3fff0bb4       0x19 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
+ *fill*         0x3fff0bcd        0x3 
  .rodata.__func__$3859
-                0x3fff0b60       0x17 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
- *fill*         0x3fff0b77        0x1 
+                0x3fff0bd0       0x17 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
+ *fill*         0x3fff0be7        0x1 
  .rodata.str1.4
-                0x3fff0b78       0xa5 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
- *fill*         0x3fff0c1d        0x3 
+                0x3fff0be8       0xa5 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+ *fill*         0x3fff0c8d        0x3 
  .rodata.__func__$3548
-                0x3fff0c20       0x1c Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                0x3fff0c90       0x1c Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
  .rodata.str1.4
-                0x3fff0c3c       0x68 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
+                0x3fff0cac       0x68 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
  .rodata.__func__$1815
-                0x3fff0ca4       0x15 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
- *fill*         0x3fff0cb9        0x3 
+                0x3fff0d14       0x15 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
+ *fill*         0x3fff0d29        0x3 
  .rodata.str1.4
-                0x3fff0cbc       0x5c Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
+                0x3fff0d2c       0x5c Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
                                  0x5b (size before relaxing)
  .rodata.__func__$3374
-                0x3fff0d18        0xd Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
+                0x3fff0d88        0xd Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
  *(.gnu.linkonce.r.*)
  *(.rodata1)
-                0x3fff0d25                __XT_EXCEPTION_TABLE_ = ABSOLUTE (.)
+                0x3fff0d95                __XT_EXCEPTION_TABLE_ = ABSOLUTE (.)
  *(.xt_except_table)
  *(.gcc_except_table)
  *(.gnu.linkonce.e.*)
  *(.gnu.version_r)
  *(.eh_frame)
-                0x3fff0d28                . = ((. + 0x3) & 0xfffffffc)
- *fill*         0x3fff0d25        0x3 
-                0x3fff0d28                __init_array_start = ABSOLUTE (.)
+                0x3fff0d98                . = ((. + 0x3) & 0xfffffffc)
+ *fill*         0x3fff0d95        0x3 
+                0x3fff0d98                __init_array_start = ABSOLUTE (.)
  *crtbegin.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o) .ctors)
  *(SORT(.ctors.*))
  *(.ctors)
-                0x3fff0d28                __init_array_end = ABSOLUTE (.)
+                0x3fff0d98                __init_array_end = ABSOLUTE (.)
  *crtbegin.o(.dtors)
  *(EXCLUDE_FILE(*crtend.o) .dtors)
  *(SORT(.dtors.*))
  *(.dtors)
-                0x3fff0d28                __XT_EXCEPTION_DESCS_ = ABSOLUTE (.)
+                0x3fff0d98                __XT_EXCEPTION_DESCS_ = ABSOLUTE (.)
  *(.xt_except_desc)
  *(.gnu.linkonce.h.*)
-                0x3fff0d28                __XT_EXCEPTION_DESCS_END__ = ABSOLUTE (.)
+                0x3fff0d98                __XT_EXCEPTION_DESCS_END__ = ABSOLUTE (.)
  *(.xt_except_desc_end)
  *(.dynamic)
  *(.gnu.version_d)
-                0x3fff0d28                _rodata_end = ABSOLUTE (.)
-                0x3fff0d28                _lit4_start = ABSOLUTE (.)
+                0x3fff0d98                _rodata_end = ABSOLUTE (.)
+                0x3fff0d98                _lit4_start = ABSOLUTE (.)
  *(*.lit4)
  *(.lit4.*)
  *(.gnu.linkonce.lit4.*)
-                0x3fff0d28                _lit4_end = ABSOLUTE (.)
-                0x3fff0d28                . = ALIGN (0x4)
-                0x3fff0d28                _heap_start = ABSOLUTE (.)
+                0x3fff0d98                _lit4_end = ABSOLUTE (.)
+                0x3fff0d98                . = ALIGN (0x4)
+                0x3fff0d98                _heap_start = ABSOLUTE (.)
                 [!provide]                PROVIDE (abort, 0x4000bba4)
                 [!provide]                PROVIDE (Add2SelfBigHex256, 0x40015b7c)
                 [!provide]                PROVIDE (AddBigHex256, 0x40015b28)
@@ -3051,100 +3088,100 @@ END GROUP
                 0x40008550                PROVIDE (ets_update_cpu_frequency, 0x40008550)
 OUTPUT(Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader.elf elf32-xtensa-le)
 
-.debug_frame    0x00000000     0x1068
+.debug_frame    0x00000000     0x1098
  .debug_frame   0x00000000       0x58 Z:/msys32/home/Alex/mykaradio/build/bootloader/main\libmain.a(bootloader_start.o)
  .debug_frame   0x00000058      0x100 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
  .debug_frame   0x00000158      0x118 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
  .debug_frame   0x00000270      0x130 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_qio_mode.o)
- .debug_frame   0x000003a0       0xd0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
- .debug_frame   0x00000470       0x58 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
- .debug_frame   0x000004c8      0x148 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
- .debug_frame   0x00000610       0x28 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_partitions.o)
- .debug_frame   0x00000638       0x28 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_clock.o)
- .debug_frame   0x00000660       0xa0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_common.o)
- .debug_frame   0x00000700       0x70 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
- .debug_frame   0x00000770       0x70 Z:/msys32/home/Alex/mykaradio/build/bootloader/log\liblog.a(log.o)
- .debug_frame   0x000007e0      0x208 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
- .debug_frame   0x000009e8      0x370 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
- .debug_frame   0x00000d58       0xb8 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
- .debug_frame   0x00000e10       0x40 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
- .debug_frame   0x00000e50       0x58 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
- .debug_frame   0x00000ea8      0x100 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
- .debug_frame   0x00000fa8       0x70 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(cpu_util.o)
- .debug_frame   0x00001018       0x28 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_bswapsi2.o)
- .debug_frame   0x00001040       0x28 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_udivdi3.o)
+ .debug_frame   0x000003a0       0xe8 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
+ .debug_frame   0x00000488       0x58 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
+ .debug_frame   0x000004e0      0x148 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+ .debug_frame   0x00000628       0x28 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_partitions.o)
+ .debug_frame   0x00000650       0x28 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_clock.o)
+ .debug_frame   0x00000678       0xa0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_common.o)
+ .debug_frame   0x00000718       0x70 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
+ .debug_frame   0x00000788       0x70 Z:/msys32/home/Alex/mykaradio/build/bootloader/log\liblog.a(log.o)
+ .debug_frame   0x000007f8      0x208 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_frame   0x00000a00      0x370 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+ .debug_frame   0x00000d70       0xb8 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
+ .debug_frame   0x00000e28       0x40 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
+ .debug_frame   0x00000e68       0x58 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
+ .debug_frame   0x00000ec0      0x118 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+ .debug_frame   0x00000fd8       0x70 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(cpu_util.o)
+ .debug_frame   0x00001048       0x28 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_bswapsi2.o)
+ .debug_frame   0x00001070       0x28 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_udivdi3.o)
 
-.debug_info     0x00000000     0xcd63
+.debug_info     0x00000000     0xd050
  .debug_info    0x00000000      0x337 Z:/msys32/home/Alex/mykaradio/build/bootloader/main\libmain.a(bootloader_start.o)
  .debug_info    0x00000337     0x129f Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
- .debug_info    0x000015d6     0x1308 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
- .debug_info    0x000028de     0x2a81 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_qio_mode.o)
- .debug_info    0x0000535f      0xbfa Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
- .debug_info    0x00005f59      0x1fe Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
- .debug_info    0x00006157     0x1314 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
- .debug_info    0x0000746b      0x526 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_partitions.o)
- .debug_info    0x00007991      0x27a Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_clock.o)
- .debug_info    0x00007c0b      0xa8a Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_common.o)
- .debug_info    0x00008695      0x507 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
- .debug_info    0x00008b9c      0x900 Z:/msys32/home/Alex/mykaradio/build/bootloader/log\liblog.a(log.o)
- .debug_info    0x0000949c      0xaf5 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
- .debug_info    0x00009f91     0x13a0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
- .debug_info    0x0000b331      0x45b Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
- .debug_info    0x0000b78c       0x95 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(gpio_periph.o)
- .debug_info    0x0000b821      0x6b9 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
- .debug_info    0x0000beda      0x339 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
- .debug_info    0x0000c213      0x3a3 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
- .debug_info    0x0000c5b6      0x118 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(cpu_util.o)
- .debug_info    0x0000c6ce       0xcd z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_bswapsi2.o)
- .debug_info    0x0000c79b      0x5c8 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_udivdi3.o)
+ .debug_info    0x000015d6     0x146d Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
+ .debug_info    0x00002a43     0x2a81 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_qio_mode.o)
+ .debug_info    0x000054c4      0xccf Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
+ .debug_info    0x00006193      0x25e Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
+ .debug_info    0x000063f1     0x1314 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+ .debug_info    0x00007705      0x526 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_partitions.o)
+ .debug_info    0x00007c2b      0x27a Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_clock.o)
+ .debug_info    0x00007ea5      0xa89 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_common.o)
+ .debug_info    0x0000892e      0x507 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
+ .debug_info    0x00008e35      0x900 Z:/msys32/home/Alex/mykaradio/build/bootloader/log\liblog.a(log.o)
+ .debug_info    0x00009735      0xaf5 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_info    0x0000a22a     0x13a0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+ .debug_info    0x0000b5ca      0x45b Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
+ .debug_info    0x0000ba25       0x95 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(gpio_periph.o)
+ .debug_info    0x0000baba      0x6b9 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
+ .debug_info    0x0000c173      0x339 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
+ .debug_info    0x0000c4ac      0x3f7 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+ .debug_info    0x0000c8a3      0x118 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(cpu_util.o)
+ .debug_info    0x0000c9bb       0xcd z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_bswapsi2.o)
+ .debug_info    0x0000ca88      0x5c8 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_udivdi3.o)
 
-.debug_abbrev   0x00000000     0x28d8
+.debug_abbrev   0x00000000     0x2940
  .debug_abbrev  0x00000000      0x15a Z:/msys32/home/Alex/mykaradio/build/bootloader/main\libmain.a(bootloader_start.o)
  .debug_abbrev  0x0000015a      0x382 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
  .debug_abbrev  0x000004dc      0x3ed Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
  .debug_abbrev  0x000008c9      0x38e Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_qio_mode.o)
- .debug_abbrev  0x00000c57      0x22f Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
- .debug_abbrev  0x00000e86      0x107 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
- .debug_abbrev  0x00000f8d      0x2bc Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
- .debug_abbrev  0x00001249      0x17b Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_partitions.o)
- .debug_abbrev  0x000013c4      0x108 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_clock.o)
- .debug_abbrev  0x000014cc      0x1f1 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_common.o)
- .debug_abbrev  0x000016bd      0x1b1 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
- .debug_abbrev  0x0000186e      0x1f3 Z:/msys32/home/Alex/mykaradio/build/bootloader/log\liblog.a(log.o)
- .debug_abbrev  0x00001a61      0x22e Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
- .debug_abbrev  0x00001c8f      0x373 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
- .debug_abbrev  0x00002002      0x1a0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
- .debug_abbrev  0x000021a2       0x5b Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(gpio_periph.o)
- .debug_abbrev  0x000021fd      0x213 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
- .debug_abbrev  0x00002410      0x135 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
- .debug_abbrev  0x00002545      0x13e Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
- .debug_abbrev  0x00002683       0x96 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(cpu_util.o)
- .debug_abbrev  0x00002719       0x60 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_bswapsi2.o)
- .debug_abbrev  0x00002779      0x15f z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_udivdi3.o)
+ .debug_abbrev  0x00000c57      0x258 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
+ .debug_abbrev  0x00000eaf      0x13d Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
+ .debug_abbrev  0x00000fec      0x2bc Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+ .debug_abbrev  0x000012a8      0x17b Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_partitions.o)
+ .debug_abbrev  0x00001423      0x108 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_clock.o)
+ .debug_abbrev  0x0000152b      0x1f1 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_common.o)
+ .debug_abbrev  0x0000171c      0x1b1 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
+ .debug_abbrev  0x000018cd      0x1f3 Z:/msys32/home/Alex/mykaradio/build/bootloader/log\liblog.a(log.o)
+ .debug_abbrev  0x00001ac0      0x22e Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_abbrev  0x00001cee      0x373 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+ .debug_abbrev  0x00002061      0x1a0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
+ .debug_abbrev  0x00002201       0x5b Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(gpio_periph.o)
+ .debug_abbrev  0x0000225c      0x213 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
+ .debug_abbrev  0x0000246f      0x135 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
+ .debug_abbrev  0x000025a4      0x147 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+ .debug_abbrev  0x000026eb       0x96 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(cpu_util.o)
+ .debug_abbrev  0x00002781       0x60 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_bswapsi2.o)
+ .debug_abbrev  0x000027e1      0x15f z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_udivdi3.o)
 
-.debug_loc      0x00000000     0x55d3
+.debug_loc      0x00000000     0x57ba
  .debug_loc     0x00000000       0x84 Z:/msys32/home/Alex/mykaradio/build/bootloader/main\libmain.a(bootloader_start.o)
  .debug_loc     0x00000084      0x893 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
  .debug_loc     0x00000917      0x4f4 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
  .debug_loc     0x00000e0b      0x23c Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_qio_mode.o)
- .debug_loc     0x00001047      0x638 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
- .debug_loc     0x0000167f       0x45 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
- .debug_loc     0x000016c4      0xae7 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
- .debug_loc     0x000021ab      0x1b6 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_partitions.o)
- .debug_loc     0x00002361      0x3a9 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_common.o)
- .debug_loc     0x0000270a      0x1f2 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
- .debug_loc     0x000028fc      0x4ad Z:/msys32/home/Alex/mykaradio/build/bootloader/log\liblog.a(log.o)
- .debug_loc     0x00002da9      0xa20 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
- .debug_loc     0x000037c9      0xbd1 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
- .debug_loc     0x0000439a      0x256 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
- .debug_loc     0x000045f0      0x156 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
- .debug_loc     0x00004746      0x245 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
- .debug_loc     0x0000498b      0x22c Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
- .debug_loc     0x00004bb7       0x13 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(cpu_util.o)
- .debug_loc     0x00004bca       0x21 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_bswapsi2.o)
- .debug_loc     0x00004beb      0x9e8 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_udivdi3.o)
+ .debug_loc     0x00001047      0x749 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
+ .debug_loc     0x00001790       0x62 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
+ .debug_loc     0x000017f2      0xae7 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+ .debug_loc     0x000022d9      0x1b6 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_partitions.o)
+ .debug_loc     0x0000248f      0x3a9 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_common.o)
+ .debug_loc     0x00002838      0x1f2 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
+ .debug_loc     0x00002a2a      0x4ad Z:/msys32/home/Alex/mykaradio/build/bootloader/log\liblog.a(log.o)
+ .debug_loc     0x00002ed7      0xa20 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_loc     0x000038f7      0xbd1 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+ .debug_loc     0x000044c8      0x256 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
+ .debug_loc     0x0000471e      0x156 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
+ .debug_loc     0x00004874      0x245 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
+ .debug_loc     0x00004ab9      0x2e5 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+ .debug_loc     0x00004d9e       0x13 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(cpu_util.o)
+ .debug_loc     0x00004db1       0x21 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_bswapsi2.o)
+ .debug_loc     0x00004dd2      0x9e8 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_udivdi3.o)
 
-.debug_aranges  0x00000000      0x718
+.debug_aranges  0x00000000      0x728
  .debug_aranges
                 0x00000000       0x30 Z:/msys32/home/Alex/mykaradio/build/bootloader/main\libmain.a(bootloader_start.o)
  .debug_aranges
@@ -3154,132 +3191,132 @@ OUTPUT(Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader.elf elf32-xtens
  .debug_aranges
                 0x00000108       0x78 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_qio_mode.o)
  .debug_aranges
-                0x00000180       0x58 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
+                0x00000180       0x60 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
  .debug_aranges
-                0x000001d8       0x30 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
+                0x000001e0       0x30 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
  .debug_aranges
-                0x00000208       0x80 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+                0x00000210       0x80 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
  .debug_aranges
-                0x00000288       0x20 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_partitions.o)
+                0x00000290       0x20 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_partitions.o)
  .debug_aranges
-                0x000002a8       0x20 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_clock.o)
+                0x000002b0       0x20 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_clock.o)
  .debug_aranges
-                0x000002c8       0x48 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_common.o)
+                0x000002d0       0x48 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_common.o)
  .debug_aranges
-                0x00000310       0x38 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
+                0x00000318       0x38 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
  .debug_aranges
-                0x00000348       0x38 Z:/msys32/home/Alex/mykaradio/build/bootloader/log\liblog.a(log.o)
+                0x00000350       0x38 Z:/msys32/home/Alex/mykaradio/build/bootloader/log\liblog.a(log.o)
  .debug_aranges
-                0x00000380       0xc0 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
+                0x00000388       0xc0 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
  .debug_aranges
-                0x00000440      0x138 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+                0x00000448      0x138 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
  .debug_aranges
-                0x00000578       0x50 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
+                0x00000580       0x50 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
  .debug_aranges
-                0x000005c8       0x18 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(gpio_periph.o)
+                0x000005d0       0x18 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(gpio_periph.o)
  .debug_aranges
-                0x000005e0       0x28 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
+                0x000005e8       0x28 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
  .debug_aranges
-                0x00000608       0x30 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
+                0x00000610       0x30 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
  .debug_aranges
-                0x00000638       0x68 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+                0x00000640       0x70 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
  .debug_aranges
-                0x000006a0       0x38 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(cpu_util.o)
+                0x000006b0       0x38 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(cpu_util.o)
  .debug_aranges
-                0x000006d8       0x20 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_bswapsi2.o)
+                0x000006e8       0x20 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_bswapsi2.o)
  .debug_aranges
-                0x000006f8       0x20 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_udivdi3.o)
+                0x00000708       0x20 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_udivdi3.o)
 
-.debug_ranges   0x00000000      0x728
+.debug_ranges   0x00000000      0x750
  .debug_ranges  0x00000000       0x20 Z:/msys32/home/Alex/mykaradio/build/bootloader/main\libmain.a(bootloader_start.o)
  .debug_ranges  0x00000020       0x88 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
  .debug_ranges  0x000000a8       0x60 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
  .debug_ranges  0x00000108       0x68 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_qio_mode.o)
- .debug_ranges  0x00000170       0x48 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
- .debug_ranges  0x000001b8       0x20 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
- .debug_ranges  0x000001d8       0xa0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
- .debug_ranges  0x00000278       0x58 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_partitions.o)
- .debug_ranges  0x000002d0       0x10 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_clock.o)
- .debug_ranges  0x000002e0       0x80 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_common.o)
- .debug_ranges  0x00000360       0x58 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
- .debug_ranges  0x000003b8       0x28 Z:/msys32/home/Alex/mykaradio/build/bootloader/log\liblog.a(log.o)
- .debug_ranges  0x000003e0       0xb0 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
- .debug_ranges  0x00000490      0x140 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
- .debug_ranges  0x000005d0       0x40 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
- .debug_ranges  0x00000610       0x18 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
- .debug_ranges  0x00000628       0x20 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
- .debug_ranges  0x00000648       0x58 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
- .debug_ranges  0x000006a0       0x28 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(cpu_util.o)
- .debug_ranges  0x000006c8       0x60 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_udivdi3.o)
+ .debug_ranges  0x00000170       0x50 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
+ .debug_ranges  0x000001c0       0x38 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
+ .debug_ranges  0x000001f8       0xa0 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+ .debug_ranges  0x00000298       0x58 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_partitions.o)
+ .debug_ranges  0x000002f0       0x10 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_clock.o)
+ .debug_ranges  0x00000300       0x80 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_common.o)
+ .debug_ranges  0x00000380       0x58 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
+ .debug_ranges  0x000003d8       0x28 Z:/msys32/home/Alex/mykaradio/build/bootloader/log\liblog.a(log.o)
+ .debug_ranges  0x00000400       0xb0 Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_ranges  0x000004b0      0x140 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+ .debug_ranges  0x000005f0       0x40 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
+ .debug_ranges  0x00000630       0x18 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
+ .debug_ranges  0x00000648       0x20 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
+ .debug_ranges  0x00000668       0x60 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+ .debug_ranges  0x000006c8       0x28 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(cpu_util.o)
+ .debug_ranges  0x000006f0       0x60 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_udivdi3.o)
 
-.debug_line     0x00000000     0x67cd
+.debug_line     0x00000000     0x68de
  .debug_line    0x00000000      0x2bf Z:/msys32/home/Alex/mykaradio/build/bootloader/main\libmain.a(bootloader_start.o)
  .debug_line    0x000002bf      0x834 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
- .debug_line    0x00000af3      0x7d4 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
- .debug_line    0x000012c7      0x4db Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_qio_mode.o)
- .debug_line    0x000017a2      0x538 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
- .debug_line    0x00001cda      0x368 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
- .debug_line    0x00002042      0xa16 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
- .debug_line    0x00002a58      0x308 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_partitions.o)
- .debug_line    0x00002d60      0x1b1 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_clock.o)
- .debug_line    0x00002f11      0x5d6 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_common.o)
- .debug_line    0x000034e7      0x456 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
- .debug_line    0x0000393d      0x4a6 Z:/msys32/home/Alex/mykaradio/build/bootloader/log\liblog.a(log.o)
- .debug_line    0x00003de3      0xaac Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
- .debug_line    0x0000488f      0xc88 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
- .debug_line    0x00005517      0x3b9 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
- .debug_line    0x000058d0       0xea Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(gpio_periph.o)
- .debug_line    0x000059ba      0x316 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
- .debug_line    0x00005cd0      0x3b0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
- .debug_line    0x00006080      0x3bb Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
- .debug_line    0x0000643b      0x17b Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(cpu_util.o)
- .debug_line    0x000065b6       0x89 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_bswapsi2.o)
- .debug_line    0x0000663f      0x18e z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_udivdi3.o)
+ .debug_line    0x00000af3      0x804 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
+ .debug_line    0x000012f7      0x4db Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_qio_mode.o)
+ .debug_line    0x000017d2      0x5b7 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
+ .debug_line    0x00001d89      0x380 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
+ .debug_line    0x00002109      0xa16 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+ .debug_line    0x00002b1f      0x308 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_partitions.o)
+ .debug_line    0x00002e27      0x1b1 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_clock.o)
+ .debug_line    0x00002fd8      0x5c7 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_common.o)
+ .debug_line    0x0000359f      0x456 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
+ .debug_line    0x000039f5      0x4a6 Z:/msys32/home/Alex/mykaradio/build/bootloader/log\liblog.a(log.o)
+ .debug_line    0x00003e9b      0xaac Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_line    0x00004947      0xc88 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+ .debug_line    0x000055cf      0x3b9 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
+ .debug_line    0x00005988       0xea Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(gpio_periph.o)
+ .debug_line    0x00005a72      0x316 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
+ .debug_line    0x00005d88      0x3b0 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
+ .debug_line    0x00006138      0x414 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+ .debug_line    0x0000654c      0x17b Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(cpu_util.o)
+ .debug_line    0x000066c7       0x89 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_bswapsi2.o)
+ .debug_line    0x00006750      0x18e z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_udivdi3.o)
 
-.debug_str      0x00000000     0x47ee
+.debug_str      0x00000000     0x4833
  .debug_str     0x00000000      0x2f4 Z:/msys32/home/Alex/mykaradio/build/bootloader/main\libmain.a(bootloader_start.o)
                                 0x358 (size before relaxing)
  .debug_str     0x000002f4      0x499 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_utility.o)
                                 0x7ab (size before relaxing)
- .debug_str     0x0000078d      0x705 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
-                                0xa56 (size before relaxing)
- .debug_str     0x00000e92     0x1875 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_qio_mode.o)
+ .debug_str     0x0000078d      0x929 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_init.o)
+                                0xc7a (size before relaxing)
+ .debug_str     0x000010b6     0x1875 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_qio_mode.o)
                                0x1bab (size before relaxing)
- .debug_str     0x00002707      0x21e Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
-                                0x569 (size before relaxing)
- .debug_str     0x00002925       0x7d Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
-                                0x229 (size before relaxing)
- .debug_str     0x000029a2      0x2f5 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
+ .debug_str     0x0000292b      0x26a Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_flash.o)
+                                0x5c6 (size before relaxing)
+ .debug_str     0x00002b95       0x7d Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_random.o)
+                                0x240 (size before relaxing)
+ .debug_str     0x00002c12      0x2f5 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(esp_image_format.o)
                                 0x97b (size before relaxing)
- .debug_str     0x00002c97       0x9d Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_partitions.o)
+ .debug_str     0x00002f07       0x9d Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(flash_partitions.o)
                                 0x3b6 (size before relaxing)
- .debug_str     0x00002d34      0x22d Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_clock.o)
+ .debug_str     0x00002fa4      0x22d Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_clock.o)
                                 0x381 (size before relaxing)
- .debug_str     0x00002f61      0x29f Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_common.o)
-                                0x788 (size before relaxing)
- .debug_str     0x00003200      0x100 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
+ .debug_str     0x000031d1      0x283 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_common.o)
+                                0x789 (size before relaxing)
+ .debug_str     0x00003454      0x100 Z:/msys32/home/Alex/mykaradio/build/bootloader/bootloader_support\libbootloader_support.a(bootloader_sha.o)
                                 0x34b (size before relaxing)
- .debug_str     0x00003300      0x17f Z:/msys32/home/Alex/mykaradio/build/bootloader/log\liblog.a(log.o)
+ .debug_str     0x00003554      0x17f Z:/msys32/home/Alex/mykaradio/build/bootloader/log\liblog.a(log.o)
                                 0x33b (size before relaxing)
- .debug_str     0x0000347f      0x35e Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_str     0x000036d3      0x35d Z:/msys32/home/Alex/mykaradio/build/bootloader/spi_flash\libspi_flash.a(spi_flash_rom_patch.o)
                                 0x743 (size before relaxing)
- .debug_str     0x000037dd      0x786 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
+ .debug_str     0x00003a30      0x786 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk.o)
                                 0xa85 (size before relaxing)
- .debug_str     0x00003f63      0x183 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
+ .debug_str     0x000041b6      0x183 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_time.o)
                                 0x3a5 (size before relaxing)
- .debug_str     0x000040e6       0x32 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(gpio_periph.o)
+ .debug_str     0x00004339       0x32 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(gpio_periph.o)
                                 0x138 (size before relaxing)
- .debug_str     0x00004118       0x9b Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
+ .debug_str     0x0000436b       0x9b Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_clk_init.o)
                                 0x66e (size before relaxing)
- .debug_str     0x000041b3       0xb2 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
+ .debug_str     0x00004406       0xb2 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_init.o)
                                 0x237 (size before relaxing)
- .debug_str     0x00004265      0x313 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
-                                0x4c8 (size before relaxing)
- .debug_str     0x00004578       0x62 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(cpu_util.o)
+ .debug_str     0x000044b8      0x105 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(rtc_wdt.o)
+                                0x4e6 (size before relaxing)
+ .debug_str     0x000045bd       0x62 Z:/msys32/home/Alex/mykaradio/build/bootloader/soc\libsoc.a(cpu_util.o)
                                 0x16e (size before relaxing)
- .debug_str     0x000045da      0x138 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_bswapsi2.o)
+ .debug_str     0x0000461f      0x138 z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_bswapsi2.o)
                                 0x1de (size before relaxing)
- .debug_str     0x00004712       0xdc z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_udivdi3.o)
+ .debug_str     0x00004757       0xdc z:/msys32/opt/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0\libgcc.a(_udivdi3.o)
                                 0x258 (size before relaxing)
 
 .comment        0x00000000       0x3b
