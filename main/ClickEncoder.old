@@ -1,0 +1,177 @@
+// ----------------------------------------------------------------------------
+// Rotary Encoder Driver with Acceleration
+// Supports Click, DoubleClick, Long Click
+//
+// (c) 2010 karl@pitrich.com
+// (c) 2014 karl@pitrich.com
+// 
+// Timer-based rotary encoder logic by Peter Dannegger
+// http://www.mikrocontroller.net/articles/Drehgeber
+// ----------------------------------------------------------------------------
+#define LOG_LOCAL_LEVEL ESP_LOG_VERBOSE
+#include <stddef.h>
+#include <string.h>
+#include <stdio.h>
+#include <sys/time.h>
+#include "ClickEncoder.h"
+#include "app_main.h"
+#include "gpio.h"
+#include "webclient.h"
+#include "webserver.h"
+#include "interface.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+
+
+// ----------------------------------------------------------------------------
+// Button configuration (values for 1ms timer service calls)
+//
+#define ENC_BUTTONINTERVAL    10  // check button every x milliseconds, also debouce time
+
+// ----------------------------------------------------------------------------
+// Acceleration configuration (for 1000Hz calls to ::service())
+//
+#define ENC_ACCEL_TOP      3072   // max. acceleration: *12 (val >> 8)
+#define ENC_ACCEL_INC        25
+#define ENC_ACCEL_DEC         2
+
+// ----------------------------------------------------------------------------
+
+  int8_t pinBTN3;
+  int8_t pinBTN2;
+  int8_t pinBTN1;
+  bool pinsActive;
+  volatile Button button;
+  bool doubleClickEnabled;
+  bool buttonHeldEnabled;
+  bool buttonOnPinZeroEnabled = false;
+  uint16_t keyDownTicks = 0;
+  uint16_t doubleClickTicks = 0;
+  uint16_t buttonHoldTime = BTN_HOLDTIME;
+  uint16_t buttonDoubleClickTime = BTN_DOUBLECLICKTIME;
+  unsigned long lastButtonCheck = 0;
+
+
+#define TAG "ClickEncoder"
+
+
+void noInterrupts()
+{noInterrupt1Ms();}
+
+void interrupts()
+{interrupt1Ms();}
+
+
+// ----------------------------------------------------------------------------
+
+bool getpinsActive() {return pinsActive;}
+
+void ClickEncoderInit(int8_t BTN1, int8_t BTN2, int8_t BTN3)
+{
+	pinBTN1 = BTN1; pinBTN2 = BTN2; pinBTN3 = BTN3;
+	pinsActive = LOW; button = Open;
+	doubleClickEnabled = true; buttonHeldEnabled = true;
+	
+	gpio_config_t gpio_conf;
+	gpio_conf.mode = GPIO_MODE_INPUT;
+	gpio_conf.pull_up_en =  (pinsActive == LOW) ?GPIO_PULLUP_ENABLE : GPIO_PULLUP_DISABLE;
+	gpio_conf.pull_down_en = (pinsActive == LOW) ?GPIO_PULLDOWN_DISABLE : GPIO_PULLDOWN_ENABLE;
+	gpio_conf.intr_type = GPIO_INTR_DISABLE;
+	
+  if (pinBTN1 >= 0)
+  {
+	gpio_conf.pin_bit_mask = BIT(pinBTN1);
+	ESP_ERROR_CHECK(gpio_config(&gpio_conf));
+  }
+  if (pinBTN2 >= 0)
+  {
+	gpio_conf.pin_bit_mask = BIT(pinBTN2);
+	ESP_ERROR_CHECK(gpio_config(&gpio_conf));
+  }
+  if (pinBTN3 >= 0)
+  {
+	gpio_conf.pin_bit_mask = BIT(pinBTN3);
+	ESP_ERROR_CHECK(gpio_config(&gpio_conf));
+  }
+ }
+
+// ----------------------------------------------------------------------------
+// call this every 1 millisecond via timer ISR
+//
+void (*serviceEncoder)() = NULL;
+
+void service(void)
+{
+  // handle button
+  //
+  unsigned long currentMillis = xTaskGetTickCount()* portTICK_PERIOD_MS;
+  if (currentMillis < lastButtonCheck) lastButtonCheck = 0;        // Handle case when millis() wraps back around to zero
+  if ((pinBTN1 > 0 || (pinBTN1 == 0 && buttonOnPinZeroEnabled))        // check button only, if a pin has been provided
+      && ((currentMillis - lastButtonCheck) >= ENC_BUTTONINTERVAL))            // checking button is sufficient every 10-30ms
+  { 
+    lastButtonCheck = currentMillis;
+
+    bool pinRead = getPinState();
+    
+    if (pinRead == pinsActive) { // key is down
+      keyDownTicks++;
+      if ((keyDownTicks > (buttonHoldTime / ENC_BUTTONINTERVAL)) && (buttonHeldEnabled)) {
+        button = Held;
+      }
+    }
+
+    if (pinRead == !pinsActive) { // key is now up
+      if (keyDownTicks > 1) {               //Make sure key was down through 1 complete tick to prevent random transients from registering as click
+        if (button == Held) {
+          button = Released;
+          doubleClickTicks = 0;
+        }
+        else {
+          #define ENC_SINGLECLICKONLY 1
+          if (doubleClickTicks > ENC_SINGLECLICKONLY) {   // prevent trigger in single click mode
+            if (doubleClickTicks < (buttonDoubleClickTime / ENC_BUTTONINTERVAL)) {
+              button = DoubleClicked;
+              doubleClickTicks = 0;
+            }
+          }
+          else {
+            doubleClickTicks = (doubleClickEnabled) ? (buttonDoubleClickTime / ENC_BUTTONINTERVAL) : ENC_SINGLECLICKONLY;
+          }
+        }
+      }
+
+      keyDownTicks = 0;
+    }
+  
+    if (doubleClickTicks > 0) {
+      doubleClickTicks--;
+      if (doubleClickTicks == 0) {
+        button = Clicked;
+      }
+    }
+  }
+}
+
+
+// ----------------------------------------------------------------------------
+Button getButton(void)
+{
+  noInterrupts();
+  Button ret = button;
+  if (button != Held && ret != Open) {
+    button = Open; // reset
+  }
+  interrupts();
+
+  return ret;
+}
+
+
+
+bool getPinState() {
+  bool pinState = digitalRead(pinBTN1)||digitalRead(pinBTN2)||digitalRead(pinBTN3);
+  return pinState;
+}
+
+  
+

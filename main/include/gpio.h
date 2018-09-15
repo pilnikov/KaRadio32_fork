@@ -21,21 +21,21 @@
 //------------------- 
 //Set the right one with command sys.led
 // GPIO can be changed with command sys.ledgpio("x")
-#define GPIO_LED	GPIO_NUM_4		// Flashing led or Playing led
+#define GPIO_LED	GPIO_NUM_22		// Flashing led or Playing led
 
 // gpio of the vs1053
 //-------------------
 #define PIN_NUM_XCS  GPIO_NUM_32
-#define PIN_NUM_RST  GPIO_NUM_12 
-#define PIN_NUM_XDCS GPIO_NUM_33
-#define PIN_NUM_DREQ GPIO_NUM_34
+#define PIN_NUM_RST  GPIO_NUM_33 
+#define PIN_NUM_XDCS GPIO_NUM_2
+#define PIN_NUM_DREQ GPIO_NUM_14
 // + HSPI pins
 
 // Encoder knob
 //-------------
-#define PIN_ENC_A   GPIO_NUM_14		// CLK
-#define PIN_ENC_B   GPIO_NUM_2		// DT
-#define PIN_ENC_BTN GPIO_NUM_35		// SW
+#define PIN_ENC_A GPIO_NUM_39	// CLK
+#define PIN_ENC_B GPIO_NUM_38	// DT
+#define PIN_ENC_BTN GPIO_NUM_37	// SW
 
 /*
 #define PIN_ENC_A   GPIO_NUM_14		// CLK
@@ -46,13 +46,13 @@
 
 // I2C lcd (and rda5807 if lcd is i2c or LCD_NONE)
 //------------------------------------------------
-#define PIN_I2C_SCL GPIO_NUM_14
-#define PIN_I2C_SDA GPIO_NUM_13
-#define PIN_I2C_RST	GPIO_NUM_2		// or not used
+#define PIN_I2C_SCL GPIO_NUM_18
+#define PIN_I2C_SDA GPIO_NUM_22
+#define PIN_I2C_RST	GPIO_NUM_5		// or not used
 
 // I2C rda5807 (if lcd is spi)
 //----------------------------
-#define PIN_SI2C_SCL GPIO_NUM_15
+#define PIN_SI2C_SCL GPIO_NUM_35
 #define PIN_SI2C_SDA GPIO_NUM_27
 
 // SPI lcd
@@ -64,7 +64,7 @@
 
 // IR Signal
 //-----------
-#define PIN_IR_SIGNAL GPIO_NUM_21	// Remote IR source
+#define PIN_IR_SIGNAL GPIO_NUM_34	// Remote IR source
 
 
 // I2S DAC or PDM output

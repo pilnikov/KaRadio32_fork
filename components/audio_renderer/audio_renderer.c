@@ -77,7 +77,7 @@ static void init_i2s(renderer_config_t *config)
             .dma_buf_len = 64,                          // size of each buffer
 //            .intr_alloc_flags = ESP_INTR_FLAG_LEVEL1,        // lowest level 1
             .intr_alloc_flags = 0,        // default
-			.use_apll = use_apll			
+//			.use_apll = use_apll			
     };
 
     i2s_pin_config_t pin_config = {

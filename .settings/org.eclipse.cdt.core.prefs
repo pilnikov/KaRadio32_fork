@@ -1,0 +1,12 @@
+eclipse.preferences.version=1
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.929551761/IDF_PATH/delimiter=;
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.929551761/IDF_PATH/operation=append
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.929551761/IDF_PATH/value=z\:\\esp\\esp-idf\\
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.929551761/PATH/delimiter=;
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.929551761/PATH/operation=replace
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.929551761/PATH/value=C\:/Program Files/Java/jre1.8.0_161/bin/server;C\:/Program Files/Java/jre1.8.0_161/bin;C\:/Program Files/Java/jre1.8.0_161/lib/amd64;C\:\\ProgramData\\Oracle\\Java\\javapath;C\:\\Python27\\;C\:\\Python27\\Scripts;C\:\\WINDOWS\\system32;C\:\\WINDOWS;C\:\\WINDOWS\\System32\\Wbem;C\:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C\:\\Program Files\\cURL\\bin;C\:\\Program Files\\Git\\cmd;C\:\\Program Files (x86)\\Common Files\\Seagate\\SnapAPI\\;C\:\\Python27\\;C\:\\Python27\\Scripts;C\:\\WINDOWS\\system32;C\:\\WINDOWS;C\:\\WINDOWS\\System32\\Wbem;C\:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C\:\\Users\\Alex\\AppData\\Local\\Microsoft\\WindowsApps;C\:\\Users\\Alex\\AppData\\Local\\Microsoft\\WindowsApps;Z\:\\esp\\;z\:\\msys32\\;Z\:\\Users\\Alex\\Desktop;z\:\\msys32\\opt\\xtensa-esp32-elf\\bin\\;z\:\\msys32\\mingw32\\bin\\;z\:\\msys32\\usr\\bin\\
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.929551761/V/delimiter=;
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.929551761/V/operation=append
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.929551761/V/value=1
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.929551761/append=true
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.929551761/appendContributed=true

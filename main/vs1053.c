@@ -70,8 +70,8 @@ void VS1053_spi_init(uint8_t spi_no){
         .quadwp_io_num=-1,
         .quadhd_io_num=-1,
 		.flags = SPICOMMON_BUSFLAG_MASTER
-//		.flags = SPICOMMON_BUSFLAG_NATIVE_PINS|SPICOMMON_BUSFLAG_MASTER
-//		.max_transfer_sz = 1024		
+//SPICOMMON_BUSFLAG_NATIVE_PINS|SPICOMMON_BUSFLAG_MASTER
+		//		.max_transfer_sz = 1024		
 	};		
 	ret=spi_bus_initialize(KSPI, &buscfg, 1);	 // dma	
 	assert(ret==ESP_OK);

@@ -53,6 +53,8 @@ static uint8_t mTscreen = MTNEW; // 0 dont display, 1 display full, 2 display va
 
 static bool playable = true;
 static uint16_t volume;
+static int16_t newValue = 0;
+static int16_t currentValue = 0;
 static int16_t futurNum = 0; // the number of the wanted station
 
 static unsigned timerScreen = 0;
@@ -69,9 +71,6 @@ static bool itAskStime = false; // start the time display
 static bool itLcdOut = false;
 //static bool itAskSsecond = false; // start the time display
 static bool state = false; // start stop on Ok key
-
-static bool station_dn = false; // station down cmd
-static bool station_up = false; // station up   cmd
 
 static bool dvolume = true; // display volume screen
  
@@ -291,11 +290,11 @@ void drawStation()
 	{
 		playable = false; 
 		free(si);
-		if (station_dn) {
+		if (currentValue < 0) {
 			futurNum--; 
 			if (futurNum <0) futurNum = 254;
 		}
-		if (station_up) {
+		else {
 			futurNum++;
 			if (futurNum > 254) futurNum = 0;
 		}
@@ -395,15 +394,16 @@ void stationOk()
         }  
         irStr[0] = 0;  
 }
-void changeStation()
+void changeStation(int16_t value)
 {
 	timerScreen = 0;  
-	if (station_up) futurNum++;
+	currentValue = value;
+	if (value > 0) futurNum++;
 	if (futurNum > 254) futurNum = 0;
-	else if (station_dn) futurNum--;
+	else if (value < 0) futurNum--;
 	if (futurNum <0) futurNum = 254;
 	if (stateScreen != sstation) Screen(sstation);
-	else if (station_dn || station_up) mTscreen = MTREFRESH;
+	else if (value != 0) mTscreen = MTREFRESH;
 }				
 // IR 
 // a number of station in progress...
@@ -429,53 +429,66 @@ static void toggletime()
  //----------------------
 void encoderLoop()
 {
-	Button newButton0;
-	Button newButton1;
-	Button newButton2;
+	Button newButton ;
+	static int16_t oldValue = 0;
 	event_lcd_t evt;
 
 // Encoder loop		
-		newButton0 = getButton(0);
-		newButton1 = getButton(1);
-		newButton2 = getButton(2);
-
-		if (newButton0 != Open)
+/*		newValue = - getValue();
+		newButton = getButton();
+		if (newValue != 0) 
+		{
+		//    Serial.print("Encoder: ");Serial.println(newValue);
+			// reset our accelerator
+			if ((newValue >0)&&(oldValue<0)) oldValue = 0;
+			if ((newValue <0)&&(oldValue>0)) oldValue = 0;
+			wakeLcd();
+		}
+		else
+		{
+			// lower accelerator 
+			if (oldValue <0) oldValue++;
+			if (oldValue >0) oldValue--;
+		}
+    		
+		if (newButton != Open)
 		{ 
 			wakeLcd();
-			ESP_LOGD(TAG,"Button: %d",newButton0);
-			if (newButton0 == Clicked) {startStop();}
-			if (newButton0 == DoubleClicked) { toggletime();}
+			ESP_LOGD(TAG,"Button: %d",newButton);
+			if (newButton == Clicked) {startStop();}
+			if (newButton == DoubleClicked) { toggletime();}
 
-			if ((newButton0 == Held)&&(getPinState(0) == getpinsActive()))
+//			if (getPinState() == getpinsActive())
+			if ((newButton == Held)&&(getPinState() == getpinsActive()))
 			{   
-				if (newButton2 == Clicked) station_up = true;
-				if (newButton1 == Clicked) station_dn = true;
-				changeStation();
-				station_up = false;
-				station_dn = false;
+				currentValue = newValue;
+				changeStation(newValue);
 			} 
 			
 		}	else
 		{
-
-			if ((stateScreen  != sstation)&&(newButton2 == Clicked || newButton1 == Clicked))
+			if ((stateScreen  != sstation)&&(newValue != 0))
 			{    
+				ESP_LOGD(TAG,"Enc value: %d, oldValue: %d,  incr volume: %d",newValue, oldValue,newValue+(oldValue*3));
 				evt.lcmd = evol;
-				if(newButton2 == Clicked) evt.lline = +5;
-				if(newButton1 == Clicked) evt.lline = -5;
+				evt.lline = (char*)((uint32_t)newValue+(oldValue*3));
 				xQueueSend(event_lcd,&evt, 0);
 			} 
-			if ((stateScreen  == sstation)&&(newButton2 == Clicked || newButton1 == Clicked))
+			if ((stateScreen  == sstation)&&(newValue != 0))
 			{    
+				currentValue += newValue;
 				evt.lcmd = estation;
-				if(newButton2 == Clicked) evt.lline = +5;
-				if(newButton1 == Clicked) evt.lline = -5;
+				evt.lline = (char*)((uint32_t)newValue);
 				xQueueSend(event_lcd,&evt, 0);				
 			} 	
 		}		
+		oldValue += newValue;
 // end Encoder loop
-
+*/
+		//changeStation(0);
+		//drawStation();
 }
+
 
 
 
@@ -631,8 +644,8 @@ void task_addon(void *pvParams)
 	// Encoder	init
 	//enum modeStateEncoder { encVolume, encStation } ;
 	//static enum modeStateEncoder stateEncoder = encVolume;
-	ClickEncoderInit(PIN_ENC_A, PIN_ENC_B, PIN_ENC_BTN);
-	serviceEncoder = &service;	; // connect the 1ms interruption
+	//ClickEncoderInit(PIN_BTN1, PIN_BTN2, PIN_BTN3);
+	//serviceEncoder = &service;	; // connect the 1ms interruption
 	serviceAddon = &ServiceAddon;	; // connect the 1ms interruption
 	futurNum = getCurrentStation();
 	//ir
