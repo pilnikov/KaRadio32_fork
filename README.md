@@ -21,5 +21,5 @@ https://ru.aliexpress.com/item/Ttgo-2-4-PCM5102A-SD-ESP32-WiFi-Bluetooth/3284888
 Бинарник можно сразу заливать, без сборки. После прошивки необходимо через терминал сконфигурировать экран как ili9341 (194) Кнопки на плате работают!
 P.S. Могут быть проблемы со звуком - решения нормального пока нет. Временное решение - понизить приоритета процесса "addons" в `app_main.c` 
 строка 982
-'xTaskCreatePinnedToCore (task_addon, "task_addon", 2600, NULL, 4, &pxCreatedTask,1);'
+`xTaskCreatePinnedToCore (task_addon, "task_addon", 2600, NULL, 4, &pxCreatedTask,1);`
 с 4 на 1, звук восстановится, но будут тормозить экран и кнопки.
