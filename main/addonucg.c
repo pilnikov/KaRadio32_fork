@@ -86,7 +86,7 @@ static uint16_t z ;		// an internal offset for y
 static uint16_t HHeader= 40;
 
 //static struct tm *dt;
-static char strtime[16]; 
+static char strsec[30]; 
 static uint16_t volume;
 
 static char station[BUFLEN]; //received station
@@ -254,12 +254,11 @@ struct _utf8To1251_t
 };
 typedef struct _utf8To1251_t utf8To1251_t;
 #define UTF8TO1251	30
-utf8To1251_t utf8To1251[UTF8TO1251] = { {0x401,0x45/*0xa8*/},{0x402,0x80},{0x403,0x81},{0x404,0xaa},{0x405,0xbd},{0x406,0x49/*0xb2*/},{0x407,0xaf},{0x408,0xa3},
-										{0x409,0x8a},{0x40a,0x8c},{0x40b,0x8e},{0x40c,0x8d},{0x40e,0xa1},{0x40f,0x8f},{0x452,0x90},{0x451,0x65/*0xb8*/},
-										{0x453,0x83},{0x454,0xba},{0x455,0xbe},{0x456,0x69/*0xb3*/},{0x457,0xbf},{0x458,0x6a/*0xbc*/},{0x459,0x9a},{0x45a,0x9c},
-										{0x45b,0x9e},{0x45c,0x9d},{0x45f,0x9f},{0x490,0xa5},{0x491,0xb4},
-										{0,0}
-									  };
+utf8To1251_t utf8To1251[UTF8TO1251] = {{0x401,0x45/*0xa8*/},{0x402,0x80},{0x403,0x81},{0x404,0xaa},{0x405,0xbd},{0x406,0x49/*0xb2*/},{0x407,0xaf},{0x408,0xa3},
+									   {0x409,0x8a},{0x40a,0x8c},{0x40b,0x8e},{0x40c,0x8d},{0x40e,0xa1},{0x40f,0x8f},{0x452,0x90},{0x451,0x65/*0xb8*/},
+									   {0x453,0x83},{0x454,0xba},{0x455,0xbe},{0x456,0x69/*0xb3*/},{0x457,0xbf},{0x458,0x6a/*0xbc*/},{0x459,0x9a},{0x45a,0x9c},
+									   {0x45b,0x9e},{0x45c,0x9d},{0x45f,0x9f},{0x490,0xa5},{0x491,0xb4},
+									   {0,0}};
 uint8_t to1251(uint16_t utf8)
 {
 	int i;
@@ -385,6 +384,8 @@ void setColor(int i)
 // draw one line
 void draw(int i)
 {
+	uint16_t len,xpos,yyy; 
+	
     if ( mline[i]) mline[i] =0;
     if (i >=3) z = y/2 ; else z = 0;
     switch (i) {
@@ -425,11 +426,22 @@ void draw(int i)
  		if ((yy > 64)||(lline[TITLE21] == NULL)||(strlen(lline[TITLE21]) ==0))
 		{
 		  setfont(small);
+          len = ucg_GetStrWidth(&ucg,strsec);
           ucg_SetColori(&ucg,250,250,255); 
           ucg_SetColor(&ucg,1,CBLACK); 
           ucg_SetFontMode(&ucg,UCG_FONT_MODE_SOLID);
-		  ucg_DrawString(&ucg,x - ucg_GetStrWidth(&ucg,strtime) - 2,yy - 10,0,strtime); 
-		  ucg_SetFontMode(&ucg,UCG_FONT_MODE_TRANSPARENT);
+		  if (yy <= 64)
+		  {
+			xpos = (5*x/8)-(len/2);
+			yyy = yy -10;
+			ucg_DrawString(&ucg,xpos,yyy,0,strsec); 
+		  } else
+		  {
+			xpos = (3*x/4)-(len/2);
+			yyy = yy -10;
+			ucg_DrawString(&ucg,xpos,yyy,0,strsec); 
+		  }			  
+          ucg_SetFontMode(&ucg,UCG_FONT_MODE_TRANSPARENT);
 		}
         break;
         default:
@@ -448,9 +460,11 @@ void drawLinesUcg()
 	setfont(text);
     for (int i=0;i<LINES;i++)
     {
+		taskYIELD();
         if (mline[i]) draw(i); 
     }
 }
+
 
 
 ////////////////////////////////////////
@@ -458,7 +472,7 @@ void drawLinesUcg()
 void drawFrameUcg(uint8_t mTscreen,struct tm *dt)
 {
 //printf("drawFrameUcg, mTscreen: %d\n",mTscreen);
-
+int i;
     switch (mTscreen){
     case 1: 
 		ucg_ClearScreen(&ucg);
@@ -469,13 +483,13 @@ void drawFrameUcg(uint8_t mTscreen,struct tm *dt)
 		ucg_DrawGradientLine(&ucg,0,(4*y) - (y/2) -4,x,0);
 		ucg_SetColor(&ucg,0,CBLACK);  
 		ucg_DrawBox(&ucg,0,0,x-1,15);  
-		for (uint8_t i=0;i<LINES;i++) draw(i);
+		for (i=0;i<LINES;i++) draw(i);
 		// no break
 	case 2:	
 		if (getDdmm())
-			snprintf(strtime, 16, "%02d-%02d  %02d:%02d:%02d",dt->tm_mday,dt->tm_mon+1,dt->tm_hour, dt->tm_min,  dt->tm_sec);
+			sprintf(strsec,"%02d-%02d  %02d:%02d:%02d",dt->tm_mday,dt->tm_mon+1,dt->tm_hour, dt->tm_min,dt->tm_sec);
 		else
-			snprintf(strtime, 16, "%02d-%02d  %02d:%02d:%02d",dt->tm_mon+1,dt->tm_mday,dt->tm_hour, dt->tm_min,  dt->tm_sec);
+			sprintf(strsec,"%02d-%02d  %02d:%02d:%02d",dt->tm_mon+1,dt->tm_mday,dt->tm_hour, dt->tm_min,dt->tm_sec);
 		markDrawUcg(TIME);
 		drawLinesUcg();
 		break;

@@ -73,7 +73,7 @@ static void init_i2s(renderer_config_t *config)
             .bits_per_sample = config->bit_depth,
             .channel_format = I2S_CHANNEL_FMT_RIGHT_LEFT,   // 2-channels
             .communication_format = comm_fmt,
-            .dma_buf_count = 32,                            // number of buffers, 128 max.
+            .dma_buf_count = 16,                            // number of buffers, 128 max.
             .dma_buf_len = 128,                          // size of each buffer
 //            .intr_alloc_flags = ESP_INTR_FLAG_LEVEL1,        // lowest level 1
             .intr_alloc_flags = 0,        // default
@@ -205,11 +205,11 @@ void render_samples(char *buf, uint32_t buf_len, pcm_format_t *buf_desc)
         size_t bytes_written = 0;
         while(bytes_left > 0 && renderer_status != STOPPED) {
 //			ESP_LOGE(TAG, "i2s_write  nb: %d",bytes_left);
-            bytes_written = i2s_write_bytes(renderer_instance->i2s_num, buf, bytes_left, 1);
-/*            res = i2s_write(renderer_instance->i2s_num, buf, bytes_left,& bytes_written, 0);
+//            bytes_written = i2s_write_bytes(renderer_instance->i2s_num, buf, bytes_left, 1);
+            res = i2s_write(renderer_instance->i2s_num, buf, bytes_left,& bytes_written, 0);
 			if (res != ESP_OK) {
 				ESP_LOGE(TAG, "i2s_write error %d",res);
-			}*/
+			}
             bytes_left -= bytes_written;
             buf += bytes_written;
         }
@@ -239,14 +239,14 @@ void render_samples(char *buf, uint32_t buf_len, pcm_format_t *buf_desc)
         ptr_r = ptr_l;
     }
 
- //   size_t bytes_pushed = 0;
     TickType_t max_wait = 20 / portTICK_PERIOD_MS; // portMAX_DELAY = bad idea
 	//mult = mult>>12;  // for sample on 8 bits 0 to 16
 	
-outBuf8 = malloc(buf_len);
-//outBuf16 =(uint16_t*)outBuf8;
-outBuf32 =(uint32_t*)outBuf8;
-outBuf64 = (uint64_t*)outBuf8;
+	outBuf8 = malloc(buf_len);
+	if (outBuf8 == NULL) return;
+	
+	outBuf32 =(uint32_t*)outBuf8;
+	outBuf64 = (uint64_t*)outBuf8;
 
 	
     for (int i = 0; i < num_samples; i++) {
@@ -258,18 +258,6 @@ outBuf64 = (uint64_t*)outBuf8;
             int16_t left = *(int16_t *) ptr_l;
             int16_t right = *(int16_t *) ptr_r;
 			
-/*			//volume on msb
-			if (mult!= 0x10000){
-			// volume on msb only.
-				int32_t temp = (left>>8 )* mult;
-				left = ((temp >>16) & 0xFFFF);
-				left = left <<8;
-				
-				temp = (right>>8)* mult;
-				right = ((temp>>16) & 0xFFFF);
-				right = right <<8;		
-				
-			}	*/		
             // The built-in DAC wants unsigned samples, so we shift the range
             // from -32768-32767 to 0-65535.
             left  = left  + 0x8000;
@@ -278,11 +266,7 @@ outBuf64 = (uint64_t*)outBuf8;
             uint32_t sample = (uint16_t) left;
             sample = (sample << 16 & 0xffff0000) | ((uint16_t) right);
 
-outBuf32[i] = sample;
-//ESP_LOGI(TAG, "render_samples 32 i: %d   %x",i,sample);
-//            bytes_pushed = i2s_write_bytes(renderer_instance->i2s_num, (const char*) &sample,sizeof(uint32_t), max_wait);
-//           bytes_pushed = i2s_push_sample(renderer_instance->i2s_num, (const char*) &sample, max_wait);
-//           i2s_write(renderer_instance->i2s_num, (const char*) &sample, buf_bytes_per_sample, &bytes_pushed, max_wait);
+			outBuf32[i] = sample;
         }
         else {
 
@@ -293,25 +277,14 @@ outBuf32[i] = sample;
 
                     /* low - high / low - high */
                     const char samp32[4] = {ptr_l[0], ptr_l[1], ptr_r[0], ptr_r[1]};
-					
-outBuf32[i] = *((uint32_t*)samp32);
-//if (i == 0) ESP_LOGI(TAG,"outBuf : %x,  samp32: %x %x %x %x", outBuf32[0], samp32[0],samp32[1],samp32[2],samp32[3]);
-//ESP_LOGI(TAG, "render_samples 32 i: %d   %4x",i,*samp32);
-//                    bytes_pushed = i2s_write_bytes(renderer_instance->i2s_num, (const char*) &samp32,sizeof(uint32_t), max_wait);
-//                    bytes_pushed = i2s_push_sample(renderer_instance->i2s_num, (const char*) &samp32, max_wait);
- //                   i2s_write(renderer_instance->i2s_num, (const char*) &samp32, 2, &bytes_pushed, max_wait);
+					outBuf32[i] = *((uint32_t*)samp32);
                     break;
 
                 case I2S_BITS_PER_SAMPLE_32BIT:
                     ; // workaround
 
-                    const char samp64[8] = {0, 0, ptr_l[0], ptr_l[1], 0, 0, ptr_r[0], ptr_r[1]};
-					
-outBuf64[i] = *((uint64_t*)samp64);
-//ESP_LOGI(TAG, "render_samples 64 i: %d   %8x",i,*samp64);
-//					bytes_pushed = i2s_write_bytes(renderer_instance->i2s_num, (const char*) &samp64,sizeof(uint64_t), max_wait);
-//                    bytes_pushed = i2s_push_sample(renderer_instance->i2s_num, (const char*) &samp64, max_wait);
-//                    i2s_write(renderer_instance->i2s_num, (const char*) &samp64, 4, &bytes_pushed, max_wait);
+                    const char samp64[8] = {0, 0, ptr_l[0], ptr_l[1], 0, 0, ptr_r[0], ptr_r[1]};					
+					outBuf64[i] = *((uint64_t*)samp64);
                     break;
 
                 default:
@@ -319,37 +292,22 @@ outBuf64[i] = *((uint64_t*)samp64);
             }
         }
 
-		
-		
-        // DMA buffer full - retry
- /*       if (bytes_pushed == 0) {
-            i--;
-        } else
-*/			{
-            ptr_r += stride;
-            ptr_l += stride;
-        }
+        ptr_r += stride;
+        ptr_l += stride;
     }
 	
-        size_t bytes_left = buf_len;
-        size_t bytes_written = 0;
-        while(bytes_left > 0 && renderer_status != STOPPED) {
-//			ESP_LOGE(TAG, "i2s_write  nb: %d",bytes_left);
-//            bytes_written = i2s_write_bytes(renderer_instance->i2s_num, buf, bytes_left, 0);
-bytes_written = i2s_write_bytes(renderer_instance->i2s_num, (const char*) outBuf8,bytes_left, 1);
-/*            res = i2s_write(renderer_instance->i2s_num, buf, bytes_left,& bytes_written, 0);
-			if (res != ESP_OK) {
+    size_t bytes_left = buf_len;
+    size_t bytes_written = 0;
+    while(bytes_left > 0 && renderer_status != STOPPED) {
+        res = i2s_write(renderer_instance->i2s_num, (const char*) outBuf8, bytes_left,& bytes_written, max_wait);
+		if (res != ESP_OK) {
 				ESP_LOGE(TAG, "i2s_write error %d",res);
-			}*/
-            bytes_left -= bytes_written;
-            buf += bytes_written;
-        }
-
-	
-	
-//bytes_pushed = i2s_write_bytes(renderer_instance->i2s_num, (const char*) outBuf8,buf_len, max_wait);		
-
-free (outBuf8);
+		}
+		if (bytes_written != buf_len)ESP_LOGI(TAG, "written: %d, len: %d",bytes_written,bytes_left);
+        bytes_left -= bytes_written;
+        buf += bytes_written;
+    }
+	free (outBuf8);
 }
 
 
