@@ -9,7 +9,7 @@ Please use original files with ttgotm.bin config and ST7789V (199) display.
 адаптированные под использование с платой TTGO TM Music
 https://ru.aliexpress.com/item/Ttgo-2-4-PCM5102A-SD-ESP32-WiFi-Bluetooth/32848882218.html?spm=a2g0s.9042311.0.0.BYS264
 
-Теперь поддерживается русский язык!
+Русский язык поддерживается!
 
 Начиная с версии 1.5 потеряло актуальность. Теперь можно грузить оригинальную прошивку и специальный файл конфигурации ttgotm.bin из папочки \boards\build у автора(или тут). Дисплей в новых версиях - ST7789V (199)
 
