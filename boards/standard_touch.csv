@@ -25,17 +25,17 @@ P_I2C_SDA,data,u8,255
 P_I2C_RST,data,u8,255
 P_LCD_CS,data,u8,13
 P_LCD_A0,data,u8,14
-P_LCD_RST,data,u8,12
-P_IR_SIGNAL,data,u8,39
+P_LCD_RST,data,u8,27
+P_IR_SIGNAL,data,u8,36
 P_I2S_LRCK,data,u8,25
 P_I2S_BCLK,data,u8,26
 P_I2S_DATA,data,u8,22
 P_ADC_KBD,data,u8,255
 P_BACKLIGHT,data,u8,255
-P_TOUCH_CS,data,u8,16
+P_TOUCH_CS,data,u8,15
 P_JOY_0,data,u8,255
 P_JOY_1,data,u8,255
-P_LED_GPIO,data,u8,4
+P_LED_GPIO,data,u8,21
 
 option_space,namespace,,
 O_LCD_TYPE,data,u8,194
