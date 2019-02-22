@@ -1,4 +1,9 @@
 key,type,encoding,value
+
+label_space,namespace,,
+L_LABEL,data,string,myka.csv
+L_COMMENT,data,string,xcs:15 xdcs:4 dreq:2 disp:194 touch:27 ir:36 +ram
+
 gpio_space,namespace,,
 K_SPI,data,u8,2
 P_MISO,data,u8,19
