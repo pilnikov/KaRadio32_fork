@@ -1,8 +1,8 @@
 key,type,encoding,value
 
 label_space,namespace,,
-L_LABEL,data,string,myka.csv
-L_COMMENT,data,string,xcs:15 xdcs:4 dreq:2 disp:194 touch:27 ir:36 +ram
+L_LABEL,data,string,myka2.csv
+L_COMMENT,data,string,xcs:15 xdcs:4 dreq:2 disp:194 touch:27 ir:36 joy0:35 joy1:34
 
 gpio_space,namespace,,
 K_SPI,data,u8,2
@@ -36,15 +36,15 @@ P_I2S_LRCK,data,u8,25
 P_I2S_BCLK,data,u8,26
 P_I2S_DATA,data,u8,22
 P_TOUCH_CS,data,u8,27
-P_JOY_0,data,u8,255
-P_JOY_1,data,u8,255
+P_JOY_0,data,u8,35
+P_JOY_1,data,u8,34
 P_LED_GPIO,data,u8,21
 P_ADC_KBD,data,u8,255
 P_BACKLIGHT,data,u8,255
 
 option_space,namespace,,
 O_LCD_TYPE,data,u8,194
-O_LCD_ROTA,data,u8,255
+O_LCD_ROTA,data,u8,1
 O_LCD_OUT,data,u32,255
 O_DDMM_FLAG,data,u8,1
 
@@ -67,3 +67,4 @@ K_9,data,string,
 K_STAR,data,string,
 K_DIESE,data,string,
 K_INFO,data,string,
+
