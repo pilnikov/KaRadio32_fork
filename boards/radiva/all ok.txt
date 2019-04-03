@@ -1,0 +1,145 @@
+
+rst:0x10 (RTCWDT_RTC_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0018,len:4
+load:0x3fff001c,len:3632
+ho 0 tail 12 room 4
+load:0x40078000,len:10372
+load:0x40080400,len:6028
+entry 0x400806d8
+I (45) main: starting app_main()
+I (45) main: RAM left: 4394304
+E (55) main: Running partition type 0 subtype 16 (offset 0x00010000)
+I (75) main: Partition init done...
+D (125) eeprom: saveDeviceSettings
+Log level is now ESP_LOG_DEBUG
+I (305) vs1053: VS1053 LFreq: 1403508
+I (305) vs1053: VS1053 HFreq: 6153846
+I (4205) vs1053: VS1053/VS1003 detected. MP3Status: 40, Version: 4
+I (4205) vs1053: SCI_Status  = 0x40
+I (4205) vs1053: SCI_Mode (0x4800) = 0x4800
+I (4205) vs1053: SCI_ClockF = 0xB800
+I (4205) vs1053: VS Version (VS1053 is 4) = 4
+I (4205) vs1053: I2S Speed: 0
+I (4215) VS1053 Patches: plugin size 8896 4448
+I (4215) VS1053 Patches: plugin start: 7 1 8050 6
+
+I (4555) vs1053: volume: 221
+I (4555) main: hardware initialized
+I (4555) main: Hardware init done...
+I (4585) main: LCD Type 194
+I (4615) addonucg: lcd init  type: 194, Rotat: 1
+I (4665) ucg_hal: UCG_COM_MSG_POWER_UP: 80 ns so in Hz: 12500000
+I (4665) ucg_hal: ... Adding spi lcd bus  Speed= 25000000.
+I (4725) XPT2046: Touch cs: 21 init done
+I (4725) XPT2046: ... Added touch spi bus  cs: 21,  Speed= 2000000.
+I (4725) XPT2046: Calibration read: X:1100bc5, Y:2490ed2
+I (4805) addonucg: lcd init Color type: 194
+I (4975) addonucg: X: 320, yy: 240, y: 10
+
+I (4985) main: audio_output_mode 4
+One of I2S=0, I2S_MERUS, DAC_BUILT_IN, PDM, VS1053
+I (4985) main: Set Song buffer to 420k
+I (4985) main: Set baudrate at 115200
+I (4985) main: Release 1.9, Revision 3
+I (4985) main: SDK v3.3-beta1-268-g5c88c5996-dirty
+I (4995) main: Heap size: 3953720
+I (5885) main: Volume set to 221
+I (5915) main: t0 task: 3ffb9824
+I (5915) main: starting wifi
+I (5915) wifi: wifi driver task: 3ffcbd8c, prio:23, stack:3584, core=0
+I (5915) wifi: wifi firmware version: 38e2484
+I (5915) wifi: config NVS flash: enabled
+I (5925) wifi: config nano formating: disabled
+I (5945) wifi: Init dynamic tx buffer num: 32
+I (5945) wifi: Init data frame dynamic rx buffer num: 32
+I (5945) wifi: Init management frame dynamic rx buffer num: 32
+I (5945) wifi: Init static tx buffer num: 16
+I (5955) wifi: Init static rx buffer size: 1600
+I (5955) wifi: Init static rx buffer num: 10
+I (5955) wifi: Init dynamic rx buffer num: 32
+WIFI TRYING TO CONNECT TO SSID 1
+E (5965) wifi: esp_wifi_disconnect 964 wifi not start
+I (6025) main: connecting
+I (6095) wifi: mode : sta (24:0a:c4:05:80:84)
+I (6095) main: Initialised wifi
+I (6215) wifi: new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1
+I (6895) wifi: state: init -> auth (b0)
+I (6895) wifi: state: auth -> assoc (0)
+I (6915) wifi: state: assoc -> run (10)
+I (6945) wifi: connected with Home, channel 11, bssid = 9c:5c:8e:24:91:54
+I (6945) wifi: pm start, type: 1
+
+E (6945) event: invalid static ip
+I (6945) main: Wifi connected
+
+DNS: 192.168.43.1
+IP: 192.168.43.15
+
+D (7925) eeprom: saveDeviceSettings
+I (8675) main: mDNS Init ok
+E (8675) main: mDNS Hostname: radiva3
+D (8675) renderer: init I2S mode 4, port 0, 16 bit, 44100 Hz
+I (8675) renderer: chip revision 0
+I (8705) renderer: i2s intr:0
+I (9385) main: RAM left 3878448
+I (9385) main: uartInterfaceTask task: 3ffd9420
+I (9395) main: clientTask task: 3ffda850
+I (9405) servers: watermark: 0xab8  2744
+I (9405) servers: telnetServer_sock socket: 52, errno: 0
+I (9405) servers: Webserver socket: 53, errno: 0
+I (9405) main: serversTask task: 3ffdb5d8
+I (9415) main: task_addon task: 3ffdc510
+D (9515) ClickJoystick: Joystick Channel: 7
+D (9515) ClickJoystick: Joystick Channel: 6
+D (9525) addon: ADC Channel: 255
+D (9525) addon: event_ir: 3ffdc6dc
+D (9525) addon: event_lcd: 3ffdc770
+I (9525) addon: rmt_nec_rx_task task: 3ffdd0d0
+I (9525) addon: task_lcd task: 3ffddad4
+D (9525) addon: task_lcd Started, LCD Type 194
+D (9545) NEC: RMT started
+I (10375) main:  Init Done
+READY. Type help for a list of commands
+##CLI.ICY0#: at IP 192.168.43.15
+autostart: playing:1, currentstation:14
+##CLI.NAMESET#: 14 Радио Ретро FM 70e
+##CLI.URLSET#: retro70.hostingradio.ru
+##CLI.PATHSET#: /retro70-128.mp3
+##CLI.PORTSET#: 8025
+##CLI.OVOLSET#: 0
+##CLI.VOL#: 221
+I (13915) webclient: Webclient socket: 55, errno: 0
+D (13915) renderer: Renderer volume:  5D00
+I (14405) webserver: playstationInt: 14, g_device: 14
+D (15405) webclient: contentType: 5
+##CLI.ICY0#: Retro '70s
+##CLI.ICY4#: Pop
+##CLI.ICY5#: 128
+##CLI.ICY6#: Retro '70s
+##CLI.ICY7#:  bitrate=128
+D (15905) webclient: t1: 0x3ffc3026, cstatus: 2, icyfound: 1  metad:16000 Metaint:16000
+
+D (15905) webclient: newlen: 910   len: 1420   chunked:0  pdata:3ffc2e2c
+D (15905) renderer: Renderer volume:  0
+D (16025) webserver: Heap size: 3842404
+D (16025) webserver: websocketAccept socket: 56
+D (16025) webserver: watermark serverClientTask: 4a4  1188
+D (16105) renderer: Renderer volume:  5D00
+##CLI.PLAYING#
+D (16435) webclient: clientReceiveCallback: pdata: 3ffc2e2c, pdataend: 3ffc33c8, len: 1436
+D (16435) webclient: mt len:1436, clen:1436, metad:730 ,&l:3ffc3106, l:64, inpdata:3ffc2e2c, rest:641, str: StreamTitle='Demis Roussos - Forever And Ever';StreamUrl='';
+##CLI.META#: Demis Roussos - Forever And Ever
+D (17905) audio_player: RAM left 3852316
+D (17905) audio_player: decoder task created: vsTask
+I (36135) audio_player: Buffer fill 25%, 109237 // 430080 bytes
+D (36895) webclient: clientReceiveCallback: pdata: 3ffc2e2c, pdataend: 3ffc33b8, len: 1420
+D (36895) webclient: mt len:1420, clen:1420, metad:539 ,&l:3ffc3047, l:32, inpdata:3ffc2e2c, rest:848, str: StreamTitle='';StreamUrl='';
+##CLI.META#:
+D (43885) webclient: clientReceiveCallback: pdata: 3ffc2e2c, pdataend: 3ffc33a8, len: 1404
+D (43885) webclient: mt len:1404, clen:1404, metad:382 ,&l:3ffc2faa, l:64, inpdata:3ffc2e2c, rest:957, str: StreamTitle='Sergey Belikov - Raduga';StreamUrl='';
+##CLI.META#: Sergey Belikov - Raduga
+I (56985) audio_player: Buffer fill 25%, 110020 // 430080 bytes
+

@@ -1,0 +1,16 @@
+
+D (210895) webclient: newlen: 926   len: 1436   chunked:0  pdata:3ffc2e2c
+D (210895) renderer: Renderer volume:  0
+D (211105) renderer: Renderer volume:  5D00
+##CLI.PLAYING#
+D (211435) webclient: clientReceiveCallback: pdata: 3ffc2e2c, pdataend: 3ffc33c8, len: 1436
+D (211435) webclient: mt len:1436, clen:1436, metad:714 ,&l:3ffc30f6, l:112, inpdata:3ffc2e2c, rest:609, str: StreamTitle='Orkestr P/U Vadima Liudvikovskogo - Melodiya Iz K/F "Djentel'meny Udachi" (Instr)';StreamUrl='';
+##CLI.META#: Orkestr P\/U Vadima Liudvikovskogo - Melodiya Iz K\/F \"Djentel'meny Udachi\" (Instr)
+D (212595) audio_player: RAM left 3847160
+D (212595) audio_player: decoder task created: vsTask
+D (215815) webclient: clientReceiveCallback: pdata: 3ffc2e2c, pdataend: 3ffc33c8, len: 1436
+D (215815) webclient: mt len:1436, clen:1436, metad:155 ,&l:3ffc2ec7, l:64, inpdata:3ffc2e2c, rest:1216, str: StreamTitle='Demis Roussos - Forever And Ever';StreamUrl='';
+##CLI.META#: Demis Roussos - Forever And Ever
+I (230905) audio_player: Buffer fill 0%, 1404 // 430080 bytes
+I (251995) audio_player: Buffer fill 0%, 1847 // 430080 bytes
+I (272845) audio_player: Buffer fill 0%, 1420 // 430080 bytes
