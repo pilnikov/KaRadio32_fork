@@ -1,4 +1,9 @@
 key,type,encoding,value
+
+label_space,namespace,,
+L_LABEL,data,string,vs_only.csv
+L_COMMENT,data,string,xcs:15 xdcs:2 dreq:4 rst:12
+
 gpio_space,namespace,,
 K_SPI,data,u8,2
 P_MISO,data,u8,19
@@ -38,10 +43,11 @@ P_ADC_KBD,data,u8,255
 P_BACKLIGHT,data,u8,255
 
 option_space,namespace,,
-O_LCD_TYPE,data,u8,255
-O_LCD_ROTA,data,u8,255
-O_LCD_OUT,data,u32,255
-O_DDMM_FLAG,data,u8,255
+O_LCD_TYPE,data,u8,0
+O_LCD_ROTA,data,u8,0
+O_LCD_OUT,data,u32,0
+O_DDMM_FLAG,data,u8,0
+O_BTN0,data,u8,0
 
 custom_ir_space,namespace,,
 K_UP,data,string,
@@ -62,4 +68,3 @@ K_9,data,string,
 K_STAR,data,string,
 K_DIESE,data,string,
 K_INFO,data,string,
-

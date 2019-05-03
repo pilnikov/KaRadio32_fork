@@ -147,10 +147,13 @@ P_LED_GPIO		GPIO of the status led
 
 ## OPTIONS
 - **LCD CONTROL**  
-P_LCD_TYPE		Type of lcd (see [addon.h](https://github.com/karawin/Ka-Radio32/blob/master/main/include/addon.h) file).  
-P_LCD_ROTA		Control the rotation of the LCD, 0 no rotation, 1: rotation.  
+O_LCD_TYPE		Type of lcd (see [addon.h](https://github.com/karawin/Ka-Radio32/blob/master/main/include/addon.h) file).  
+O_LCD_ROTA		Control the rotation of the LCD, 0 no rotation, 1: rotation.  
 O_LCD_OUT 		The tempo to light off the screen in seconds. 0 is no tempo.   
 O_DDMM_FLAG		The format of the date to display 0:MMDD, 1:DDMM.  
+- **Buttons option**  
+O_BTN0			The active level of buttons: 0=LOW, 1:HIGH  ( 0=Default)  
+O_BTN1			The active level of buttons: 0=LOW, 1:HIGH  ( 0=Default)  
 -------------------
 ## Special cases:
 -------------------
@@ -191,6 +194,7 @@ Each set has functions equivalent to Encoder0 and Encoder1:
 click on button A: Start/Stop playing  
 click on button B and C: volume down and up for set 0 (P_BTN0), Station down and up for set 1 (P_BTN1)  
 held on button A: click on button B and C: volume down and up for set 1 (P_BTN1), Station down and up for set 0 (P_BTN0)  
+A button may be active with a level of 0 volt (0) (default) or +3.3volt (1)  
 
 If a set is not used, P_BTNx_A must be set to 255. In this case P_BTNx_B P_BTNx_C are disabled too.
 
@@ -206,7 +210,27 @@ An example of joystick:
 
 ### I2C
 If I2C is not used (ie no lcd or spi lcd) the gpio of the i2C can be reused elsewhere.  
-To disable I2C even a I2C LCD is used: P_I2S_LRCK	and/or P_I2S_BCLK	must be set to 255  
+To formally disable I2C : P_I2C_SCL and/or P_I2C_SDA	must be set to 255
+
+### I2S
+I tried this DAC:  
+https://www.aliexpress.com/…/Interface-I2…/32849017570.html  
+![Screenshoot of DAC](
+https://external-cdt1-1.xx.fbcdn.net/safe_image.php?d=AQAhofo5IQeqvClM&w=540&h=282&url=https%3A%2F%2Fae01.alicdn.com%2Fkf%2FHTB14PaLnsLJ8KJjy0Fnq6AFDpXaq%2FInterface-I2S-PCM5102-DAC-Decoder-GY-PCM5102-I2S-Player-Module-For-Raspberry-Pi-pHAT-Format-Board.jpg&cfs=1&upscale=1&fallback=news_d_placeholder_publisher&_nc_hash=AQCsMu3BxmPKRVtR)  
+To connect it do:  
+FLT GND  
+DMP GND  
+SCL Not connected  
+BCK is P_I2S_BCLK  
+DIN is P_I2S_DATA    
+LCK is P_I2S_LRCK   
+FMT GND  
+XMT 3.3V  
+VCC 5V or  
+3.3 3.3v  
+GND GND  
+
+If Vcc input is 5V, the 3.3V output the 3.3V but you can directly input the 3.3V here if the 5V is not available.
 
 ### VS1053b
 If not used P_XCS must be set to 255. Gpio of P_RST P_XDCS P_DREQ may be reused elsewhere.  
@@ -220,6 +244,9 @@ GPIO pin must be gpio32 to 39  or 255 if not used.
 Compatible with https://github.com/karawin/Ka-Radio/blob/master/Hardware/controles.pdf and the one found at https://www.drive2.ru/b/487463808323813881/  
 The stop button is replaced with "Toggle Time/Infos" and "start replaced with "Start/Stop"  
 The ESP32 ADC can be sensitive to noise leading to large discrepancies in ADC readings. To minimize noise, users may connect a 0.1uF capacitor to the ADC input pad in use
+
+### OLED
+If your B/W oled has an artefact on the left for type 0, change it to type 1 (command sys.lcd("1") or O_LCD_TYPE,data,u8,1  
 
 ### Lcd backlight
 Thanks to Vadim Polyakovsky:

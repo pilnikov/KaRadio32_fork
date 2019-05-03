@@ -2,7 +2,7 @@ key,type,encoding,value
 
 label_space,namespace,,
 L_LABEL,data,string,myka2.csv
-L_COMMENT,data,string,xcs:15 xdcs:4 dreq:2 disp:194 touch:27 ir:36 joy0:35 joy1:34 joybtn:32
+L_COMMENT,data,string,xcs:15 xdcs:2 dreq:4 rst:12 disp:194 touch:27 ir:36 joy0:35 joy1:34 joybtn:32 ledgpio:21 i2s:25 26 22
 
 gpio_space,namespace,,
 K_SPI,data,u8,2
