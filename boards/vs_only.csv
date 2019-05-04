@@ -2,7 +2,7 @@ key,type,encoding,value
 
 label_space,namespace,,
 L_LABEL,data,string,vs_only.csv
-L_COMMENT,data,string,xcs:15 xdcs:2 dreq:4 rst:12
+L_COMMENT,data,string,xcs:15 xdcs:2 dreq:4 rst:12 i2c_sda:13 i2c_scl:14 i2c_rst:5
 
 gpio_space,namespace,,
 K_SPI,data,u8,2
@@ -25,9 +25,9 @@ P_BTN0_C,data,u8,255
 P_BTN1_A,data,u8,255
 P_BTN1_B,data,u8,255
 P_BTN1_C,data,u8,255
-P_I2C_SCL,data,u8,255
-P_I2C_SDA,data,u8,255
-P_I2C_RST,data,u8,255
+P_I2C_SCL,data,u8,13
+P_I2C_SDA,data,u8,14
+P_I2C_RST,data,u8,5
 P_LCD_CS,data,u8,255
 P_LCD_A0,data,u8,255
 P_LCD_RST,data,u8,255
@@ -44,9 +44,9 @@ P_BACKLIGHT,data,u8,255
 
 option_space,namespace,,
 O_LCD_TYPE,data,u8,0
-O_LCD_ROTA,data,u8,0
+O_LCD_ROTA,data,u8,1
 O_LCD_OUT,data,u32,0
-O_DDMM_FLAG,data,u8,0
+O_DDMM_FLAG,data,u8,1
 O_BTN0,data,u8,0
 
 custom_ir_space,namespace,,
