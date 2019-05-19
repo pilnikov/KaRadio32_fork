@@ -21,8 +21,8 @@
 {"Name":"Радио Владивосток FM","URL":"vladfm.com","File":"/vfm","Port":"8000","ovol":"0"}
 {"Name":"Радио Динамит","URL":"82.208.90.58","File":"/;?1456127630240.mp3","Port":"2000","ovol":"0"}
 {"Name":"Радио Август","URL":"81.28.166.36","File":"/;stream/1","Port":"8000","ovol":"42"}
-{"Name":"100% Hit","URL":"100radio-hit.ice.infomaniak.ch","File":"/100radio-hit-128.mp3","Port":"80","ovol":"0"}
-{"Name":"100% 80","URL":"100radio-80.ice.infomaniak.ch","File":"/100radio-80-128.mp3","Port":"80","ovol":"0"}
+{"Name":"100% Hit","URL":"100radio-hit.ice.infomaniak.ch","File":"/100radio-hit-64.aac","Port":"80","ovol":"0"}
+{"Name":"100% 80","URL":"100radio-80.ice.infomaniak.ch","File":"/100radio-80-64.aac","Port":"80","ovol":"0"}
 {"Name":"100% 90","URL":"100radio-90.ice.infomaniak.ch","File":"/100radio-90-64.aac","Port":"80","ovol":"0"}
 {"Name":"M2 90's","URL":"live.m2stream.fr","File":"/m290-128.mp3","Port":"80","ovol":"0"}
 {"Name":"M2 80's","URL":"live.m2stream.fr","File":"/m280-128.mp3","Port":"80","ovol":"0"}
