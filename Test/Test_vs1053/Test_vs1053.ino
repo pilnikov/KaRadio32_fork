@@ -1,8 +1,6 @@
 #include "Arduino.h"
 #include "WiFi.h"
 #include "SPI.h"
-//#include "SD.h"
-//#include "FS.h"
 #include "vs1053_ext.h"
 
 // Digital I/O used (Подключение VS1053)
@@ -13,6 +11,7 @@
 #define VS1053_CS     15
 #define VS1053_DCS     2
 #define VS1053_DREQ    4
+#define VS1053_RST    12
 
 // Настройки сети WiFi
 String ssid =     "SSID";
@@ -27,28 +26,28 @@ void setup() {
   //pinMode(SD_CS, OUTPUT);      digitalWrite(SD_CS, HIGH);
   Serial.begin(115200);
   SPI.begin(SPI_SCK, SPI_MISO, SPI_MOSI);
-  //SD.begin(SD_CS);
   WiFi.disconnect();
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid.c_str(), password.c_str());
   while (WiFi.status() != WL_CONNECTED) delay(1500);
 
-  // Сброс вээски ножкой 12
-  pinMode(12, OUTPUT); 
-  digitalWrite(12, LOW);
+  // Сброс вээски
+  pinMode(VS1053_RST, OUTPUT); 
+  digitalWrite(VS1053_RST, LOW);
   delay (100);
-  digitalWrite(12, HIGH);
+  digitalWrite(VS1053_RST, HIGH);
 
   mp3.begin();
   mp3.setVolume(volume);
 
-  // Тут надо выбрать один из потоков или добавить свой
+  // ------------ Тут надо выбрать один из потоков или добавить свой
+  
   //mp3.connecttohost("streambbr.ir-media-tec.com/berlin/mp3-128/vtuner_web_mp3/");
   //mp3.connecttohost("stream.landeswelle.de/lwt/mp3-192"); // mp3 192kb/s
   //mp3.connecttohost("listen.ai-radio.org:8000/320.ogg?cc=DE&now=1511557873.987&");  // ogg
   //mp3.connecttohost("tophits.radiomonster.fm/320.mp3");  //bitrate 320k
   //mp3.connecttohost("hellwegradiowest.radiovonhier.de/high/stream.mp3"); // Transfer Encoding: chunked
-  mp3.connecttohost("http://ic5.101.ru:8000/p429088");
+  mp3.connecttohost("http://ic6.101.ru:8000/p429088");
   //mp3.connecttohost("https://icecast.omroepvenray.nl/lov.mp3"); // ssl
   //mp3.connecttoSD("320k_test.mp3"); // SD card
   //mp3.connecttospeech("Wenn die Hunde schlafen, kann der Wolf gut Schafe stehlen.", "de");

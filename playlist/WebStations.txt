@@ -45,11 +45,11 @@
 {"Name":"Barneo FM - Enigma","URL":"195.242.219.208","File":"/enigma","Port":"8200","ovol":"0"}
 {"Name":"Depeche Mode","URL":"streams.80s80s.de","File":"/dm/aac-64/radiosure/","Port":"80","ovol":"0"}
 {"Name":"ABradio - Depeche Mode","URL":"mp3stream4.abradio.cz","File":"/depeche128.mp3","Port":"80","ovol":"0"}
-{"Name":"","URL":"","File":"","Port":"0","ovol":"0"}
-{"Name":"","URL":"","File":"","Port":"0","ovol":"0"}
-{"Name":"","URL":"","File":"","Port":"0","ovol":"0"}
-{"Name":"","URL":"","File":"","Port":"0","ovol":"0"}
-{"Name":"","URL":"","File":"","Port":"0","ovol":"0"}
+{"Name":"80s80s italodisco","URL":"streams.80s80s.de","File":"/italohits/mp3-192/radiosure/","Port":"80","ovol":"0"}
+{"Name":"CLUB MUSIC RADIO - ITALO DISCO","URL":"cmr-hosting.com","File":"/","Port":"8050","ovol":"0"}
+{"Name":"101.ru - The Lounge Cafe","URL":"ic6.101.ru","File":"/p630845","Port":"8000","ovol":"0"}
+{"Name":"101.ru - NEW WAVE 2000-2012","URL":"ic6.101.ru","File":"/p411796","Port":"8000","ovol":"0"}
+{"Name":"90s90s Techno","URL":"streams.90s90s.de","File":"/techno/mp3-192/radiosure/play.m3u","Port":"80","ovol":"0"}
 {"Name":"","URL":"","File":"","Port":"0","ovol":"0"}
 {"Name":"","URL":"","File":"","Port":"0","ovol":"0"}
 {"Name":"","URL":"","File":"","Port":"0","ovol":"0"}
