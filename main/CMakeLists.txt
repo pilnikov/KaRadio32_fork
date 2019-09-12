@@ -1,0 +1,3 @@
+idf_component_register(SRCS "app_main.c"
+                    INCLUDE_DIRS "include"
+					PRIV_INCLUDE_DIRS "../components/audio_player/include" "../components/audio_renderer/include" "../components/bt_speaker/include" "../components/common/include" "../components/fdk-aac_decoder/include" "../components/fifo/include" "../components/mad" "../components/MerusAudio/include" "../components/mp3_decoder/include" "../components/u8g2/csrc" "../components/ucglib/csrc" "../components/xpt2046" )
