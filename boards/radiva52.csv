@@ -1,8 +1,8 @@
 key,type,encoding,value
 
 label_space,namespace,,
-L_LABEL,data,string,radiva8.csv
-L_COMMENT,data,string,xcs:15 xdcs:2 rst:12 dreq:4 a/d:14 cs:13 d_rst:32 ir:36 j_u/d:35 j_l/r:34 j_cen:33 lcd:192 led:22
+L_LABEL,data,string,radiva51.csv
+L_COMMENT,data,string,xcs:15 xdcs:2 rst:12 dreq:4 a/d:14 cs:13 d_rst:32 ir:36 j_u/d:35 j_l/r:34 j_cen:33 lcd:194 led:22 bl:27
 
 gpio_space,namespace,,
 K_SPI,data,u8,2
@@ -40,11 +40,11 @@ P_JOY_0,data,u8,35
 P_JOY_1,data,u8,34
 P_LED_GPIO,data,u8,22
 P_ADC_KBD,data,u8,255
-P_BACKLIGHT,data,u8,255
+P_BACKLIGHT,data,u8,27
 
 option_space,namespace,,
 O_BTN0,data,u8,1
-O_LCD_TYPE,data,u8,192
+O_LCD_TYPE,data,u8,194
 O_LCD_ROTA,data,u8,0
 O_LCD_OUT,data,u32,0
 O_DDMM_FLAG,data,u8,1
