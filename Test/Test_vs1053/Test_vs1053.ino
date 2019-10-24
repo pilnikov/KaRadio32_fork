@@ -14,8 +14,8 @@
 #define VS1053_RST    12
 
 // Настройки сети WiFi
-String ssid =     "Home";
-String password = "44332221111";
+String ssid =     "yourSSID";
+String password = "yourPASS";
 
 int volume = 10; // Громкость
 
