@@ -127,12 +127,12 @@ void VS1053::begin() {
   digitalWrite(cs_pin, HIGH);
   delay(100);
 
-  // Init SPI in slow mode (0.2 MHz)
+  //   Init SPI in slow mode (0.2 MHz)
   VS1053_SPI = SPISettings(200000, MSBFIRST, SPI_MODE0);
-  //    printDetails("Right after reset/startup \n");
+  Serial.print("Right after reset/startup \n");
   delay(20);
-  //printDetails ("20 msec after reset");
-  //testComm("Slow SPI,Testing VS1053 read/write registers... \n");
+  Serial.print("20 msec after reset");
+  Serial.print("Slow SPI,Testing VS1053 read/write registers... \n");
   // Most VS1053 modules will start up in midi mode.  The result is that there is no audio
   // when playing MP3.  You can modify the board, but there is a more elegant way:
   wram_write(0xC017, 3);                             // GPIO DDR=3
@@ -147,13 +147,13 @@ void VS1053::begin() {
   //SPI Clock to 4 MHz. Now you can set high speed SPI clock.
   VS1053_SPI = SPISettings(4000000, MSBFIRST, SPI_MODE0);
   write_register(SCI_MODE, _BV (SM_SDINEW) | _BV(SM_LINE1));
-  //testComm("Fast SPI, Testing VS1053 read/write registers again... \n");
+  Serial.print("Fast SPI, Testing VS1053 read/write registers again... \n");
   delay(10);
   await_data_request();
   m_endFillByte = wram_read(0x1E06) & 0xFF;
-  //    sprintf(sbuf, "endFillByte is %X", endFillByte);
-  //    if(vs1053_info) vs1053_info(sbuf);
-  //    printDetails("After last clocksetting \n");
+      sprintf(sbuf, "endFillByte is %X", m_endFillByte);
+      if(vs1053_info) vs1053_info(sbuf);
+     Serial.print("After last clocksetting \n");
   delay(100);
 }
 //---------------------------------------------------------------------------------------

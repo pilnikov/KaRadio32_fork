@@ -14,8 +14,8 @@
 #define VS1053_RST    12
 
 // Настройки сети WiFi
-String ssid =     "SSID";
-String password = "PASS";
+String ssid =     "Home";
+String password = "44332221111";
 
 int volume = 10; // Громкость
 
@@ -26,15 +26,17 @@ void setup() {
   //pinMode(SD_CS, OUTPUT);      digitalWrite(SD_CS, HIGH);
   Serial.begin(115200);
   SPI.begin(SPI_SCK, SPI_MISO, SPI_MOSI);
+  Serial.print("Start WiFi...");
   WiFi.disconnect();
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid.c_str(), password.c_str());
   while (WiFi.status() != WL_CONNECTED) delay(1500);
+  Serial.print("Start VS...");
 
   // Сброс вээски
   pinMode(VS1053_RST, OUTPUT); 
   digitalWrite(VS1053_RST, LOW);
-  delay (100);
+  delay (200);
   digitalWrite(VS1053_RST, HIGH);
 
   mp3.begin();
