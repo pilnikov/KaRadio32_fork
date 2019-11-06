@@ -2,13 +2,13 @@
 {"Name":"Дискотека 90-х","URL":"listen1.myradio24.com","File":"/5967","Port":"9000","ovol":"0"}
 {"Name":"Радио Кекс FM","URL":"emg02.hostingradio.ru","File":"/keksfm64.aac","Port":"80","ovol":"0"}
 {"Name":"Радио Радиола","URL":"online1.gkvr.ru","File":"/radiola_eka_128.mp3","Port":"8000","ovol":"0"}
-{"Name":"Радио Пилот","URL":"online.tv-pilot.ru","File":"/pilotradio","Port":"1027","ovol":"0"}
-{"Name":"Наше Радио","URL":"radio02-cn03.akadostream.ru","File":"/nashe128.mp3","Port":"8112","ovol":"0"}
-{"Name":"Радио Шансон","URL":"radio02-cn03.akadostream.ru","File":"/shanson128.mp3","Port":"8108","ovol":"0"}
+{"Name":"Радио Пилот","URL":"online.pilotfm.ru","File":"/pilot_aacplus","Port":"8000","ovol":"0"}
+{"Name":"Наше Радио","URL":"nashe1.hostingradio.ru","File":"/nashe20-128.mp3","Port":"80","ovol":"0"}
+{"Name":"Радио Шансон","URL":"media2.brg.ua","File":"/shanson_l","Port":"8000","ovol":"0"}
 {"Name":"Радио Волшебный Шансон","URL":"listen2.myradio24.com","File":"/8144","Port":"9000","ovol":"0"}
 {"Name":"Русский рок","URL":"212.26.146.50","File":"/rusrock.mp3","Port":"8000","ovol":"0"}
 {"Name":"Европа плюс","URL":"ep128server.streamr.ru","File":"/ep128","Port":"8030","ovol":"0"}
-{"Name":"Вести ФМ","URL":"icecast.vgtrk.cdnvideo.ru","File":"/vestifm_mp3_192kbps","Port":"80","ovol":"42"}
+{"Name":"Вести ФМ","URL":"icecast.vgtrk.cdnvideo.ru","File":"/vestifm_aac_32kbps","Port":"80","ovol":"42"}
 {"Name":"Business FM Moscow 87.5","URL":"bfmstream.bfm.ru","File":"/fm64","Port":"8004","ovol":"0"}
 {"Name":"Радио Коммерсант FM","URL":"kommersant77.hostingradio.ru","File":"/kommersant128.mp3","Port":"8016","ovol":"0"}
 {"Name":"Дорожное радио","URL":"dor64no.streamr.ru","File":"/","Port":"80","ovol":"0"}
@@ -50,8 +50,8 @@
 {"Name":"101.ru - The Lounge Cafe","URL":"ic6.101.ru","File":"/p630845","Port":"8000","ovol":"0"}
 {"Name":"101.ru - NEW WAVE 2000-2012","URL":"ic6.101.ru","File":"/p411796","Port":"8000","ovol":"0"}
 {"Name":"90s90s Techno","URL":"streams.90s90s.de","File":"/techno/mp3-192/radiosure/play.m3u","Port":"80","ovol":"0"}
-{"Name":"","URL":"","File":"","Port":"0","ovol":"0"}
-{"Name":"","URL":"","File":"","Port":"0","ovol":"0"}
+{"Name":"PinkFloyd","URL":"icy.unitedradio.it","File":"/VirginRogerWaters.mp3","Port":"80","ovol":"0"}
+{"Name":"Italo Disco","URL":"ic6.101.ru","File":"/a161","Port":"8000","ovol":"0"}
 {"Name":"","URL":"","File":"","Port":"0","ovol":"0"}
 {"Name":"","URL":"","File":"","Port":"0","ovol":"0"}
 {"Name":"","URL":"","File":"","Port":"0","ovol":"0"}
