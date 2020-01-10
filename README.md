@@ -42,5 +42,6 @@ http://totel.kusto.com.ru:18888/karadio/
 
 Хорошая инструкция от Игоря Шерстюка (aka nadim)
 https://www.drive2.ru/b/487463808323813881/
+
 Еще инструкции от пользователя maleksm с форума Arduino 
 http://arduino.ru/forum/proekty/wi-fi-internet-radio?page=104#comment-443847
