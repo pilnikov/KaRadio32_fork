@@ -1,83 +1,67 @@
-/*
-  Blink
 
-  Turns an LED on for one second, then off for one second, repeatedly.
+// Test for check connection between ESP and VS
 
-  Most Arduinos have an on-board LED you can control. On the UNO, MEGA and ZERO
-  it is attached to digital pin 13, on MKR1000 on pin 6. LED_BUILTIN is set to
-  the correct LED pin independent of which board is used.
-  If you want to know what pin the on-board LED is connected to on your Arduino
-  model, check the Technical Specs of your board at:
-  https://www.arduino.cc/en/Main/Products
-
-  modified 8 May 2014
-  by Scott Fitzgerald
-  modified 2 Sep 2016
-  by Arturo Guadalupi
-  modified 8 Sep 2016
-  by Colby Newman
-
-  This example code is in the public domain.
-
-  http://www.arduino.cc/en/Tutorial/Blink
-*/
+// For test you must disconnect the +5v pin from VS!!!!!! GND do not disconnect!!!!
 #include "Arduino.h"
 
 #define SPI_MOSI      23
 #define SPI_MISO      19
 #define SPI_SCK       18
-#define VS1053_CS     15
-#define VS1053_DCS     2
-#define VS1053_DREQ    4
+#define VS1053_CS     32
+#define VS1053_DCS    33
+#define VS1053_DREQ   34
 #define VS1053_RST    12
+#define DEL           3000
 
 // the setup function runs once when you press reset or power the board
 void setup() {
-  Serial.begin(115200); //Serial monitor start
-
 
   // initialize digital pin.
+  pinMode( SPI_MISO, OUTPUT);
   pinMode( SPI_MOSI, OUTPUT);
-  pinMode( SPI_MISO, INPUT);
   pinMode( SPI_SCK, OUTPUT);
   pinMode( VS1053_CS, OUTPUT);
   pinMode( VS1053_DCS, OUTPUT);
-  pinMode( VS1053_DREQ, INPUT);
+  pinMode( VS1053_DREQ, OUTPUT);
   pinMode( VS1053_RST, OUTPUT);
+
+  digitalWrite(SPI_MOSI, LOW);   // 1
+  digitalWrite(SPI_MISO, LOW);   // 2
+  digitalWrite(SPI_SCK, LOW);   // 3
+  digitalWrite(VS1053_CS, LOW);   // 4
+  digitalWrite(VS1053_DCS, LOW);   // 5
+  digitalWrite(VS1053_DREQ, LOW);   // 6
+  digitalWrite(VS1053_RST, LOW);   // 7
+
 }
 
-// the loop function runs over and over again forever
+// HIGH LEVEL SEQUENSE MISO -> MOSI -> SCK -> XCS -> XDCS -> DREQ -> XRST delay 3s
 void loop() {
-  digitalWrite(SPI_MOSI, HIGH);   // turn the LED on (HIGH is the voltage level)
-  digitalWrite(SPI_SCK, HIGH);   // turn the LED on (HIGH is the voltage level)
-  digitalWrite(VS1053_CS, HIGH);   // turn the LED on (HIGH is the voltage level)
-  digitalWrite(VS1053_DCS, HIGH);   // turn the LED on (HIGH is the voltage level)
-  digitalWrite(VS1053_RST, HIGH);   // turn the LED on (HIGH is the voltage level)
+  digitalWrite(SPI_MISO, HIGH);   // 1
+  delay(DEL);                       // wait for a DEL second
+  digitalWrite(SPI_MISO, LOW);   // 1
+  
+  digitalWrite(SPI_MOSI, HIGH);   // 2
+  delay(DEL);                       // wait for a DEL second
+  digitalWrite(SPI_MOSI, LOW);   // 2
 
-  int InputState = digitalRead(SPI_MISO);
-  Serial.print("MISO = ");
-  Serial.println(InputState);
+  digitalWrite(SPI_SCK, HIGH);   // 3
+  delay(DEL);                       // wait for a DEL second
+  digitalWrite(SPI_SCK, LOW);   // 3
 
-  InputState = digitalRead(VS1053_DREQ);
-  Serial.print("DREQ = ");
-  Serial.println(InputState);
+  digitalWrite(VS1053_CS, HIGH);   // 4
+  delay(DEL);                       // wait for a DEL second
+  digitalWrite(VS1053_CS, LOW);   // 4
 
-  delay(1000);                       // wait for a second
+  digitalWrite(VS1053_DCS, HIGH);   // 5
+  delay(DEL);                       // wait for a DEL second
+  digitalWrite(VS1053_DCS, LOW);   // 5
 
-  digitalWrite(SPI_MOSI, LOW);   // turn the LED on (HIGH is the voltage level)
-  digitalWrite(SPI_SCK, LOW);   // turn the LED on (HIGH is the voltage level)
-  digitalWrite(VS1053_CS, LOW);   // turn the LED on (HIGH is the voltage level)
-  digitalWrite(VS1053_DCS, LOW);   // turn the LED on (HIGH is the voltage level)
-  digitalWrite(VS1053_RST, LOW);   // turn the LED on (HIGH is the voltage level)
+  digitalWrite(VS1053_DREQ, HIGH);   // 6
+  delay(DEL);                       // wait for a DEL second
+  digitalWrite(VS1053_DREQ, LOW);   // 6
 
-  InputState = digitalRead(SPI_MISO);
-  Serial.print("MISO = ");
-  Serial.println(InputState);
-
-  InputState = digitalRead(VS1053_DREQ);
-  Serial.print("DREQ = ");
-  Serial.println(InputState);
-
-
-delay(1000);                       // wait for a second
+  digitalWrite(VS1053_RST, LOW);   // 7
+  delay(DEL);                       // wait for a DEL second
+  digitalWrite(VS1053_RST, LOW);   // 7
 }
