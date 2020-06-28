@@ -1,0 +1,100 @@
+Пример запуска программы для создания BDF файлов из шрифтов Times New Roman, Courier New, Arial, Lucida Sans Unicode и Lucida Console:
+ttf2bdf.exe -p  8 -r 75 -l '32_255 1024_1279' -t 'Times'           -o time08.bdf   C:\WINDOWS\FONTS\times.ttf
+ttf2bdf.exe -p 10 -r 75 -l '32_255 1024_1279' -t 'Times'           -o time10.bdf   C:\WINDOWS\FONTS\times.ttf
+ttf2bdf.exe -p 12 -r 75 -l '32_255 1024_1279' -t 'Times'           -o time12.bdf   C:\WINDOWS\FONTS\times.ttf
+ttf2bdf.exe -p 14 -r 75 -l '32_255 1024_1279' -t 'Times'           -o time14.bdf   C:\WINDOWS\FONTS\times.ttf
+ttf2bdf.exe -p 18 -r 75 -l '32_255 1024_1279' -t 'Times'           -o time18.bdf   C:\WINDOWS\FONTS\times.ttf
+ttf2bdf.exe -p 24 -r 75 -l '32_255 1024_1279' -t 'Times'           -o time24.bdf   C:\WINDOWS\FONTS\times.ttf
+
+ttf2bdf.exe -p  8 -r 75 -l '32_255 1024_1279' -t 'Times'           -o time08b.bdf  C:\WINDOWS\FONTS\timesbd.ttf
+ttf2bdf.exe -p 10 -r 75 -l '32_255 1024_1279' -t 'Times'           -o time10b.bdf  C:\WINDOWS\FONTS\timesbd.ttf
+ttf2bdf.exe -p 12 -r 75 -l '32_255 1024_1279' -t 'Times'           -o time12b.bdf  C:\WINDOWS\FONTS\timesbd.ttf
+ttf2bdf.exe -p 14 -r 75 -l '32_255 1024_1279' -t 'Times'           -o time14b.bdf  C:\WINDOWS\FONTS\timesbd.ttf
+ttf2bdf.exe -p 18 -r 75 -l '32_255 1024_1279' -t 'Times'           -o time18b.bdf  C:\WINDOWS\FONTS\timesbd.ttf
+ttf2bdf.exe -p 24 -r 75 -l '32_255 1024_1279' -t 'Times'           -o time24b.bdf  C:\WINDOWS\FONTS\timesbd.ttf
+
+ttf2bdf.exe -p  8 -r 75 -l '32_255 1024_1279' -t 'Times'           -o time08i.bdf  C:\WINDOWS\FONTS\timesi.ttf
+ttf2bdf.exe -p 10 -r 75 -l '32_255 1024_1279' -t 'Times'           -o time10i.bdf  C:\WINDOWS\FONTS\timesi.ttf
+ttf2bdf.exe -p 12 -r 75 -l '32_255 1024_1279' -t 'Times'           -o time12i.bdf  C:\WINDOWS\FONTS\timesi.ttf
+ttf2bdf.exe -p 14 -r 75 -l '32_255 1024_1279' -t 'Times'           -o time14i.bdf  C:\WINDOWS\FONTS\timesi.ttf
+ttf2bdf.exe -p 18 -r 75 -l '32_255 1024_1279' -t 'Times'           -o time18i.bdf  C:\WINDOWS\FONTS\timesi.ttf
+ttf2bdf.exe -p 24 -r 75 -l '32_255 1024_1279' -t 'Times'           -o time24i.bdf  C:\WINDOWS\FONTS\timesi.ttf
+
+ttf2bdf.exe -p  8 -r 75 -l '32_255 1024_1279' -t 'Times'           -o time08bi.bdf C:\WINDOWS\FONTS\timesbi.ttf
+ttf2bdf.exe -p 10 -r 75 -l '32_255 1024_1279' -t 'Times'           -o time10bi.bdf C:\WINDOWS\FONTS\timesbi.ttf
+ttf2bdf.exe -p 12 -r 75 -l '32_255 1024_1279' -t 'Times'           -o time12bi.bdf C:\WINDOWS\FONTS\timesbi.ttf
+ttf2bdf.exe -p 14 -r 75 -l '32_255 1024_1279' -t 'Times'           -o time14bi.bdf C:\WINDOWS\FONTS\timesbi.ttf
+ttf2bdf.exe -p 18 -r 75 -l '32_255 1024_1279' -t 'Times'           -o time18bi.bdf C:\WINDOWS\FONTS\timesbi.ttf
+ttf2bdf.exe -p 24 -r 75 -l '32_255 1024_1279' -t 'Times'           -o time24bi.bdf C:\WINDOWS\FONTS\timesbi.ttf
+
+ttf2bdf.exe -p  8 -r 75 -l '32_255 1024_1279' -t 'Courier'         -o cour08.bdf   C:\WINDOWS\FONTS\cour.ttf
+ttf2bdf.exe -p 10 -r 75 -l '32_255 1024_1279' -t 'Courier'         -o cour10.bdf   C:\WINDOWS\FONTS\cour.ttf
+ttf2bdf.exe -p 12 -r 75 -l '32_255 1024_1279' -t 'Courier'         -o cour12.bdf   C:\WINDOWS\FONTS\cour.ttf
+ttf2bdf.exe -p 14 -r 75 -l '32_255 1024_1279' -t 'Courier'         -o cour14.bdf   C:\WINDOWS\FONTS\cour.ttf
+ttf2bdf.exe -p 18 -r 75 -l '32_255 1024_1279' -t 'Courier'         -o cour18.bdf   C:\WINDOWS\FONTS\cour.ttf
+ttf2bdf.exe -p 24 -r 75 -l '32_255 1024_1279' -t 'Courier'         -o cour24.bdf   C:\WINDOWS\FONTS\cour.ttf
+
+ttf2bdf.exe -p  8 -r 75 -l '32_255 1024_1279' -t 'Courier'         -o cour08b.bdf  C:\WINDOWS\FONTS\courbd.ttf
+ttf2bdf.exe -p 10 -r 75 -l '32_255 1024_1279' -t 'Courier'         -o cour10b.bdf  C:\WINDOWS\FONTS\courbd.ttf
+ttf2bdf.exe -p 12 -r 75 -l '32_255 1024_1279' -t 'Courier'         -o cour12b.bdf  C:\WINDOWS\FONTS\courbd.ttf
+ttf2bdf.exe -p 14 -r 75 -l '32_255 1024_1279' -t 'Courier'         -o cour14b.bdf  C:\WINDOWS\FONTS\courbd.ttf
+ttf2bdf.exe -p 18 -r 75 -l '32_255 1024_1279' -t 'Courier'         -o cour18b.bdf  C:\WINDOWS\FONTS\courbd.ttf
+ttf2bdf.exe -p 24 -r 75 -l '32_255 1024_1279' -t 'Courier'         -o cour24b.bdf  C:\WINDOWS\FONTS\courbd.ttf
+
+ttf2bdf.exe -p  8 -r 75 -l '32_255 1024_1279' -t 'Courier'         -o cour08i.bdf  C:\WINDOWS\FONTS\couri.ttf
+ttf2bdf.exe -p 10 -r 75 -l '32_255 1024_1279' -t 'Courier'         -o cour10i.bdf  C:\WINDOWS\FONTS\couri.ttf
+ttf2bdf.exe -p 12 -r 75 -l '32_255 1024_1279' -t 'Courier'         -o cour12i.bdf  C:\WINDOWS\FONTS\couri.ttf
+ttf2bdf.exe -p 14 -r 75 -l '32_255 1024_1279' -t 'Courier'         -o cour14i.bdf  C:\WINDOWS\FONTS\couri.ttf
+ttf2bdf.exe -p 18 -r 75 -l '32_255 1024_1279' -t 'Courier'         -o cour18i.bdf  C:\WINDOWS\FONTS\couri.ttf
+ttf2bdf.exe -p 24 -r 75 -l '32_255 1024_1279' -t 'Courier'         -o cour24i.bdf  C:\WINDOWS\FONTS\couri.ttf
+
+ttf2bdf.exe -p  8 -r 75 -l '32_255 1024_1279' -t 'Courier'         -o cour08bi.bdf C:\WINDOWS\FONTS\courbi.ttf
+ttf2bdf.exe -p 10 -r 75 -l '32_255 1024_1279' -t 'Courier'         -o cour10bi.bdf C:\WINDOWS\FONTS\courbi.ttf
+ttf2bdf.exe -p 12 -r 75 -l '32_255 1024_1279' -t 'Courier'         -o cour12bi.bdf C:\WINDOWS\FONTS\courbi.ttf
+ttf2bdf.exe -p 14 -r 75 -l '32_255 1024_1279' -t 'Courier'         -o cour14bi.bdf C:\WINDOWS\FONTS\courbi.ttf
+ttf2bdf.exe -p 18 -r 75 -l '32_255 1024_1279' -t 'Courier'         -o cour18bi.bdf C:\WINDOWS\FONTS\courbi.ttf
+ttf2bdf.exe -p 24 -r 75 -l '32_255 1024_1279' -t 'Courier'         -o cour24bi.bdf C:\WINDOWS\FONTS\courbi.ttf
+
+ttf2bdf.exe -p  8 -r 75 -l '32_255 1024_1279' -t 'Helvetica'       -o helv08.bdf   C:\WINDOWS\FONTS\arial.ttf
+ttf2bdf.exe -p 10 -r 75 -l '32_255 1024_1279' -t 'Helvetica'       -o helv10.bdf   C:\WINDOWS\FONTS\arial.ttf
+ttf2bdf.exe -p 12 -r 75 -l '32_255 1024_1279' -t 'Helvetica'       -o helv12.bdf   C:\WINDOWS\FONTS\arial.ttf
+ttf2bdf.exe -p 14 -r 75 -l '32_255 1024_1279' -t 'Helvetica'       -o helv14.bdf   C:\WINDOWS\FONTS\arial.ttf
+ttf2bdf.exe -p 18 -r 75 -l '32_255 1024_1279' -t 'Helvetica'       -o helv18.bdf   C:\WINDOWS\FONTS\arial.ttf
+ttf2bdf.exe -p 24 -r 75 -l '32_255 1024_1279' -t 'Helvetica'       -o helv24.bdf   C:\WINDOWS\FONTS\arial.ttf
+
+ttf2bdf.exe -p  8 -r 75 -l '32_255 1024_1279' -t 'Helvetica'       -o helv08b.bdf  C:\WINDOWS\FONTS\arialbd.ttf
+ttf2bdf.exe -p 10 -r 75 -l '32_255 1024_1279' -t 'Helvetica'       -o helv10b.bdf  C:\WINDOWS\FONTS\arialbd.ttf
+ttf2bdf.exe -p 12 -r 75 -l '32_255 1024_1279' -t 'Helvetica'       -o helv12b.bdf  C:\WINDOWS\FONTS\arialbd.ttf
+ttf2bdf.exe -p 14 -r 75 -l '32_255 1024_1279' -t 'Helvetica'       -o helv14b.bdf  C:\WINDOWS\FONTS\arialbd.ttf
+ttf2bdf.exe -p 18 -r 75 -l '32_255 1024_1279' -t 'Helvetica'       -o helv18b.bdf  C:\WINDOWS\FONTS\arialbd.ttf
+ttf2bdf.exe -p 24 -r 75 -l '32_255 1024_1279' -t 'Helvetica'       -o helv24b.bdf  C:\WINDOWS\FONTS\arialbd.ttf
+
+ttf2bdf.exe -p  8 -r 75 -l '32_255 1024_1279' -t 'Helvetica'       -o helv08i.bdf  C:\WINDOWS\FONTS\ariali.ttf
+ttf2bdf.exe -p 10 -r 75 -l '32_255 1024_1279' -t 'Helvetica'       -o helv10i.bdf  C:\WINDOWS\FONTS\ariali.ttf
+ttf2bdf.exe -p 12 -r 75 -l '32_255 1024_1279' -t 'Helvetica'       -o helv12i.bdf  C:\WINDOWS\FONTS\ariali.ttf
+ttf2bdf.exe -p 14 -r 75 -l '32_255 1024_1279' -t 'Helvetica'       -o helv14i.bdf  C:\WINDOWS\FONTS\ariali.ttf
+ttf2bdf.exe -p 18 -r 75 -l '32_255 1024_1279' -t 'Helvetica'       -o helv18i.bdf  C:\WINDOWS\FONTS\ariali.ttf
+ttf2bdf.exe -p 24 -r 75 -l '32_255 1024_1279' -t 'Helvetica'       -o helv24i.bdf  C:\WINDOWS\FONTS\ariali.ttf
+
+ttf2bdf.exe -p  8 -r 75 -l '32_255 1024_1279' -t 'Helvetica'       -o helv08bi.bdf C:\WINDOWS\FONTS\arialbi.ttf
+ttf2bdf.exe -p 10 -r 75 -l '32_255 1024_1279' -t 'Helvetica'       -o helv10bi.bdf C:\WINDOWS\FONTS\arialbi.ttf
+ttf2bdf.exe -p 12 -r 75 -l '32_255 1024_1279' -t 'Helvetica'       -o helv12bi.bdf C:\WINDOWS\FONTS\arialbi.ttf
+ttf2bdf.exe -p 14 -r 75 -l '32_255 1024_1279' -t 'Helvetica'       -o helv14bi.bdf C:\WINDOWS\FONTS\arialbi.ttf
+ttf2bdf.exe -p 18 -r 75 -l '32_255 1024_1279' -t 'Helvetica'       -o helv18bi.bdf C:\WINDOWS\FONTS\arialbi.ttf
+ttf2bdf.exe -p 24 -r 75 -l '32_255 1024_1279' -t 'Helvetica'       -o helv24bi.bdf C:\WINDOWS\FONTS\arialbi.ttf
+
+ttf2bdf.exe -p  8 -r 75 -l '32_255 1024_1279' -t 'Lucida'          -o lu08.bdf     C:\WINDOWS\FONTS\lsansuni.ttf
+ttf2bdf.exe -p 10 -r 75 -l '32_255 1024_1279' -t 'Lucida'          -o lu10.bdf     C:\WINDOWS\FONTS\lsansuni.ttf
+ttf2bdf.exe -p 12 -r 75 -l '32_255 1024_1279' -t 'Lucida'          -o lu12.bdf     C:\WINDOWS\FONTS\lsansuni.ttf
+ttf2bdf.exe -p 14 -r 75 -l '32_255 1024_1279' -t 'Lucida'          -o lu14.bdf     C:\WINDOWS\FONTS\lsansuni.ttf
+ttf2bdf.exe -p 18 -r 75 -l '32_255 1024_1279' -t 'Lucida'          -o lu18.bdf     C:\WINDOWS\FONTS\lsansuni.ttf
+ttf2bdf.exe -p 19 -r 75 -l '32_255 1024_1279' -t 'Lucida'          -o lu19.bdf     C:\WINDOWS\FONTS\lsansuni.ttf
+ttf2bdf.exe -p 24 -r 75 -l '32_255 1024_1279' -t 'Lucida'          -o lu24.bdf     C:\WINDOWS\FONTS\lsansuni.ttf
+
+ttf2bdf.exe -p  8 -r 75 -l '32_255 1024_1279' -t 'Lucida Terminal' -o lut08.bdf    C:\WINDOWS\FONTS\lucon.ttf
+ttf2bdf.exe -p 10 -r 75 -l '32_255 1024_1279' -t 'Lucida Terminal' -o lut10.bdf    C:\WINDOWS\FONTS\lucon.ttf
+ttf2bdf.exe -p 12 -r 75 -l '32_255 1024_1279' -t 'Lucida Terminal' -o lut12.bdf    C:\WINDOWS\FONTS\lucon.ttf
+ttf2bdf.exe -p 14 -r 75 -l '32_255 1024_1279' -t 'Lucida Terminal' -o lut14.bdf    C:\WINDOWS\FONTS\lucon.ttf
+ttf2bdf.exe -p 18 -r 75 -l '32_255 1024_1279' -t 'Lucida Terminal' -o lut18.bdf    C:\WINDOWS\FONTS\lucon.ttf
+ttf2bdf.exe -p 19 -r 75 -l '32_255 1024_1279' -t 'Lucida Terminal' -o lut19.bdf    C:\WINDOWS\FONTS\lucon.ttf
+ttf2bdf.exe -p 24 -r 75 -l '32_255 1024_1279' -t 'Lucida Terminal' -o lut24.bdf    C:\WINDOWS\FONTS\lucon.ttf
