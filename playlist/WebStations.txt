@@ -21,9 +21,9 @@
 {"Name":"Радио Владивосток FM","URL":"vladfm.com","File":"/vfm","Port":"8000","ovol":"0"}
 {"Name":"Радио Динамит","URL":"82.208.90.58","File":"/;?1456127630240.mp3","Port":"2000","ovol":"0"}
 {"Name":"Радио Август","URL":"81.28.166.36","File":"/;stream/1","Port":"8000","ovol":"42"}
-{"Name":"100% Hit","URL":"100radio-hit.ice.infomaniak.ch","File":"/100radio-hit-64.aac","Port":"80","ovol":"0"}
-{"Name":"100% 80","URL":"100radio-80.ice.infomaniak.ch","File":"/100radio-80-64.aac","Port":"80","ovol":"0"}
-{"Name":"100% 90","URL":"100radio-90.ice.infomaniak.ch","File":"/100radio-90-64.aac","Port":"80","ovol":"0"}
+{"Name":"100","URL":"100radio-hit.ice.infomaniak.ch","File":"/100radio-hit-64.aac","Port":"80","ovol":"0"}
+{"Name":"1000","URL":"100radio-80.ice.infomaniak.ch","File":"/100radio-80-64.aac","Port":"80","ovol":"0"}
+{"Name":"100	0","URL":"100radio-90.ice.infomaniak.ch","File":"/100radio-90-64.aac","Port":"80","ovol":"0"}
 {"Name":"M2 90's","URL":"live.m2stream.fr","File":"/m290-128.mp3","Port":"80","ovol":"0"}
 {"Name":"M2 80's","URL":"live.m2stream.fr","File":"/m280-128.mp3","Port":"80","ovol":"0"}
 {"Name":"M2 Hit's","URL":"live.m2stream.fr","File":"/m2hit-128.mp3","Port":"80","ovol":"0"}
@@ -52,13 +52,13 @@
 {"Name":"90s90s Techno","URL":"streams.90s90s.de","File":"/techno/mp3-192/radiosure/play.m3u","Port":"80","ovol":"0"}
 {"Name":"PinkFloyd","URL":"icy.unitedradio.it","File":"/VirginRogerWaters.mp3","Port":"80","ovol":"0"}
 {"Name":"Italo Disco","URL":"ic6.101.ru","File":"/a161","Port":"8000","ovol":"0"}
-{"Name":"","URL":"","File":"","Port":"0","ovol":"0"}
-{"Name":"","URL":"","File":"","Port":"0","ovol":"0"}
-{"Name":"","URL":"","File":"","Port":"0","ovol":"0"}
-{"Name":"","URL":"","File":"","Port":"0","ovol":"0"}
-{"Name":"","URL":"","File":"","Port":"0","ovol":"0"}
-{"Name":"","URL":"","File":"","Port":"0","ovol":"0"}
-{"Name":"","URL":"","File":"","Port":"0","ovol":"0"}
+{"Name":"Paradise","URL":"stream.radioparadise.com","File":"/flac","Port":"80","ovol":"0"}
+{"Name":"Sector_80","URL":"stream.sectorradio.ru","File":"/geny-flac","Port":"8000","ovol":"0"}
+{"Name":"progressive","URL":"89.223.45.5","File":"/progressive-160","Port":"8000","ovol":"0"}
+{"Name":"paradise aac320","URL":"stream.radioparadise.com","File":"/aac-320","Port":"80","ovol":"0"}
+{"Name":"Absolute Classic Rock","URL":"icecast-beta.timlradio.co.uk","File":"/absoluteclassicrock.ogg","Port":"80","ovol":"0"}
+{"Name":"secure","URL":"secure.live-streams.nl","File":"/flac.flac","Port":"80","ovol":"0"}
+{"Name":"freq 3","URL":"hd.stream.frequence3.net","File":"/frequence3.flac","Port":"80","ovol":"0"}
 {"Name":"","URL":"","File":"","Port":"0","ovol":"0"}
 {"Name":"","URL":"","File":"","Port":"0","ovol":"0"}
 {"Name":"","URL":"","File":"","Port":"0","ovol":"0"}
