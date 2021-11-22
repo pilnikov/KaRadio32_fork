@@ -37,8 +37,8 @@ http://totel.kusto.com.ru:18888/karadio/
 
 Теперь поддерживаются модули A1S от Aithinker!
 
-Все исходники тут же в боксе "ADF" в экзэмплах.
-Бинарник собран при помощи Ninja & Cmake на базе IDF 4.1
+Все исходники https://github.com/pilnikov/Ka_mod.
+Бинарник собран при помощи Ninja & Cmake на базе IDF 4.1 (на IDF 5.x пока не работает)
 
 Хорошая инструкция от Игоря Шерстюка (aka nadim)
 https://www.drive2.ru/b/487463808323813881/
