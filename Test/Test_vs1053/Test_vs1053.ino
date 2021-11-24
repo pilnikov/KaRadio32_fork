@@ -14,8 +14,8 @@
 #define VS1053_RST    12
 
 // Настройки сети WiFi
-String ssid =     "Home";
-String password = "44332221111";
+String ssid =     "Mik2";
+String password = "12345678";
 uint8_t myToneVals[4] = {15, 0, 15, 15};
 int volume = 10; // Громкость
 
@@ -63,7 +63,7 @@ void setup() {
 
   // ------------ Тут надо выбрать один из потоков или добавить свой
 
-  //mp3.connecttohost("streambbr.ir-media-tec.com/berlin/mp3-128/vtuner_web_mp3/");
+  mp3.connecttohost("streambbr.ir-media-tec.com/berlin/mp3-128/vtuner_web_mp3/");
   //mp3.connecttohost("stream.landeswelle.de/lwt/mp3-192"); // mp3 192kb/s
   //mp3.connecttohost("listen.ai-radio.org:8000/320.ogg?cc=DE&now=1511557873.987&");  // ogg
   //mp3.connecttohost("tophits.radiomonster.fm/320.mp3");  //bitrate 320k
@@ -73,7 +73,7 @@ void setup() {
   //mp3.connecttohost("http://ic7.101.ru:8000/a161");
 
   //mp3.connecttohost("https://icecast.omroepvenray.nl/lov.mp3"); // ssl
-   mp3.connecttohost("http://stream.radioparadise.com:80/flac"); //flac
+  //mp3.connecttohost("http://stream.radioparadise.com:80/flac"); //flac
   //mp3.connecttoSD("320k_test.mp3"); // SD card
   //mp3.connecttospeech("Wenn die Hunde schlafen, kann der Wolf gut Schafe stehlen.", "de");
 }
